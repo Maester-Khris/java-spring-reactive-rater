@@ -28,6 +28,6 @@ jobs:
       - name: compile and build the spring boot code
         run: |
           echo "Clea, Compile, and package the Jar" && \
-          mvn clean install package -P test --spring.r2dbc.username=root 
+          mvn clean install package -P test -Dspring.r2dbc.username=root 
     
     
