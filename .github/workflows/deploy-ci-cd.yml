@@ -1,0 +1,27 @@
+name: Build and Deploy application container
+on:
+  push:
+   branches:
+      - master
+
+jobs:
+  build:
+    name: Maven Build phase
+    runs-on: Ubuntu-latest
+    steps:
+      - name: checkout the branch
+        uses: actions/checkout@v3
+      - name: setup java build tools
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: compile and build the spring boot code
+        run: |
+          echo "Compile first" && \
+          mvn compile && \
+          echo "Then Build" && \
+          mvn clean install package
+    
+    
