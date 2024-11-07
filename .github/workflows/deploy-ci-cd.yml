@@ -2,7 +2,7 @@ name: Build and Deploy application container
 on:
   push:
    branches:
-      - master
+      - main
 
 jobs:
   build:
