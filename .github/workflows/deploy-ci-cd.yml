@@ -19,9 +19,7 @@ jobs:
           cache: maven
       - name: compile and build the spring boot code
         run: |
-          echo "Compile first" && \
-          mvn compile && \
-          echo "Then Build" && \
+          echo "Clea, Compile, and package the Jar" && \
           mvn clean install package
     
     
