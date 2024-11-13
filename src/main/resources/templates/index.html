@@ -1,53 +1,251 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <link rel="stylesheet" th:href="@{/css/app.css}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home page</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  
+  <link rel="stylesheet" th:href="@{/css/app.css}">
+  <style>
+    label.form-group {
+      padding: 3px 0px !important;
+    }
+
+    .form-group {
+      margin-bottom: 8px !important;
+    }
+
+    .modal-body {
+      padding: 8px 16px !important;
+    }
+
+    .modal-content {
+      margin-top: 50px;
+      height: 410px !important;
+    }
+
+    .form-passwod-group {
+      position: relative;
+    }
+
+    i#togglePassword {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      font-size: 19px;
+      cursor: pointer;
+    }
+
+    label.form-group {
+      padding: 3px 0px !important;
+    }
+
+    .form-group {
+      margin-bottom: 8px !important;
+    }
+
+    .modal-body {
+      padding: 8px 16px !important;
+    }
+
+    .modal-content {
+      margin-top: 50px;
+      height: 410px !important;
+    }
+
+    .hide-modal {
+      animation: Slideout 500ms ease-in forwards;
+    }
+
+    .show-modal {
+      animation: Slidein 500ms ease-in forwards;
+    }
+
+    .imp{
+      text-decoration: underline;
+      font-weight: 300;
+    }
+  </style>
 </head>
 
 <body style="background-color: beige;height: 100vh;width: 100%;">
-    <div class="wrapper">
-        <div class="jumbotron" style="padding-bottom: 30px;">
-            <h1 class="display-4">Weclome to <strong>Skills Rate</strong></h1>
-            <hr class="my-4">
-            <p>Utilize the navigation bar below to go through our site and of course <em>have fun !</em></p>
-            <button class="btn btn-info" data-toggle="modal" data-target="#loginModal">Login</button>
-        </div>
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page"><a href="/">Home</a></li>
-                <li class="breadcrumb-item"><a href="/rater">Skills rating</a></li>
-            </ol>
-        </nav>
-        <p class="leading">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur animi repellat,
-            nihil obcaecati laboriosam repellendus! Magni a dolores ratione aliquid corporis rem placeat 
-            maxime similique delectus. Ipsum rem qui temporibus nesciunt atque similique nemo doloribus, 
-            labore fugiat voluptate cupiditate minima sunt eum hic magnam nobis omnis quaerat distinctio 
-            impedit totam?
-        </p>
-        <h4 class="title">this week the top 4 most popular skills are </h4>
-        <table class="table">
-		  <thead>
-		    <tr>
-		      <th scope="col">#</th>
-		      <th scope="col">Skill</th>
-		      <th scope="col">Rating</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <tr th:each="skill, iStat : ${skills}">
-		      <td scope="row" th:text="${iStat.index+1}"></th>
-		      <td scope="row" th:text="${skill.skillname}"></th>
-		      <td scope="row" th:text="${skill.rating}"></th>
-		    </tr>
-		  </tbody>
-		</table>
+  <div class="wrapper" style="padding-bottom: 20px;">
+    <div class="jumbotron" style="padding-bottom: 30px;">
+      <h1 class="display-4">Weclome to <strong>Skills Rater</strong></h1>
+      <hr class="my-4">
+      <p>Utilize the navigation bar below to go through our site and of course <em>have fun !</em></p>
+      <button class="btn btn-info auth-btn" data-toggle="modal" data-target="#loginModal"
+        style=" background-color: #4b9dbd; border-color: #4b9dbd;">
+        <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
+        Login
+      </button>
     </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb" style="position: relative;">
+        <li class="breadcrumb-item active" aria-current="page"><a href="/"><i class="ph-fill ph-house-line"></i> Home</a></li>
+        <li class="breadcrumb-item"><a href="/votes"><i class="ph-fill ph-sparkle"></i> Skill stats</a></li>
+        <li class="breadcrumb-item"><a href="/myratings"><i class="ph-fill ph-pencil-ruler"></i> Give your rating</a></li>
+        <li class="breadcrumb-item"><a href="/swagger-ui.html" target="_blank" style="position:absolute;right:10px;"><i class="ph-fill ph-arrow-square-out"></i>API documentation</a></li>
+      </ol>
+
+    </nav>
+    <section>
+      <div class="skill-section-header" style="">
+        <h3>Project "Skills Rater" Overview</h3>
+        <div class="title-border"></div>
+      </div>
+      <p class="leading" >
+        We designed a web app that allows users or guest to decide which language/Framerwork/Tools is
+        the best by participating to a live perpetual vote. To simulate data coming in a real-time fashion 
+        way from multiple sources, we implemented a <strong>multi-threaded environment</strong> where threads produce new vote 
+        on existing resources. <br> This project, built with <strong>Java 8</strong> and <strong>Spring boot Framework</strong> implements 
+        <span class="imp">real-time data updates</span> using asynchronous client data submission, leveraging Axios for robust 
+        client-server communication. Also it employs <strong>server-sent events</strong>  through reactive programming, utilizing Spring boot <span class="imp">Reactor Sinks API and Mono.fromRunnable</span> to create a web-thread
+        producer for efficient event handling.
+      </p>
+      <p style="margin-bottom: 5px;">Following are some keypoints that has been focused on:</p>
+      <ul style="">
+        <li>Web Authentication</li>
+        <li>Restful Api Design and Documentation</li>
+        <li>Concurrency Management</li>
+        <li>Configuration Management</li>
+        <li>CI/CD Pipeline</li>
+      </ul>
+
+      <div class="card">
+        <div class="card-body">
+          <img class="img-fluix w-100" th:src="@{/img/app_architecture.png}" alt="project architecture"
+            style="max-width:100%;max-height:100%;">
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- Modal sections -->
+  <!-- 1- Login Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalLabel">Login Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/login" method="post">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="login-user-name" class="col-form-label">username</label>
+              <input name="username" type="text" class="form-control" id="login-user-name" value="Milo">
+            </div>
+            <div class="form-group form-passwod-group">
+              <label for="login-user-pass" class="col-form-label">Password: </label>
+              <input name="password" type="password" class="form-control input-password" id="login-user-pass"
+                value="Milo1234">
+              <i class="ph ph-eye" id="togglePassword"></i>
+            </div>
+            <div class="form-group">
+              <small class="d-inline-block" style="width: 100%;">
+                <span style="float: left;">Don't have an account ?</span>
+                <span style="float: right;">
+                  <a id="newAccount" href="#createaccount">Create account</a>
+                </span>
+              </small>
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-block btn-primary">Login</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2- Signup Modal -->
+  <div class="modal fade d-none" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signupModal">Signup Form</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="/signup" method="post">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="user-name" class="col-form-label">Username: </label>
+              <input name="username" type="text" class="form-control" id="user-name">
+            </div>
+            <div class="form-group">
+              <label for="user-email" class="col-form-label">Email: </label>
+              <input name="email" type="email" class="form-control" id="user-email">
+            </div>
+            <div class="form-group form-passwod-group">
+              <label for="user-pass" class="col-form-label">Password: </label>
+              <input name="password" type="password" class="form-control input-password" id="user-pass">
+              <i class="ph ph-eye" id="togglePassword"></i>
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-block btn-primary">Create my account</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const togglePassword = document.querySelector('#togglePassword');
+      const password = document.querySelector('.input-password');
+      togglePassword.addEventListener('click', (event) => {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        event.target.classList.toggle('ph-eye-slash');
+      });
+      // ======= Component and var initialization ===========
+      loginModal = document.querySelector("#loginModal");
+      signupModal = document.querySelector("#signupModal");
+      newaccbtn = document.querySelector("#newAccount");
+
+      // ======= Is auth checking ===========
+      const searchParams = new URLSearchParams(window.location.search);
+      console.log(searchParams.has('auth'));
+      if (searchParams.has('auth') == true) {
+        console.log("look at that felon");
+        $('#loginModal').modal();
+      }
+
+      // ======= UI interaction method ===========
+      newaccbtn.addEventListener("click", function () {
+        console.log("created");
+        loginModal.classList.add("hide-modal");
+        setTimeout(() => {
+          $('#loginModal').modal('hide');
+          $('#signupModal').modal();
+
+        }, 1000);
+        setTimeout(() => {
+          signupModal.classList.remove("d-none");
+          signupModal.classList.add("show-modal");
+        }, 1300);
+      });
+    });       
+  </script>
 </body>
+
 </html>

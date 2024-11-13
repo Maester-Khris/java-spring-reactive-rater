@@ -1,0 +1,12 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>
+<link rel="stylesheet" th:href="@{/css/app.css}">
+<tr th:each="skill, iStat : ${skills}">
+  <td scope="row" th:text="${iStat.index+1}"></th>
+  <td scope="row" th:text="${skill.skillname}"></th>
+  <td scope="row" th:text="${skill.rating}"></th>
+</tr>
+<tr>
+  <td  th:text="${testskill.skillname}"></td>
+  <td  th:text="${testskill.rating}"></td>
+  <td  th:text="${testskill.rating}"></td>
+</tr>

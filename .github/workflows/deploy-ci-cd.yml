@@ -13,9 +13,10 @@ jobs:
         image: mysql:8.0
         env:
           MYSQL_DATABASE: javatutos
-          MYSQL_ROOT_PASSWORD: thedba
+          MYSQL_ROOT_PASSWORD: password
         ports:
           - 3306:3306
+        
     steps:
       - name: checkout the branch
         uses: actions/checkout@v3
@@ -28,6 +29,6 @@ jobs:
       - name: compile and build the spring boot code
         run: |
           echo "Clea, Compile, and package the Jar" && \
-          mvn clean install package -P test -Dspring.r2dbc.username=root 
+          mvn clean install package -P test -Dspring.r2dbc.username=root -Dspring.r2dbc.password=password 
     
     

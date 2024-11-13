@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta csrf="">
+    <title>Rating page</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+
+    <style>
+        .btn-update {
+            width: 80px;
+            height: 28px;
+        }
+    
+        .btn-update:disabled {
+            background-color: #06402B;
+            border-color: #06402B;
+        }
+    
+        .form-group {
+            margin-bottom: 8px !important;
+        }
+    
+        .clearfix {
+            overflow: auto;
+        }
+    
+        .skill-info,
+        table th {
+            text-align: center !important;
+        }
+    </style>
+</head>
+<body style="background-color: beige;height: 100vh;width: 100%;">
+    <div class="wrapper">
+        <div class="jumbotron" style="padding-bottom: 30px;">
+            <h1 class="display-4">Weclome to <strong>Skill Rater</strong></h1>
+            <hr class="my-4">
+            <p>Utilize the navigation bar below to go through our site and of course <em>have fun !</em></p>
+            <button id="logout-btn" class="btn btn-info auth-btn float-right" data-toggle="modal" data-target="#loginModal" style="background-color: #c17e7e;border-color: #c17e7e;">
+                <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
+                Khris, Logout
+            </button>
+            <div style="clear: right;"></div>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="position: relative;">
+                <li class="breadcrumb-item"><a href="/"><i class="ph-fill ph-house-line"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="/votes"><i class="ph-fill ph-sparkle"></i>Skill stats</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="/myratings"><i class="ph-fill ph-pencil-ruler"></i>Skills rating</a></li>
+                <li class="breadcrumb-item"><a href="/swagger-ui.html" target="_blank" style="position:absolute;right:10px;"><i class="ph-fill ph-arrow-square-out"></i>API documentation</a></li>
+            </ol>
+        </nav>        
+        <section>
+            <div class="skill-section-header">
+                <h3>Boost your favorites Languaes/Framework with your votes</h3>
+                <div class="title-border"></div>
+            </div>
+            <p class="leading">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur animi repellat,
+                nihil obcaecati laboriosam repellendus! Magni a dolores ratione aliquid corporis rem placeat 
+                maxime similique delectus.
+            </p>
+            <table id="myTable" class="display">
+                <thead>
+                    <tr>
+                        <th style="width: 10%!important;">#</th>
+                        <th style="width: 30%!important;">Language/Framework</th>
+                        <th style="width: 30%!important;">Actual rating</th>
+                        <th style="width: 30%!important;">Update your rating </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="skill-info">1</td>
+                        <td class="skill-info">Laravel</td>
+                        <td class="skill-info">+18k</td>
+                        <td>
+                            <input skill-uuid="aaeeer-" type="number" style="width:120px;height:28px;padding:5px 10px;margin-right:5px;">
+                            <button class="btn btn-success btn-update" style="padding:4px 10px;padding-bottom: 5;">
+                              <span>Update</span>
+                              <div class="spinner d-none"></div>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="skill-info">1</td>
+                        <td class="skill-info">Laravel</td>
+                        <td class="skill-info">+18k</td>
+                        <td>
+                            <input skill-uuid="aaeeer-der" type="number" style="width:120px;height:28px;padding:5px 10px;margin-right:5px;">
+                            <button class="btn btn-success btn-update" style="padding:4px 10px;padding-bottom: 5;">
+                              <span>Update</span>
+                              <div class="spinner d-none"></div>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="skill-info">1</td>
+                        <td class="skill-info">Laravel</td>
+                        <td class="skill-info">+18k</td>
+                        <td>
+                            <input skill-uuid="aaeeer-derer" type="number" style="width:120px;height:28px;padding:5px 10px;margin-right:5px;">
+                            <button class="btn btn-success btn-update" style="padding:4px 10px;padding-bottom: 5;">
+                              <span>Update</span>
+                              <div class="spinner d-none"></div>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <script>
+    
+    function toggleUpdateBnState(element,deactivated_flag){
+      element.disabled=deactivated_flag;
+      element.querySelector("span").classList.toggle("d-none");
+      element.querySelector(".spinner").classList.toggle("d-none");
+    }
+    function startEventSource() {
+      const eventSource = new EventSource('/data/skills');
+      eventSource.onopen = function() {
+        console.log("Connection to server opened.");
+      };
+      eventSource.onerror = function(event) {
+          console.error("EventSource failed:", event);
+      };
+      eventSource.onmessage = function(event) {
+        console.log("Received data:", event.data);
+      };
+    }
+    function axios_post(url, data){
+      var data_to_send = {...data,  _csrf: document.querySelector("meta[name='csrf']").getAttribute('csrf')};
+      return axios({
+          method: 'post', 
+          url: url,
+          data: data_to_send
+      });
+    }
+    
+    document.addEventListener("DOMContentLoaded",function(){
+        console.log("hello");
+        let table = new DataTable('#myTable');
+        let updatebtns = document.querySelectorAll(".btn-update");
+        updatebtns.forEach(btn =>{
+            btn.addEventListener("click", function(){
+              toggleUpdateBnState(this, true);
+              console.log(this.previousElementSibling.value);
+              setTimeout(()=>{
+                toggleUpdateBnState(this, false);
+              },2000);
+            });
+        });
+        //=== this code is verified and works, has been commented for client side testing
+        //startEventSource();
+        //let form = document.querySelector("#rating-form");
+        /**
+         *   form.addEventListener("submit",function(e){
+            e.preventDefault();
+            console.log("what...");
+            let formdata = new FormData(e.target); 
+                try{
+                    axios.post("/post-rating",{
+                    "skilluuid":formdata.get("skill"),
+                    "rating":formdata.get("rating")
+                    }).then(function(res){
+                        console.log(res.data);
+                    });
+            }catch(e){
+                console.log("following error rose ",e);
+            }
+        });
+        */
+    });
+    </script>
+</body>
+</html>

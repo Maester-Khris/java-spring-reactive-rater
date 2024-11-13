@@ -53,17 +53,7 @@ public class ThreadComponent {
 	public Flux<Skill> consumedData() {
 		System.out.println("Here I am the consumer");
 		System.out.println("=====what the local rating of size: "+service.getLocalRating().size()+" got now===============");
-		service.getLocalRating().stream().forEach(System.out::println);
-//		for(Skill skill : service.getLocalRating()) {
-//			synchronized (localsink) {
-//				localsink.tryEmitNext(skill);
-//			}
-//		}
-//		CopyOnWriteArrayList<Skill> localskill = service.getLocalRating();
-//		synchronized (localskill) {
-//			localskill.clear();
-//		}
-		
+		service.getLocalRating().stream().forEach(System.out::println);		
 		
         sink.asFlux().subscribe();
         localsink.asFlux().subscribe();
@@ -79,17 +69,12 @@ public class ThreadComponent {
 				.build();
 		
 		System.out.println("the produced skill is"+producedskill.toString());
-		synchronized (sink) {
-			sink.tryEmitNext(producedskill);
-		}
-	
+		sink.tryEmitNext(producedskill);	
 	}
 	
 	public void webProducer(Skill skill) {
 		System.out.println("============skill received inside thread component=============");
-		synchronized (localsink) {
-			localsink.tryEmitNext(skill);
-		}
+		localsink.tryEmitNext(skill);
 	}
 	
 }

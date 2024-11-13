@@ -14,7 +14,7 @@ import nk.springprojects.reactive.kafka.ThreadComponent;
 import reactor.core.publisher.Flux;
 
 @RestController
-@RequestMapping("/data")
+@RequestMapping("/api/v1/data")
 public class HomeRestController {
 	
 	@Autowired

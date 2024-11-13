@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live skills stats</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+
+    <style>
+        .card{
+            background-color: azure;
+        }
+        .skill-card{
+            width: 160px;
+            height: 120px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .w-90{
+            width: 90%;
+        }
+        .w-80{
+            width: 80%;
+        }
+        .circle-icon{
+            height: 30px;
+            width: 30px;
+            border-radius: 15px;
+            padding: 5px;
+            color: white;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body style="background-color: beige;height: 100vh;width: 100%;">
+    <div class="wrapper" style="padding-bottom: 20px;">
+        <div class="jumbotron" style="padding-bottom: 30px;">
+            <h1 class="display-4">Weclome to <strong>Skills Rater</strong></h1>
+            <hr class="my-4">
+            <p>Utilize the navigation bar below to go through our site and of course <em>have fun !</em></p>
+            <button class="btn btn-info auth-btn" data-toggle="modal" data-target="#loginModal" style=" background-color: #4b9dbd; border-color: #4b9dbd;">
+                <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
+                Login
+            </button>
+        </div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="position: relative;">
+                <li class="breadcrumb-item"><a href="/"><i class="ph-fill ph-house-line"></i>Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><i class="ph-fill ph-sparkle"></i><a href="/votes">Skill stats</a></li>
+                <li class="breadcrumb-item"><a href="/myratings"><i class="ph-fill ph-pencil-ruler"></i>Give your rating</a></li>
+                <li class="breadcrumb-item"><a href="/swagger-ui.html" target="_blank" style="position:absolute;right:10px;"><i class="ph-fill ph-arrow-square-out"></i>API documentation</a></li>
+            </ol>
+        </nav>
+        <section>
+            <div class="skill-section-header">
+                <h3>Stats of the Languages and frameworks you know</h3>
+                <div class="title-border"></div>
+            </div>
+            <p class="leading">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur animi repellat,
+                nihil obcaecati laboriosam repellendus! Magni a dolores ratione aliquid corporis rem placeat 
+                maxime similique delectus.
+            </p>
+            <div class="skills-section-body d-flex flex-wrap" style="padding-top: 10px;">
+                <div class="card skill-card">
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <i class="devicon-laravel-plain" style="font-size:25px;"></i>
+                        <strong style="margin: 5px 0px;">Laravel  <small><i class="ph-bold ph-heart" style="margin-right: 3px;color:#ee2e2e;"></i>+18k</small></strong>
+                        <div class="w-80 d-flex justify-content-between" style="margin-top: 2px;">
+                            <div id="like-btn" class="circle-icon" style="background-color: #329932;">
+                                <i class="ph-bold ph-thumbs-up" style="font-size:18px;margin-right:3px;"></i>
+                            </div>
+                            <div id="dislike-btn" class="circle-icon"  style="background-color: #FF4C4C">
+                                <i class="ph-bold ph-thumbs-down" style="font-size:18px;margin-right:3px;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card skill-card">  
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <i class="devicon-adonisjs-plain" style="font-size:25px;"></i>
+                        <strong style="margin: 5px 0px;">Laravel  <small><i class="ph-bold ph-heart" style="margin-right: 3px;color:#ee2e2e;"></i>+18k</small></strong>
+                        <div class="w-80 d-flex justify-content-between" style="margin-top: 2px;">
+                            <div id="like-btn" class="circle-icon" style="background-color: #329932;">
+                                <i class="ph-bold ph-thumbs-up" style="font-size:18px;margin-right:3px;"></i>
+                            </div>
+                            <div id="dislike-btn" class="circle-icon"  style="background-color: #FF4C4C">
+                                <i class="ph-bold ph-thumbs-down" style="font-size:18px;margin-right:3px;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card skill-card">  
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <i class="devicon-dynamodb-plain" style="font-size:25px;"></i>
+                        <strong style="margin: 5px 0px;">Laravel  <small><i class="ph-bold ph-heart" style="margin-right: 3px;color:#ee2e2e;"></i>+18k</small></strong>
+                        <div class="w-80 d-flex justify-content-between" style="margin-top: 2px;">
+                            <div id="like-btn" class="circle-icon" style="background-color: #329932;">
+                                <i class="ph-bold ph-thumbs-up" style="font-size:18px;margin-right:3px;"></i>
+                            </div>
+                            <div id="dislike-btn" class="circle-icon"  style="background-color: #FF4C4C">
+                                <i class="ph-bold ph-thumbs-down" style="font-size:18px;margin-right:3px;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card skill-card">  
+                    <div class="card-body d-flex flex-column align-items-center">
+                        <i class="devicon-cplusplus-plain" style="font-size:25px;"></i>
+                        <strong style="margin: 5px 0px;">Laravel  <small><i class="ph-bold ph-heart" style="margin-right: 3px;color:#ee2e2e;"></i>+18k</small></strong>
+                        <div class="w-80 d-flex justify-content-between" style="margin-top: 2px;">
+                            <div id="like-btn" class="circle-icon" style="background-color: #329932;">
+                                <i class="ph-bold ph-thumbs-up" style="font-size:18px;margin-right:3px;"></i>
+                            </div>
+                            <div id="dislike-btn" class="circle-icon"  style="background-color: #FF4C4C">
+                                <i class="ph-bold ph-thumbs-down" style="font-size:18px;margin-right:3px;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+   
+
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            console.log("hello");
+            const liketbns = document.querySelectorAll("#like-btn");
+            const disliketbns = document.querySelectorAll("#dislike-btn");
+            //===========alternative to ripple effect button===========
+            liketbns.forEach(btn =>{
+                btn.addEventListener("click",()=> console.log("I like this"));
+                btn.addEventListener("mousedown",function(){
+                    this.querySelector("i").style.color="#329932";
+                    this.style.backgroundColor="white";
+                });
+                btn.addEventListener("mouseup",function(){
+                    this.querySelector("i").style.color="white";
+                    this.style.backgroundColor="#329932";
+                });
+            });
+            disliketbns.forEach(btn =>{
+                btn.addEventListener("click",()=> console.log("I dislike this"));
+                btn.addEventListener("mousedown",function(){
+                    this.querySelector("i").style.color="#FF4C4C";
+                    this.style.backgroundColor="white";
+                });
+                btn.addEventListener("mouseup",function(){
+                    this.querySelector("i").style.color="white";
+                    this.style.backgroundColor="#FF4C4C";
+                });
+            });
+        });
+    </script>
+</body>
+</html>

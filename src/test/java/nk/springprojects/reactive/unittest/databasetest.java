@@ -48,7 +48,7 @@ public class databasetest {
 		// 	.skilluuid(UUID.randomUUID().toString())
 		// 	.rating(rand.nextInt())
 		// 	.build()).block();
-		// List<Skill> alls = service.getRepository().findAll().collectList().block();
+		// List<Skill> alls = service.getRepodockersitory().findAll().collectList().block();
 		// assertNotNull(alls);
 		assertTrue(true);
 	}

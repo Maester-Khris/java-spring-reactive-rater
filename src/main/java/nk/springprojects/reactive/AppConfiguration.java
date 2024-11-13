@@ -16,7 +16,7 @@ import io.swagger.v3.oas.models.info.Info;
 @EnableAsync
 @EnableScheduling
 public class AppConfiguration {
-	
+		
 	@Bean
 	GroupedOpenApi publicApi() {
 		return GroupedOpenApi.builder()
@@ -28,7 +28,7 @@ public class AppConfiguration {
 	@Bean
 	OpenAPI CustomOpenApi() {
 		return new OpenAPI()
-			.info(new Info().title("open spring kafka api").version("v1"));
+			.info(new Info().title("SKill Rater Public Rest api").version("v1"));
 	}
 
 	@Bean
