@@ -10,3 +10,26 @@
   <td  th:text="${testskill.rating}"></td>
   <td  th:text="${testskill.rating}"></td>
 </tr>
+
+@Bean 
+	public SecurityWebFilterChain securityConfig(ServerHttpSecurity http) {
+		DelegatingServerLogoutHandler logoutHandler = new DelegatingServerLogoutHandler(
+	            new SecurityContextServerLogoutHandler(), new WebSessionServerLogoutHandler()
+	    );
+
+		
+		http
+			 .csrf((csrf) -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
+			 .authorizeExchange((authorize) -> authorize
+					 .pathMatchers("/", "/login", "/skills", "/swagger-ui/index.html").permitAll()
+		             .pathMatchers("/myratings").authenticated()
+		             .anyExchange())
+		    .httpBasic(Customizer.withDefaults())
+		    .formLogin((formLogin) -> formLogin
+		    		.authenticationManager(authmanager())
+		    		.loginPage("/login"))
+		    .logout(logout -> logout.logoutHandler(logoutHandler));
+
+		
+		return http.build();		
+	}

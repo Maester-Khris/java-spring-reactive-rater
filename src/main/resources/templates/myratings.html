@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta csrf="">
+    <meta th:csrf="${_csrf.token}">
     <title>Rating page</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -34,6 +34,9 @@
         table th {
             text-align: center !important;
         }
+        input{
+        border-radius:5px;
+        }
     </style>
 </head>
 <body style="background-color: beige;height: 100vh;width: 100%;">
@@ -42,11 +45,13 @@
             <h1 class="display-4">Weclome to <strong>Skill Rater</strong></h1>
             <hr class="my-4">
             <p>Utilize the navigation bar below to go through our site and of course <em>have fun !</em></p>
-            <button id="logout-btn" class="btn btn-info auth-btn float-right" data-toggle="modal" data-target="#loginModal" style="background-color: #c17e7e;border-color: #c17e7e;">
-                <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
-                Khris, Logout
-            </button>
-            <div style="clear: right;"></div>
+            <form action="#" th:action="@{/logout}" method="POST">
+                <button type="submit" id="logout-btn" class="btn btn-info auth-btn float-right" data-toggle="modal" data-target="#loginModal" style="background-color: #c17e7e;border-color: #c17e7e;">
+                    <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
+                    <span sec:authentication="name"></span>, Logout
+                </button>
+                <div style="clear: right;"></div>
+            </form>
         </div>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb" style="position: relative;">
@@ -58,7 +63,7 @@
         </nav>        
         <section>
             <div class="skill-section-header">
-                <h3>Boost your favorites Languaes/Framework with your votes</h3>
+                <h3>Rank your favorites Languaes/Framework with your votes</h3>
                 <div class="title-border"></div>
             </div>
             <p class="leading">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur animi repellat,

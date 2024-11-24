@@ -1,6 +1,19 @@
 GET https://jsonplaceholder.typicode.com/todos
 Content-Type: application/json
 
+###
+
 GET http://localhost:8080/api/v1/students/
 Content-Type: application/json
-Authorization: Basic john isjohn
+
+### bottom code used for learning spboot project
+
+GET http://localhost:8080/students
+Content-Type: application/json
+Authorization: Basic juggler tarzan
+
+### bottom code used for learning spboot project
+
+GET http://localhost:8080/loggedinfo
+Content-Type: application/json
+Authorization: Basic Juggler tarzan

@@ -1,21 +1,26 @@
 package nk.springprojects.reactive.home;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.reactive.result.view.Rendering;
+import org.springframework.web.server.ServerWebExchange;
 
 import lombok.RequiredArgsConstructor;
 import nk.springprojects.reactive.kafka.ThreadComponent;
-import nk.springprojects.reactive.kafka.WebThreadProducer;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
@@ -31,20 +36,30 @@ public class HomeController {
 	record SkillRating(String skillname, String skilluuid, int rating) {
 		
 	}
-
 	
+	@GetMapping("loggedinfo")
+	public ResponseEntity<Principal> getLoggeInfo(Principal p){
+		System.out.println(p.toString());
+		return new ResponseEntity<>(p, HttpStatus.OK);
+	}
+
+
 	@GetMapping
-	public Mono<Rendering> home(){
-		return Mono.just(Rendering.view("index")
-				.modelAttribute("skills", service.getRepository().findTop4ByOrderByRatingDesc())
-				.build()
-			);
+	public Mono<Rendering> home(ServerWebExchange exchange, @AuthenticationPrincipal Object principal){		
+		 boolean isUserAuthenticated = Objects.isNull(principal);
+		 System.out.println(isUserAuthenticated);
+	    return Mono.just(Rendering.view("index")
+	            .modelAttribute("skills", service.getRepository().findTop4ByOrderByRatingDesc())
+	            .modelAttribute("isUserAuthenticated", isUserAuthenticated)
+	            .build());
 	}
 	
 	@GetMapping("/votes")
-	public Mono<Rendering> skills(){
+	public Mono<Rendering> skills(@AuthenticationPrincipal Object principal){
+		boolean isUserAuthenticated = Objects.isNull(principal);
 		return Mono.just(Rendering.view("skills")
 				.modelAttribute("skills", service.getRepository().findTop4ByOrderByRatingDesc())
+				.modelAttribute("isUserAuthenticated", isUserAuthenticated)
 				.build()
 			);
 	}
@@ -90,6 +105,13 @@ public class HomeController {
 		// 	return Mono.just(skill);
 		// });
 		//return new ResponseEntity<>("Your response was registered", HttpStatus.OK);
+		
+//		.map(session -> {
+//            String data = (String) session.getAttributes().get("message");
+//            if (data != null) {
+//                session.getAttributes().remove("message");
+//            }		            
+//        }).block();
 	}
 
 }

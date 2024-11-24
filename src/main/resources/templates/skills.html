@@ -45,10 +45,19 @@
             <h1 class="display-4">Weclome to <strong>Skills Rater</strong></h1>
             <hr class="my-4">
             <p>Utilize the navigation bar below to go through our site and of course <em>have fun !</em></p>
-            <button class="btn btn-info auth-btn" data-toggle="modal" data-target="#loginModal" style=" background-color: #4b9dbd; border-color: #4b9dbd;">
-                <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
-                Login
-            </button>
+            <span th:switch="${isUserAuthenticated}">
+                <a th:case="true" href="/login" class="btn btn-info auth-btn" style="background-color: #4b9dbd; border-color: #4b9dbd;">
+                  <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
+                  Login
+                </a>
+                <form th:case="false" action="#" th:action="@{/logout}" method="POST">
+                      <button type="submit" id="logout-btn" class="btn btn-info auth-btn float-right" data-toggle="modal" data-target="#loginModal" style="background-color: #c17e7e;border-color: #c17e7e;">
+                          <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
+                          <span sec:authentication="name"></span>, Logout
+                      </button>
+                      <div style="clear: right;"></div>
+                  </form>
+              </span>
         </div>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb" style="position: relative;">

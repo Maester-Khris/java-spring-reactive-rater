@@ -1,53 +1,68 @@
 package nk.springprojects.reactive;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.authentication.ReactiveAuthenticationManager;
+import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.authentication.logout.DelegatingServerLogoutHandler;
+import org.springframework.security.web.server.authentication.logout.SecurityContextServerLogoutHandler;
+import org.springframework.security.web.server.authentication.logout.WebSessionServerLogoutHandler;
+import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 
-import lombok.RequiredArgsConstructor;
+import nk.springprojects.reactive.users.MyUserDetailsService;
 
 @Configuration
+@EnableWebFluxSecurity
 public class MySecurityConfig{
 	
-	//private final UserDetailsService userDetailService;
+	@Autowired
+	MyUserDetailsService userdetailservice;
 	
-	 @Bean 
-	 public PasswordEncoder passEncoder() { 
-		  return new BCryptPasswordEncoder(); 
-	 }
+	@Bean 
+	public PasswordEncoder passEncoder() { 
+	   return new BCryptPasswordEncoder(10); 
+	}
 	 
-//	 @Bean 
-//	 public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-//		http.csrf().disable() 
-//			.authorizeHttpRequests((authorize)->{
-//				authorize.requestMatchers("api/v1/**").permitAll();
-//				authorize.anyRequest().authenticated();
-//			}).httpBasic(Customizer.withDefaults());
-//		
-//		return http.build();
-//	 }
-//	 
-//	 @Bean
-//	 public UserDetailsService userDetailService() {
-//		 UserDetails john = User.builder()
-//				 .username("john")
-//				 .password(passEncoder().encode("isjohn"))
-//				 .roles("USER")
-//				 .build();
-//		 
-//		 UserDetails marta = User.builder()
-//				 .username("marta")
-//				 .password(passEncoder().encode("ismarta"))
-//				 .roles("ADMIN")
-//				 .build();
-//		 
-//		 return new InMemoryUserDetailsManager(john, marta);
-//	 }
-	 
+	
+	@Bean
+	public ReactiveAuthenticationManager authmanager() {
+		UserDetailsRepositoryReactiveAuthenticationManager authenticationManager =
+	                 new UserDetailsRepositoryReactiveAuthenticationManager(userdetailservice);
+
+        authenticationManager.setPasswordEncoder(passEncoder());
+        return authenticationManager;
+	}
+	
+	
+	@Bean 
+	public SecurityWebFilterChain securityConfig(ServerHttpSecurity http) {
+		DelegatingServerLogoutHandler logoutHandler = new DelegatingServerLogoutHandler(
+	            new SecurityContextServerLogoutHandler(), new WebSessionServerLogoutHandler()
+	    );
+		
+		http
+			 .csrf((csrf) -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
+			 .authorizeExchange((authorize) -> authorize
+					 .pathMatchers("/", "/login", "/skills", "/swagger-ui/index.html").permitAll()
+		             .pathMatchers("/myratings").authenticated()
+		             .anyExchange().permitAll())
+		    .httpBasic(Customizer.withDefaults())
+		    .formLogin((formLogin) -> formLogin
+		    		.authenticationManager(authmanager())
+		    		.loginPage("/login"))
+		    .logout(logout -> logout.logoutHandler(logoutHandler));
+
+		
+		return http.build();		
+	}
 	
 }
