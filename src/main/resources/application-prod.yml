@@ -1,0 +1,10 @@
+spring:  
+  r2dbc:
+    url: r2dbc:mysql://johnny.heliohost.org:3306/nkhris_skillrater
+    username: nkhris_heliostdba
+    password: heliostdba_@
+    
+  flyway:
+    url: jdbc:mysql://johnny.heliohost.org:3306/nkhris_skillrater 
+    user: ${spring.r2dbc.username}
+    password: ${spring.r2dbc.password}

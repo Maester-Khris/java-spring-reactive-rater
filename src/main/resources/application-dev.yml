@@ -1,7 +1,4 @@
-spring:
-  application:
-    name: spring-reactive
-    
+spring:  
   r2dbc:
     url: r2dbc:mysql://localhost:3306/javatutos
     username: systemdba

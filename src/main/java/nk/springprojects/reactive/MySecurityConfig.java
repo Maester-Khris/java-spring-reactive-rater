@@ -60,7 +60,6 @@ public class MySecurityConfig{
 		http
 			 .csrf((csrf) -> csrf
 					 .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
-					 .requireCsrfProtectionMatcher(isNot(ServerWebExchangeMatchers.pathMatchers(HttpMethod.GET, "api/auth/csrf-token")))
 			  )
 			 .authorizeExchange((authorize) -> authorize
 					 .pathMatchers("/", "/login", "/skills", "/swagger-ui/index.html").permitAll()
