@@ -7,7 +7,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+
 
 @RequiredArgsConstructor
 public class UserPrincipal implements UserDetails{
@@ -17,6 +19,10 @@ public class UserPrincipal implements UserDetails{
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Collections.singleton(new SimpleGrantedAuthority("USER"));
+	}
+	
+	public Integer getUserId() {
+		return user.getId();
 	}
 
 	@Override

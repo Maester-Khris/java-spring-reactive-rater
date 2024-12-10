@@ -1,19 +1,19 @@
 package nk.springprojects.reactive.home;
 
+import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.UUID;
-import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.reactive.result.view.Rendering;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.server.ServerWebExchange;
 
 import nk.springprojects.reactive.users.User;
@@ -34,7 +34,6 @@ public class AuthController {
 			);
 	}
 	
-
 	@PostMapping("/register")
 	public Mono<Void> register (@ModelAttribute User newuser, ServerWebExchange exchange) {
 		// user management service code 

@@ -15,18 +15,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="skills")
 @ToString
-public class Skill extends SkillDefinition{
-	
-	@Id
-	private Integer id;
+@Table("user_skill_ratings")
+public class UserSkillRating extends SkillDefinition{
 
-	private String skillname;
+	@Id
+    private Integer id;
 	
-	private String skilluuid;
-	
-	private String skillicon;
-	
-	private int rating;
+    private Integer userid; // Foreign key to User
+    
+    private Integer skillid; // Foreign key to Skill
+    
+    private int rating;
 }

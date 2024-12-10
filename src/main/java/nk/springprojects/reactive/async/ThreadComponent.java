@@ -1,4 +1,4 @@
-package nk.springprojects.reactive.kafka;
+package nk.springprojects.reactive.async;
 
 
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,7 @@ import com.github.javafaker.Faker;
 import nk.springprojects.reactive.home.HomeService;
 import nk.springprojects.reactive.home.Skill;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.core.publisher.Sinks;
 
 
@@ -27,6 +29,7 @@ public class ThreadComponent {
 	@Autowired 
 	HomeService service;
 	Faker faker = new Faker();
+	Random random = new Random();
 	
 	private final Sinks.Many<Skill> sink = Sinks.many().multicast().onBackpressureBuffer();
 	private final Sinks.Many<Skill> localsink = Sinks.many().multicast().onBackpressureBuffer();
@@ -61,20 +64,45 @@ public class ThreadComponent {
 	}
 	
 	public void produceData() {
-		System.out.println("Here i a the producer with ideintifier: "+Thread.currentThread().getName());
-		Skill producedskill = Skill.builder()
-				.skillname(popularSkillNames.get(rand.nextInt(0, 2)))
-				.skilluuid(UUID.randomUUID().toString())
-				.rating(0)
-				.build();
-		
-		System.out.println("the produced skill is"+producedskill.toString());
-		sink.tryEmitNext(producedskill);	
+		// Here we produce new votes for existings skills		
+	    System.out.println("My ID as thread: " + Thread.currentThread().getName());
+	    service.getRepository().count().doOnSuccess(count -> { })
+	    	.flatMap(length -> {
+	            return service.getRepository().findById(random.nextInt(7836, 8308))  //temporary solution because database index is broken
+	                .flatMap(skill -> {
+	                    //System.out.println("Skill to vote UUID: " + skill.getSkillname() + " - " + skill.getRating());
+	                    if (random.nextBoolean()) { // Simulate a like
+	                        skill.setRating(skill.getRating() + 1);
+	                    } else { // Simulate a dislike
+	                        if (skill.getRating() > 0) {
+	                            skill.setRating(skill.getRating() - 1);
+	                        }
+	                    }
+	                    return service.getRepository().save(skill)
+	                        .doOnSuccess(updatedSkill -> {
+	                            //System.out.println("Skill after vote: " + updatedSkill.getSkillname() + " - " + updatedSkill.getRating());
+	                            sink.tryEmitNext(updatedSkill);
+	                        });
+	                });
+	        })
+	        .subscribe(
+	            result -> System.out.println("Vote processed successfully."),
+	            error -> System.err.println("Error occurred: " + error.getMessage())
+	        );
 	}
 	
 	public void webProducer(Skill skill) {
-		System.out.println("============skill received inside thread component=============");
+		System.out.println("============skill received inside web producer of thread component=============");
 		localsink.tryEmitNext(skill);
 	}
+	
+	
+//	Skill producedskill = Skill.builder()
+//	.skillname(popularSkillNames.get(rand.nextInt(0, 2)))
+//	.skilluuid(UUID.randomUUID().toString())
+//	.rating(0)
+//	.build();
+//System.out.println("the produced skill is"+producedskill.toString());
+//sink.tryEmitNext(producedskill);
 	
 }

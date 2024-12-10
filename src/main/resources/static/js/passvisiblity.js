@@ -1,5 +1,4 @@
 const togglePasswordVisibilityBtns = document.querySelectorAll('.togglePassword');
-    console.log(togglePasswordVisibilityBtns);
     togglePasswordVisibilityBtns.forEach(passVisiblityBtn => {
     passVisiblityBtn.addEventListener("click", (event) => {
         const password = passVisiblityBtn.previousElementSibling;

@@ -1,15 +1,3 @@
 spring:
   application:
     name: spring-reactive
-    
-  r2dbc:
-    url: r2dbc:mysql://localhost:3306/javatutos
-    username: systemdba
-    password: thedba
-    
-  flyway:
-    url: jdbc:mysql://localhost:3306/javatutos 
-    user: ${spring.r2dbc.username}
-    password: ${spring.r2dbc.password}
-    
-    

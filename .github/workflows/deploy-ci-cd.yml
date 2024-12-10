@@ -30,5 +30,7 @@ jobs:
         run: |
           echo "Clea, Compile, and package the Jar" && \
           mvn clean install package -P test -Dspring.r2dbc.username=root -Dspring.r2dbc.password=password 
+      - name: Run tests with Maven
+        run: mvn -B test --file pom.xml
     
-    
+  #

@@ -3,6 +3,7 @@ package nk.springprojects.reactive;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
 import org.springframework.security.config.Customizer;
@@ -10,19 +11,22 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.logout.DelegatingServerLogoutHandler;
 import org.springframework.security.web.server.authentication.logout.SecurityContextServerLogoutHandler;
 import org.springframework.security.web.server.authentication.logout.WebSessionServerLogoutHandler;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
+import org.springframework.security.web.server.util.matcher.NegatedServerWebExchangeMatcher;
+import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatcher;
+import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers;
 
 import nk.springprojects.reactive.users.MyUserDetailsService;
 
 @Configuration
 @EnableWebFluxSecurity
 public class MySecurityConfig{
+	
+	
 	
 	@Autowired
 	MyUserDetailsService userdetailservice;
@@ -31,7 +35,7 @@ public class MySecurityConfig{
 	public PasswordEncoder passEncoder() { 
 	   return new BCryptPasswordEncoder(10); 
 	}
-	 
+	
 	
 	@Bean
 	public ReactiveAuthenticationManager authmanager() {
@@ -42,6 +46,10 @@ public class MySecurityConfig{
         return authenticationManager;
 	}
 	
+	private ServerWebExchangeMatcher isNot(ServerWebExchangeMatcher matcher) {
+        return new NegatedServerWebExchangeMatcher(matcher);
+    }
+	
 	
 	@Bean 
 	public SecurityWebFilterChain securityConfig(ServerHttpSecurity http) {
@@ -50,9 +58,13 @@ public class MySecurityConfig{
 	    );
 		
 		http
-			 .csrf((csrf) -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
+			 .csrf((csrf) -> csrf
+					 .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
+					 .requireCsrfProtectionMatcher(isNot(ServerWebExchangeMatchers.pathMatchers(HttpMethod.GET, "api/auth/csrf-token")))
+			  )
 			 .authorizeExchange((authorize) -> authorize
 					 .pathMatchers("/", "/login", "/skills", "/swagger-ui/index.html").permitAll()
+					 .pathMatchers("/skill-vote").permitAll()
 		             .pathMatchers("/myratings").authenticated()
 		             .anyExchange().permitAll())
 		    .httpBasic(Customizer.withDefaults())

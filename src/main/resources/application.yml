@@ -3,3 +3,10 @@ spring:
     default: dev
     
     
+server:
+  error:
+    whitelabel:
+      enabled: false
+    include-exception: true
+    include-message: ALWAYS
+    include-stacktrace: ALWAYS

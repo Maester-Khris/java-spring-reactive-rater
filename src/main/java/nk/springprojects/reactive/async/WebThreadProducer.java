@@ -1,4 +1,4 @@
-package nk.springprojects.reactive.kafka;
+package nk.springprojects.reactive.async;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -64,6 +64,29 @@ li.active a{
     animation: spinner-c7wet2 1s infinite linear;
 }
 
+#back-to-top{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color: #4b9dbd;
+    color: white;
+    padding: 10px;
+    -webkit-box-shadow: 4px 5px 11px 0px #000000; 
+    box-shadow: 4px 5px 11px 0px #000000;
+  }
+
+  #back-to-top:hover {
+    cursor: pointer;
+  }
+
+  #back-to-top i{
+    font-size: 20px;
+    animation: moveArrow 2s ease-in-out infinite;
+  }
+
 @keyframes spinner-c7wet2 {
     100% {
         transform: rotate(1turn);
@@ -106,15 +129,26 @@ li.active a{
       transform: translateX(-10%);
       display: none;
     }
-  }
+}
 
   @keyframes Slidein {
     from {
       transform: translateX(10%);
     }
-
     to {
       transform: translateX(0px);
+      /* display: block!important */
     }
   }
 
+  @keyframes moveArrow {
+    0% {
+        transform: translateY(0); /* Starting position */
+    }
+    50% {
+        transform: translateY(-10px); /* Move up */
+    }
+    100% {
+        transform: translateY(0); /* Return to starting position */
+    }
+  }
