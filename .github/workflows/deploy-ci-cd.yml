@@ -4,6 +4,11 @@ on:
    branches:
       - main
 
+env:
+  DOCKER_USER: ${{secrets.DOCKER_USER}}
+  DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+  DOCKER_REPO: ${{secrets.DOCKER_REPO_NAME}}
+
 jobs:
   build:
     name: Maven Build phase
@@ -20,17 +25,33 @@ jobs:
     steps:
       - name: checkout the branch
         uses: actions/checkout@v3
+
       - name: setup java build tools
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: compile and build the spring boot code
         run: |
           echo "Clea, Compile, and package the Jar" && \
           mvn clean install package -P test -Dspring.r2dbc.username=root -Dspring.r2dbc.password=password 
-      - name: Run tests with Maven
+      
+      - name: Run Springboot tests with Maven
         run: mvn -B test --file pom.xml -P test -Dspring.r2dbc.username=root -Dspring.r2dbc.password=password
-    
-  #
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build_and_push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: mrkhris/spring-skillrater:latest
