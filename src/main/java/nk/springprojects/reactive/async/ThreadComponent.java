@@ -68,7 +68,7 @@ public class ThreadComponent {
 	    System.out.println("My ID as thread: " + Thread.currentThread().getName());
 	    service.getRepository().count().doOnSuccess(count -> { })
 	    	.flatMap(length -> {
-	            return service.getRepository().findById(random.nextInt(7836, 8308))  //temporary solution because database index is broken
+	            return service.getRepository().findById(random.nextInt(0, length.intValue()))  //temporary solution because database index is broken
 	                .flatMap(skill -> {
 	                    //System.out.println("Skill to vote UUID: " + skill.getSkillname() + " - " + skill.getRating());
 	                    if (random.nextBoolean()) { // Simulate a like

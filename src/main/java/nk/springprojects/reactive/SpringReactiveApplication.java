@@ -102,7 +102,7 @@ public class SpringReactiveApplication {
 	
 	@Bean
 	CommandLineRunner searchIcon(HomeService hservice) throws IOException {
-		boolean flag = true;
+		boolean flag = false;
 		System.out.println("hello from Icon search Bean");
 		InputStream jsoncont = resource.getInputStream();	
 		ObjectMapper mapper = new ObjectMapper();
