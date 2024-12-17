@@ -12,8 +12,8 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/api/auth")
 public class AuthRestController {
 
-	@GetMapping("/csrf-token")
-	public Mono<DefaultCsrfToken> requestToken(DefaultCsrfToken token){
-		return Mono.just(token);
-	}
+	// @GetMapping("/csrf-token")
+	// public Mono<DefaultCsrfToken> requestToken(DefaultCsrfToken token){
+	// 	return Mono.just(token);
+	// }
 }

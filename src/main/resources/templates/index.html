@@ -134,16 +134,15 @@
         <div class="title-border"></div>
       </div>
       <p class="leading">
-        We designed a web app that allows users or guest to decide which language/Framerwork/Tools is
-        the best by participating to a live perpetual vote. To simulate data coming in a real-time fashion
-        way from multiple sources, we implemented a <strong>multi-threaded environment</strong> where threads produce
-        new vote
-        on existing resources. <br> This project, built with <strong>Java 8</strong> and <strong>Spring boot
+        We designed a web app that allows users or guest to decide which Language/Framerwork/Tools is
+        the best by participating to a live perpetual vote. To simulate data coming from multiple sources in a real-time fashion
+        way, we implemented a <strong>multi-threaded environment</strong> where threads produce
+        new vote on existing resources. <br> This project, built with <strong>Java 8</strong> and <strong>Spring boot
           Framework</strong> implements
         <span class="imp">real-time data updates</span> using asynchronous client data submission, leveraging Axios for
         robust
-        client-server communication. Also it employs <strong>server-sent events</strong> through reactive programming,
-        utilizing Spring boot <span class="imp">Reactor Sinks API and Mono.fromRunnable</span> to create a web-thread
+        client-server communication. Also it employs <strong>server-sent events</strong> through reactive programming and best practices for concurrency management 
+        utilizing Spring boot <span class="imp">Reactor Sinks and Mono.fromRunnable APIs</span> to create a an asynchronous non-blocking web-thread
         producer for efficient event handling.
       </p>
       <p style="margin-bottom: 5px;">Following are some keypoints that has been focused on:</p>
@@ -152,16 +151,17 @@
         <li>Restful Api Design and Documentation</li>
         <li>Asynchronous CRUD Operation using Reactive Crud Repository</li>
         <li>Concurrency Management</li>
-        <li>Configuration Management</li>
-        <li>CI/CD Pipeline</li>
+        <li>Spring Profile Management</li>
+        <li>CI/CD Automation Pipeline</li>
       </ul>
 
-      <p>Next we present some a schematic overview of the work addressed by presenting first the <strong>application
-          compenent architecture diagram</strong>. Next we present the <strong>CI/CD flow</strong> implemented to ensure
-        a continuous streamline environment. Last we present a proof a concept of the robustness of our application
-        through a screenshot of a <strong>performance testing</strong> applied on our app rest api using <strong>Apache
-          JMeter</strong> to send 100 request during 1min simulating the launch and execution of 100 thread producer
-        working on the shared resources. The schema clearly present the answer and the value proposed</p>
+      <p>Next we present some a schematics overview of the work addressed by presenting first the <strong>application
+          component architectural design</strong>. Next we present the <strong>CI/CD flow</strong> implemented to ensure
+        a continuous streamline environment. Then we present a proof a concept of the robustness of our application
+        through a screenshot of a <strong>performance testing</strong> applied on our application through a secure rest api endpoint. 
+        We used <strong>Apache JMeter</strong> to send 100 request during 1min, simulating the launch and execution of 
+        100 web thread producer working on the shared resources. The schema clearly present the answer and the value 
+        proposed. Lastly we presented data analytics related application monitoring and logs management performed By <strong>Splunk</strong>.</p>
       <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>

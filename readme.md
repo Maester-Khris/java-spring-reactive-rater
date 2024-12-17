@@ -13,11 +13,11 @@ The application has been entirely package to be used as a self sufficient contai
 Instruction to use the docker container 
 - Install docker on your host system
 - Retrieve the application docker image available on dockerhub at this address [Spring Reactive Skillrater](dockerhub.com/mrkhris/reactive-skillrater) <br>
-    `docker pull reactive-skillrater:latest`
+    `docker pull mrkhris/spring-skillrater:latest`
     
 - setup a MySQL database (local or distant)
 - run the docker container and pass your database connexion parameter as variable <br>
-    ```docker run --name my-springboot-app -p8080:8080 reactive-skillrater:latest  --dbhost --dbuser --dbpass --dbname```
+    ```docker run --restart unless-stopped --name my-springboot-app -p8080:8080 reactive-skillrater:latest  --dbhost --dbuser --dbpass --dbname```
     
 
 

@@ -22,15 +22,13 @@ import com.github.javafaker.Faker;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import nk.springprojects.reactive.home.HomeService;
 import nk.springprojects.reactive.home.Skill;
-import nk.springprojects.reactive.student.Student;
-import nk.springprojects.reactive.student.StudentService;
 import reactor.core.publisher.Mono;
 
 @SpringBootApplication
 @OpenAPIDefinition
 public class SpringReactiveApplication {
 	
-	@Value("classpath:data/allicons.json")
+	@Value("classpath:data/alliconsv1.json")
 	private Resource resource;
 	
 	record Language(String name, String[] aliases) {}
@@ -161,25 +159,6 @@ public class SpringReactiveApplication {
 				System.out.println("=====sysinsertion complete=====");
 			}
 		
-		};
-	}
-	
-	@Bean
-	CommandLineRunner fakeStudentSeedRunner(StudentService service) {
-		Faker faker = new Faker();
-		boolean testflag = false;
-		return args ->{
-			if(testflag==true) {
-				for(int i=0; i<5; i++) {
-					service.save(
-							Student.builder()
-							.firstname(faker.name().firstName())
-							.lastname(faker.name().lastName())
-							.age(faker.number().numberBetween(1, 73))
-							.build()
-						).subscribe();
-				}
-			}
 		};
 	}
 

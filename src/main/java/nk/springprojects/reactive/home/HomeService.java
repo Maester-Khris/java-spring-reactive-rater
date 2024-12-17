@@ -17,9 +17,6 @@ import reactor.core.publisher.Mono;
 @Setter
 @RequiredArgsConstructor
 public class HomeService {
-	
-	private final CopyOnWriteArrayList<String> localSkills = new CopyOnWriteArrayList<String>(List.of("Html", "Css"));
-	
 	private final CopyOnWriteArrayList<Skill> localRating = new CopyOnWriteArrayList<Skill>();
 	
 	private final HomeRepository repository;
