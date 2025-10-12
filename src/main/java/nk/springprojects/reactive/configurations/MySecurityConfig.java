@@ -1,9 +1,8 @@
-package nk.springprojects.reactive;
+package nk.springprojects.reactive.configurations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
 import org.springframework.security.config.Customizer;
@@ -18,16 +17,12 @@ import org.springframework.security.web.server.authentication.logout.WebSessionS
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import org.springframework.security.web.server.util.matcher.NegatedServerWebExchangeMatcher;
 import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatcher;
-import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers;
 
 import nk.springprojects.reactive.users.MyUserDetailsService;
 
 @Configuration
 @EnableWebFluxSecurity
 public class MySecurityConfig{
-	
-	
-	
 	@Autowired
 	MyUserDetailsService userdetailservice;
 	

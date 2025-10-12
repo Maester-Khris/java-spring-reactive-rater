@@ -1,107 +1,178 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
-    <meta th:csrf="${_csrf.token}">    
-    <meta name="_csrf" th:content="${_csrf.token}"/>
-	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-    
+    <meta th:csrf="${_csrf.token}">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+
     <title>Rating page</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
     <link rel="stylesheet" th:href="@{/css/app.css}">
-
-    <style>
-        .btn-update {
-            width: 80px;
-            height: 28px;
-        }
-    
-        .btn-update:disabled {
-            background-color: #06402B;
-            border-color: #06402B;
-        }
-    
-        .form-group {
-            margin-bottom: 8px !important;
-        }
-    
-        .clearfix {
-            overflow: auto;
-        }
-    
-        .skill-info,
-        table th {
-            text-align: center !important;
-        }
-        input{
-        border-radius:5px;
-        }
-        #skill-rater{
-            visibility: hidden;
-        }
-    </style>
 </head>
+
 <body style="background-color: beige;height: 100vh;width: 100%;">
     <div class="wrapper">
-        <div class="jumbotron" style="padding-bottom: 30px;">
-            <h1 class="display-4">Weclome to <strong>Skill Rater</strong></h1>
-            <hr class="my-4">
-            <p>Utilize the navigation bar below to go through our site and of course <em>have fun !</em></p>
-            <form action="#" th:action="@{/logout}" method="POST">
-                <button type="submit" id="logout-btn" class="btn btn-info auth-btn float-right" data-toggle="modal" data-target="#loginModal" style="background-color: #c17e7e;border-color: #c17e7e;">
-                    <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
-                    <span sec:authentication="name"></span>, Logout
-                </button>
-                <div style="clear: right;"></div>
-            </form>
-        </div>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Discover & Rank Your Skills</h1>
+                <p class="hero-subtitle">
+                    Personalize your tech stack. Rate your proficiency, organize your favorites, and track your growth.
+                </p>
+                <div class="hero-actions" th:switch="${isUserAuthenticated}">
+                    <!-- Case: Logged in -->
+                    <form th:case="true" th:action="@{/logout}" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-primary hero-btn btn-info auth-btn"
+                            style="background-color: #c17e7e;border-color: #c17e7e;">
+                            <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
+                            <span sec:authentication="name"></span>, Logout
+                        </button>
+                    </form>
+                    <!-- Always visible link -->
+                    <a href="/votes" class="btn btn-secondary hero-btn">
+                        <i class="ph-bold ph-ranking" style="font-size:18px;margin-right: 3px;"></i> Explore Public
+                        Ranks
+                    </a>
+                </div>
+            </div>
+        </section>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb" style="position: relative;">
                 <li class="breadcrumb-item"><a href="/"><i class="ph-fill ph-house-line"></i> Home</a></li>
                 <li class="breadcrumb-item"><a href="/votes"><i class="ph-fill ph-sparkle"></i>Skill stats</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="/myratings"><i class="ph-fill ph-pencil-ruler"></i>Skills rating</a></li>
-                <li class="breadcrumb-item"><a href="/swagger-ui.html" target="_blank" style="position:absolute;right:10px;"><i class="ph-fill ph-arrow-square-out"></i>API documentation</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="/myratings"><i
+                            class="ph-fill ph-pencil-ruler"></i>Skills rating</a></li>
+                <li class="breadcrumb-item"><a href="/swagger-ui.html" target="_blank"
+                        style="position:absolute;right:10px;"><i class="ph-fill ph-arrow-square-out"></i>API
+                        documentation</a></li>
             </ol>
-        </nav>        
-        <section>
+        </nav>
+        <section class="personal-ranking-container">
             <div class="skill-section-header">
-                <h3>Rank your favorites Languaes/Framework with your votes</h3>
+                <h3>
+                    My Personal Ranking
+                </h3>
                 <div class="title-border"></div>
             </div>
-            <p class="leading">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur animi repellat,
-                nihil obcaecati laboriosam repellendus! Magni a dolores ratione aliquid corporis rem placeat 
+            <p class="leading">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur animi repellat,
+                nihil obcaecati laboriosam repellendus! Magni a dolores ratione aliquid corporis rem placeat
                 maxime similique delectus.
             </p>
-            <table id="skillsTable" class="display">
-                <thead>
-                    <tr>
-                        <th style="width: 10%!important;">#</th>
-                        <th style="width: 30%!important;">Language/Framework</th>
-                        <th style="width: 30%!important;">Actual rating</th>
-                        <th style="width: 30%!important;">Update your rating </th>
-                    </tr>
-                </thead>
-                <tbody>
-                <tr th:each="skill, iStat : ${skills}">
-				  <td class="skill-info" scope="row" th:text="${iStat.index+1}"></th>
-				  <td class="skill-info" scope="row" th:text="${skill.skillname}"></th>
-				  <td th:skill-id="${skill.id}" class="skill-info" scope="row" th:text="${skill.rating}"></th>
-				  <td>
-                      <input th:skill-uuid="${skill.skilluuid}" type="number" min="0" max="5" style="width:120px;height:28px;padding:5px 10px;margin-right:5px;">
-                      <button class="btn btn-success btn-update" style="padding:4px 10px;padding-bottom: 5;">
-                        <span>Update</span>
-                        <div class="spinner d-none"></div>
-                      </button>
-                  </td>
-				</tr>
-                </tbody>
-            </table>
+            <div class="ranking-split-view">
+                <!-- LEFT SIDE: Ranked Tools -->
+<!--                <div class="my-ranked-tools w-70">-->
+<!--                    <div class="ranking-header ranking-header-plus">-->
+<!--                        <span class="header-rank" style="padding-left: 10px;">RANK</span>-->
+<!--                        <span class="header-tool">TOOL</span>-->
+<!--                        <span class="header-score" style="text-align: left;">SCORE</span>-->
+<!--                        <span class="header-remove" style="text-align: center;">REMOVE</span>-->
+<!--                    </div>-->
+<!--                    <ul id="personalRankedList" class="ranked-list">-->
+<!--                        <li th:each="skill, iterStat : ${userRatedList}"-->
+<!--                            th:attr="data-skill-uuid=${skill.skilluuid}, data-rank=${iterStat.index + 1}">-->
+<!--                            &lt;!&ndash; Rank input &ndash;&gt;-->
+<!--                            <span class="rank-control" style="padding-left: 10px;">-->
+<!--                                <input type="number" min="1" th:value="${skill.rating}" class="rank-input" style="">-->
+<!--                            </span>-->
+<!--                            &lt;!&ndash; Tool icon and name &ndash;&gt;-->
+<!--                            <div class="tool-info-content" style="display:flex; align-items:center;">-->
+<!--                                <i th:class="${skill.skillicon} + ' colored tool-icon'"-->
+<!--                                    style="font-size:25px; margin-right:10px;"></i>-->
+<!--                                <span class="tool-name" th:text="${skill.skillname}"></span>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Stars rating &ndash;&gt;-->
+<!--                            <div class="tool-score-stars" th:attr="data-rating=${skill.proficiency}"-->
+<!--                                th:text="${'⭐'.repeat(skill.proficiency)}">-->
+<!--                                ⭐⭐⭐⭐⭐-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Remove button &ndash;&gt;-->
+<!--                            <button th:if="${isUserAuthenticated}" class="px-3 py-.5 btn-remove-rank"-->
+<!--                                title="Remove from rank" th:attr="data-skill-uuid=${skill.skilluuid}">-->
+<!--                                ×-->
+<!--                            </button>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                    <span id="saveFeedback" class="save-feedback d-none">Saved.</span>-->
+<!--                </div>-->
+                <div class="my-ranked-tools w-70">
+                    <div class="ranking-header ranking-header-plus">
+                        <span class="header-rank" style="padding-left: 10px;">RANK</span>
+                        <span class="header-tool">TOOL</span>
+                        <span class="header-score" style="text-align: left;">SCORE</span>
+                        <span class="header-remove" style="text-align: center;">REMOVE</span>
+                    </div>
+
+                    <ul id="personalRankedList" class="ranked-list">
+                        <li th:each="skill, iterStat : ${userRatedList}"
+                            th:attr="data-skill-uuid=${skill.skilluuid}, data-rank=${iterStat.index + 1}"
+                            class="ranked-item">
+
+                            <!-- Rank input -->
+                            <span class="rank-control" style="padding-left: 10px;">
+                <input type="number" min="0" th:value="${skill.rating}" class="rank-input">
+            </span>
+
+                            <!-- Tool icon and name -->
+                            <div class="tool-info-content" style="display:flex; align-items:center;">
+                                <i th:class="${skill.skillicon} + ' colored tool-icon'"
+                                   style="font-size:25px; margin-right:10px;"></i>
+                                <span class="tool-name" th:text="${skill.skillname}"></span>
+                            </div>
+
+                            <!-- Stars rating -->
+                            <div class="tool-score-stars" th:attr="data-rating=${skill.proficiency}"
+                                 th:text="${'⭐'.repeat(skill.proficiency)}"></div>
+
+                            <!-- Remove button -->
+                            <button th:if="${isUserAuthenticated}" class="px-3 py-.5 btn-remove-rank"
+                                    title="Remove from rank" th:attr="data-skill-uuid=${skill.skilluuid}">
+                                ×
+                            </button>
+                        </li>
+                    </ul>
+
+                    <!-- Bulk save button -->
+                    <div style="display:flex; justify-content: flex-end; margin-top: 10px;">
+                        <button id="saveAllRankedBtn" class="btn btn-primary">Save All Ratings</button>
+                    </div>
+
+                    <span id="saveFeedback" class="save-feedback d-none">Saved.</span>
+                </div>
+
+                <!-- RIGHT SIDE: Available Tools Drawer -->
+                <div class="available-tools-drawer w-30">
+                    <h4 class="drawer-title mt-2" style="font-size:18px; font-weight:bold; text-transform:uppercase;">
+                        Find & Add Tools
+                    </h4>
+                    <div class="drawer-search">
+                        <input type="text" id="toolSearchInput" placeholder="Search tools..."
+                            aria-label="Search available tools">
+                    </div>
+                    <ul id="unrankedToolsList" class="unranked-list">
+                        <li th:each="skill : ${systemSkillList}" th:attr="data-skill-uuid=${skill.skilluuid}">
+                            <div>
+                                <i th:class="${skill.skillicon} + ' colored tool-icon'"></i>
+                                <span class="tool-name" th:text="${skill.skillname}"></span>
+                            </div>
+                            <button th:if="${skill.rated==false}" class="btn btn-success btn-add-rank"
+                                th:attr="data-skill-uuid=${skill.skilluuid}">
+                                + Rank
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </section>
+
         <form action="#" th:action="@{/skill-rate-update}" id="skill-rater" method="post">
             <input type="number" min="1" max="5" value="">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
@@ -111,59 +182,131 @@
     <div id="back-to-top" class="d-flex justify-content-center align-items-center">
         <i class="ph-bold ph-caret-double-up"></i>
     </div>
-    
+
     <script th:src="@{/js/backtotop.js}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script>
-        function toggleUpdateBnState(element,deactivated_flag){
-            element.disabled=deactivated_flag;
+        function toggleUpdateBnState(element, deactivated_flag) {
+            element.disabled = deactivated_flag;
             element.querySelector("span").classList.toggle("d-none");
             element.querySelector(".spinner").classList.toggle("d-none");
         }
-        function upateview(skilldata){
+        function upateview(skilldata) {
             var skillElt = document.querySelector(`td[skill-id='${skilldata.skillid}']`);
             skillElt.innerText = skilldata.rating;
         }
-        document.addEventListener("DOMContentLoaded",function(){
-            let table = new DataTable('#skillsTable');
-            let updatebtns = document.querySelectorAll(".btn-update");
-            let updateform = document.querySelector("#skill-rater");
+        function rankNewSkill(formdata) {
+            const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute('content');
+            const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
+            return fetch('/skill-rate-update', {
+                method: 'POST',
+                body: formdata,
+                headers: {
+                    [csrfHeader]: csrfToken
+                }
+            });
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            const personalList = document.getElementById("personalRankedList");
+            const rankbtns = document.querySelectorAll(".btn-add-rank");
+            let newrankform = document.querySelector("#skill-rater");
+            const searchInput = document.getElementById("toolSearchInput");
+            const toolList = document.getElementById("unrankedToolsList");
+            const allItems = Array.from(toolList.querySelectorAll("li"));
 
-            document.getElementById('skillsTable').addEventListener('click', function(e) {
-                const button = e.target.closest('.btn-update');
-                if (button) {
-                    e.preventDefault();
-                    toggleUpdateBnState(button, true);
-                    const formData = new FormData(updateform);
-                    formData.append('skilluuid', button.previousElementSibling.getAttribute("skill-uuid"));
-                    if(!button.previousElementSibling.value){
-                        formData.append('rating', 0);
-                    }else{
-                        formData.append('rating', button.previousElementSibling.value);
+            rankbtns.forEach(btn => {
+                // btn.addEventListener("click",()=>{
+
+                // });
+                // ================ code thatt capture skilluid, rating and proficiency ============
+                // const skilluuid = btn.dataset.skillUuid; // automatically maps data-skill-uuid
+                // console.log("Clicked skill UUID:", skilluuid);
+                // const formData = new FormData(newrankform);
+                // formData.append('skilluuid', skilluuid);
+                // formData.append('rating', 1);
+                // formData.append('proficiency', 0);
+                // rankNewSkill(formData)
+                //     .then(res => {return res.json();})
+                //     .then(res =>{
+                //         console.log(res);
+                //     });
+                // ==============================================================================
+                btn.addEventListener("click", () => {
+                    const skillUuid = btn.dataset.skillUuid;
+                    const skillItem = btn.closest("li");
+                    const skillName = skillItem.querySelector(".tool-name").textContent;
+                    const skillIconClass = skillItem.querySelector("i").className;
+
+                    // Check if skill already exists in ranked list
+                    if (personalList.querySelector(`li[data-skill-uuid='${skillUuid}']`)) {
+                        console.log("Skill already in ranked list");
+                        return;
                     }
-                    const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute('content');
-                    const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
-                    fetch('/skill-rate-update',{
-                        method:'POST',
-                        body:formData,
-                        headers: { 
-                            [csrfHeader]: csrfToken
-                        }
-                    })
-                    .then(res => {return res.json();})
-                    .then(data =>{
-                        console.log(data);
-                        upateview(data.skill)
-                        toggleUpdateBnState(button, false);
-                        button.previousElementSibling.value=0;
-                    });
+
+                    // Create new <li> element
+                    const newLi = document.createElement("li");
+                    newLi.dataset.skillUuid = skillUuid;
+                    newLi.dataset.rank = personalList.children.length + 1; // initial rank
+
+                    // Build inner HTML
+                    newLi.innerHTML = `
+                        <!-- Rank input -->
+                        <span class="rank-control" style="padding-left: 10px;">
+                            <input type="number" min="1" value="0" class="rank-input">
+                        </span>
+                        <!-- Tool icon and name -->
+                        <div class="tool-info-content" style="display:flex; align-items:center;">
+                            <i class="${skillIconClass}" style="font-size:25px; margin-right:10px;"></i>
+                            <span class="tool-name">${skillName}</span>
+                        </div>
+                        <!-- Stars rating -->
+                        <div class="tool-score-stars" data-rating="0">
+                            ⭐
+                        </div>
+                        <!-- Remove button -->
+                        <button class="px-3 py-.5 btn-remove-rank" title="Remove from rank" data-skill-uuid="${skillUuid}">
+                            ×
+                        </button>
+                    `;
+
+                    // Append to personal ranked list
+                    personalList.appendChild(newLi);
+
+                    // Optional: update UI (disable +Rank button, etc.)
+                    btn.disabled = true;
+                    btn.textContent = "Ranked";
+                });
+            });
+
+            searchInput.addEventListener("input", () => {
+                const query = searchInput.value.trim().toLowerCase();
+                // Clear current list
+                toolList.innerHTML = "";
+                // Filter and repopulate
+                const filteredItems = allItems.filter(li => {
+                    const toolName = li.querySelector(".tool-name").textContent.toLowerCase();
+                    return toolName.includes(query);
+                });
+                filteredItems.forEach(li => toolList.appendChild(li));
+                // Optional: show a "No results" message if filteredItems is empty
+                if (filteredItems.length === 0) {
+                    const li = document.createElement("li");
+                    li.textContent = "No tools found";
+                    li.classList.add("no-results");
+                    toolList.appendChild(li);
                 }
             });
         });
+
+     
 
             //=== this code is verified and works, has been commented for client side testing
             //startEventSource();
@@ -172,7 +315,7 @@
             *  form.addEventListener("submit",function(e){
                 e.preventDefault();
                 console.log("what...");
-                let formdata = new FormData(e.target); 
+                let formdata = new FormData(e.target);
                     try{
                         axios.post("/post-rating",{
                         "skilluuid":formdata.get("skill"),
@@ -185,6 +328,10 @@
                 }
             });
             */
+
+            
+        
     </script>
 </body>
+
 </html>

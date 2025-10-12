@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- CSRF meta tags removed for static file -->
+
+    <title>Live skills stats</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link rel="stylesheet" href="css/app.css">
+
+    <style>
+        .bg-beige {
+            background-color: beige;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .wrapper-padded {
+            padding-bottom: 20px;
+        }
+
+        .jumbotron-padded {
+            padding-bottom: 30px;
+        }
+
+        .btn-login {
+            background-color: #4b9dbd;
+            border-color: #4b9dbd;
+        }
+
+        .icon-user {
+            font-size: 18px;
+            margin-right: 3px;
+        }
+
+        .breadcrumb-rel {
+            position: relative;
+        }
+
+        .api-link {
+            position: absolute;
+            right: 10px;
+        }
+
+        .skills-section-body-pt10 {
+            padding-top: 10px;
+        }
+
+        .ranking-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .icon-heart {
+            margin-right: 3px;
+            color: #ee2e2e;
+        }
+
+        .icon-thumb {
+            font-size: 18px;
+            margin-right: 3px;
+        }
+
+        .icon-arrow-up {
+            color: green;
+        }
+
+        .icon-arrow-down {
+            color: red;
+        }
+
+        .card {
+            background-color: azure;
+        }
+
+        /* .skill-card {
+            width: 150px;
+            height: 140px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        } */
+
+        /* Card Container */
+        .skill-card {
+            /* Remove fixed width: 150px; and height: 140px; */
+
+            /* Set a minimum width and allow resizing */
+            min-width: 130px;
+            max-width: 130px!important;
+            /* Set a comfortable minimum width for content */
+
+            max-height: 150px;
+            /* Use padding to control the vertical size if height is removed */
+            padding: 15px 10px;
+
+            /* Retain margins for spacing between elements */
+            margin: 0 10px 10px 0;
+
+            /* Essential Flexbox properties for responsiveness */
+            /* * flex-grow: 1  -> Allows cards to grow and fill the gaps.
+            * flex-shrink: 1 -> Allows cards to shrink slightly if needed.
+            * flex-basis: 0 -> Allows the browser to distribute space evenly before 
+            * considering min-width.
+            */
+            flex: 1 1 0;
+
+            /* Keep existing aesthetic styling */
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            /* Maintain flex for internal content centering */
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            /* Add max-width to prevent cards from becoming too wide in non-multiple scenarios */
+            max-width: 160px;
+        }
+
+        /* Ensure the wrapper uses flexbox to manage the cards */
+        .skill-card-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows the cards to wrap to the next row */
+            /* Use a negative margin to counteract the card margin-right/bottom,
+            ensuring the cards start flush with the wrapper edge */
+            /* margin-right: -10px;  */
+        }
+
+        .w-90 {
+            width: 90%;
+        }
+
+        .w-80 {
+            width: 80%;
+        }
+
+        .circle-icon {
+            height: 30px;
+            width: 30px;
+            border-radius: 15px;
+            padding: 5px;
+            color: white;
+            cursor: pointer;
+
+        }
+
+        .main-flex-container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .tools-section {
+            flex: 1;
+            margin-right: 32px;
+        }
+
+        .ranking-panel {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            position: sticky;
+            top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            height: fit-content;
+        }
+
+        .ranking-panel h4 {
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .ranking-list {
+            list-style: none;
+            padding-left: 0px;
+            margin: 0;
+        }
+
+        .rank-item {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            padding: 8px 8px;
+            margin-bottom: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .rank-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .rank-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+
+        .rank-name {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .rank-likes {
+            margin-right: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .rank-medal {
+            font-size: 1.2em;
+        }
+
+        .gold {
+            color: #FFD700;
+        }
+
+        .silver {
+            color: #C0C0C0;
+        }
+
+        .bronze {
+            color: #CD7F32;
+        }
+    </style>
+</head>
+
+<body style="background-color: beige;height: 100vh;width: 100%;">
+    <div class="wrapper" style="padding-bottom: 20px;">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Discover & Rank Your Skills</h1>
+                <p class="hero-subtitle">
+                    Personalize your tech stack. Rate your proficiency, organize your favorites, and track your growth.
+                </p>
+                <div class="hero-actions">
+                    <a href="/login" class="btn btn-primary hero-btn btn-info auth-btn">
+                       <i class="ph-bold ph-user icon-user"></i> Login
+                    </a>
+                    <a href="/skills.html" class="btn btn-secondary hero-btn">
+                        Ranks
+                       <i class="ph-bold ph-ranking icon-user"></i> Explore Public Ranks
+                    </a>
+                </div>
+            </div>
+        </section>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-rel">
+                <li class="breadcrumb-item"><a href="index.html"><i class="ph-fill ph-house-line"></i>Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><i class="ph-fill ph-sparkle"></i><a
+                        href="skills.html">Skill stats</a></li>
+                <li class="breadcrumb-item"><a href="myratings.html"><i class="ph-fill ph-pencil-ruler"></i>Give your
+                        rating</a></li>
+                <li class="breadcrumb-item"><a href="swagger-ui.html" target="_blank"
+                        style="position:absolute;right:10px;"><i class="ph-fill ph-arrow-square-out"></i>API
+                        documentation</a></li>
+            </ol>
+        </nav>
+        <section>
+            <div class="main-flex-container">
+                <div class="tools-section">
+                    <div class="skill-section-header">
+                        <h3>Stats of the Languages and frameworks you know</h3>
+                        <div class="title-border"></div>
+                    </div>
+                    <p class="leading">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur animi
+                        repellat,
+                        nihil obcaecati laboriosam repellendus! Magni a dolores ratione aliquid corporis rem placeat
+                        maxime similique delectus.
+                    </p>
+
+                    <div class="skills-section-body d-flex" style="padding-top: 10px;">
+                        <div class="w-75 skills-section-body-list skill-card-wrapper d-flex flex-wrap">
+                            
+                        </div>
+                        <div class="w-25 ranking-panel">
+                            <h4 class="" style="font-size: 18px; font-weight: bold;">Top Ranked Tools</h4>
+                            <ul id="top-tools-list" class="ranking-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <form class="invisible" action="#" th:action="@{/skill-vote}" id="skill-voter" method="post">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div id="back-to-top" class="d-flex justify-content-center align-items-center">
+        <i class="ph-bold ph-arrow-up"></i>
+    </div>
+
+    <script src="js/backtotop.js"></script>
+    <script>
+        function generateSkillCards(skills) {
+            const container = document.querySelector('.skills-section-body-list');
+            container.innerHTML = '';
+            skills.forEach(skill => {
+                const card = document.createElement('div');
+                card.className = 'card skill-card';
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body d-flex flex-column align-items-center p-0';
+                // Icon
+                const icon = document.createElement('i');
+                icon.className = skill.icon;
+                icon.style.fontSize = '25px';
+                cardBody.appendChild(icon);
+                // Name
+                const name = document.createElement('strong');
+                name.style.margin = '5px 0px';
+                name.textContent = skill.name;
+                cardBody.appendChild(name);
+                // Rating
+                const rating = document.createElement('small');
+                rating.innerHTML = skill.rating + ' <i class="ph-bold ph-heart" style="margin-right: 3px; color: #ee2e2e;"></i>';
+                cardBody.appendChild(rating);
+                // Like/Dislike buttons
+                const btnRow = document.createElement('div');
+                btnRow.className = 'w-100 d-flex justify-content-between';
+                btnRow.style.marginTop = '2px';
+                const likeBtn = document.createElement('div');
+                likeBtn.id = 'like-btn';
+                likeBtn.className = 'circle-icon';
+                likeBtn.style.backgroundColor = '#329932';
+                likeBtn.innerHTML = '<i class="ph-bold ph-thumbs-up" style="font-size:18px;"></i>';
+                const dislikeBtn = document.createElement('div');
+                dislikeBtn.id = 'dislike-btn';
+                dislikeBtn.className = 'circle-icon';
+                dislikeBtn.style.backgroundColor = '#FF4C4C';
+                dislikeBtn.innerHTML = '<i class="ph-bold ph-thumbs-down" style="font-size:18px;margin-right:3px;"></i>';
+                btnRow.appendChild(likeBtn);
+                btnRow.appendChild(dislikeBtn);
+                cardBody.appendChild(btnRow);
+                card.appendChild(cardBody);
+                container.appendChild(card);
+            });
+        }
+
+        function generateTopRanked(skills) {
+            // Sort by rating descending, then likes descending if available
+            const sorted = [...skills].sort((a, b) => b.rating - a.rating);
+            const top = sorted.slice(0, 5);
+            const medals = ['gold', 'silver', 'bronze'];
+            const medalEmojis = ['🥇', '🥈', '🥉'];
+            const list = document.getElementById('top-tools-list');
+            list.innerHTML = '';
+            top.forEach((skill, idx) => {
+                const li = document.createElement('li');
+                const rankItem = document.createElement('div');
+                rankItem.className = 'rank-item';
+                // Icon
+                const icon = document.createElement('i');
+                icon.className = skill.icon + ' mr-2';
+                icon.style.fontSize = '25px';
+                rankItem.appendChild(icon);
+                // Name and likes
+                const infoDiv = document.createElement('div');
+                infoDiv.style.flex = '1';
+                const name = document.createElement('h5');
+                name.className = 'rank-name text-left mb-0';
+                name.style.fontSize = '15px';
+                name.textContent = skill.name;
+                infoDiv.appendChild(name);
+                const likesSpan = document.createElement('span');
+                likesSpan.className = 'rank-likes';
+                likesSpan.innerHTML = `<i class="ph-bold ph-arrow-circle-up" style="color: green;"></i> ${skill.likes || skill.rating * 3} <i class="ph-bold ph-arrow-circle-down" style="color: red;"></i> ${skill.dislikes || skill.rating}`;
+                infoDiv.appendChild(likesSpan);
+                rankItem.appendChild(infoDiv);
+                // Medal for top 3
+                if (idx < 3) {
+                    const medal = document.createElement('span');
+                    medal.className = `rank-medal ${medals[idx]}`;
+                    medal.textContent = medalEmojis[idx];
+                    rankItem.appendChild(medal);
+                }
+                li.appendChild(rankItem);
+                list.appendChild(li);
+            });
+        }
+        function startEventSource() {
+            const eventSource = new EventSource('/api/v1/data/skills');
+            eventSource.onopen = function () {
+                console.log("Connection to server opened.");
+            };
+            eventSource.onerror = function (event) {
+                console.error("EventSource failed:", event);
+            };
+            eventSource.onmessage = function (event) {
+                console.log("Received data:", event.data);
+                upateview(JSON.parse(event.data));
+            };
+        }
+        function newvote(formdata) {
+            const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute('content');
+            const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
+            return fetch('/skill-vote', {
+                method: 'POST',
+                body: formdata,
+                headers: {
+                    [csrfHeader]: csrfToken
+                }
+            });
+        }
+        function upateview(skilldata) {
+            var skillElt = document.querySelector(`div[skill-uuid='${skilldata.skilluuid}']`);
+            var skillEltRating = skillElt.querySelector("small");
+            skillEltRating.innerText = skilldata.rating;
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            // Static array of skills
+            const skills = [
+                { name: 'JavaScript', icon: 'devicon-javascript-plain colored', rating: 5 },
+                { name: 'Python', icon: 'devicon-python-plain colored', rating: 4 },
+                { name: 'Java', icon: 'devicon-java-plain', rating: 4 },
+                { name: 'React', icon: 'devicon-react-original colored', rating: 5 },
+                { name: 'Spring', icon: 'devicon-spring-plain', rating: 3 },
+                { name: 'TypeScript', icon: 'devicon-typescript-plain', rating: 4 },
+                { name: 'Node.js', icon: 'devicon-nodejs-plain', rating: 4 },
+                { name: 'Angular', icon: 'devicon-angularjs-plain', rating: 3 },
+                { name: 'Vue.js', icon: 'devicon-vuejs-plain colored', rating: 3 },
+                { name: 'C++', icon: 'devicon-cplusplus-plain', rating: 3 },
+                { name: 'C#', icon: 'devicon-csharp-plain', rating: 3 },
+                { name: 'Go', icon: 'devicon-go-plain', rating: 2 },
+                { name: 'Ruby', icon: 'devicon-ruby-plain', rating: 2 },
+                { name: 'PHP', icon: 'devicon-php-plain', rating: 2 },
+                { name: 'Kotlin', icon: 'devicon-kotlin-plain', rating: 2 }
+            ];
+            generateSkillCards(skills);
+            generateTopRanked(skills);
+            const liketbns = document.querySelectorAll("#like-btn");
+            const disliketbns = document.querySelectorAll("#dislike-btn");
+            let voteteform = document.querySelector("#skill-voter");
+            startEventSource();
+
+            //===========alternative to ripple effect button===========
+            liketbns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    var skilluuid = btn.closest(".card-body").getAttribute("skill-uuid");
+                    const formData = new FormData(voteteform);
+                    formData.append('skilluuid', skilluuid);
+                    formData.append('vote', "like");
+                    newvote(formData)
+                        .then(res => { return res.json(); })
+                        .then(res => {
+                            console.log(res);
+                        });
+                });
+                btn.addEventListener("mousedown", function () {
+                    this.querySelector("i").style.color = "#329932";
+                    this.style.backgroundColor = "white";
+                });
+                btn.addEventListener("mouseup", function () {
+                    this.querySelector("i").style.color = "white";
+                    this.style.backgroundColor = "#329932";
+                });
+            });
+            disliketbns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    var skilluuid = btn.closest(".card-body").getAttribute("skill-uuid");
+                    const formData = new FormData(voteteform);
+                    formData.append('skilluuid', skilluuid);
+                    formData.append('vote', "dislike");
+                    newvote(formData)
+                        .then(res => { return res.json(); })
+                        .then(res => {
+                            console.log(res);
+                        });
+                });
+                btn.addEventListener("mousedown", function () {
+                    this.querySelector("i").style.color = "#FF4C4C";
+                    this.style.backgroundColor = "white";
+                });
+                btn.addEventListener("mouseup", function () {
+                    this.querySelector("i").style.color = "white";
+                    this.style.backgroundColor = "#FF4C4C";
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+  <title>Authentication page</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="css/app.css">
+
+  <style>
+    label.form-group {
+      padding: 3px 0px !important;
+    }
+
+    .form-group {
+      margin-bottom: 8px !important;
+    }
+
+    .form-passwod-group {
+      position: relative;
+    }
+
+    i.togglePassword {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      font-size: 19px;
+      cursor: pointer;
+    }
+
+    label.form-group {
+      padding: 3px 0px !important;
+    }
+
+    .form-group {
+      margin-bottom: 20px !important;
+    }
+
+    form {
+      width: 500px;
+      margin-bottom: 50px;
+    }
+
+    .card-form {
+      animation: cardFade 2s forwards;
+    }
+
+    .form-btn {
+      padding: 10px 0px;
+      margin-top: 40px;
+      font-weight: bold;
+    }
+
+    .hide-modal {
+      animation: Slideout 500ms ease-in forwards;
+    }
+
+    .show-modal {
+      animation: Slidein 500ms ease-in forwards;
+    }
+
+    @keyframes cardFade {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: translateY(-10px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+
+    /* HERO SECTION (Assuming previous clean styles are applied) */
+    .hero-section {
+      /* Keep this area clean and separated */
+      background-color: #eef1f6;
+      /* Subtle, slightly darker shade than body */
+      padding: 60px 20px 40px;
+      border-bottom: 5px solid #007bff;
+      /* Add a primary color accent line */
+    }
+
+    /* LOGIN SECTION LAYOUT */
+    .login-section-area {
+      padding: 20px 0px;
+      /* padding-top: 20px!important; */
+    }
+
+    /* FORM CONTAINER (Replaces .card-form) */
+    .login-form-container {
+      max-width: 100%;
+      /* Constrain width for better focus */
+      width: 100%;
+      margin: 0 auto;
+      background-color: white;
+      /* Clean white background */
+      padding: 40px 30px;
+      border-radius: 12px;
+      /* Smoother, modern rounded corners */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      /* Subtle, deep shadow */
+      transition: box-shadow 0.3s ease;
+    }
+
+    /* Header Alignment */
+    .skill-section-header.header-center {
+      /* Centralize headers cleanly */
+      margin: 0 0 30px 0;
+    }
+
+    .skill-section-header h3 {
+      font-size: 1.8em;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .title-border {
+      /* Keep the separator, but use a cleaner color/style */
+      width: 100px !important;
+      /* Smaller, focused line */
+      height: 4px;
+      background-color: #007bff;
+      /* Primary brand color */
+      border-radius: 2px;
+      margin-top: 5px;
+    }
+
+
+    /* Form Element Styling */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .col-form-label {
+      font-weight: 500;
+      color: #444;
+      display: block;
+      /* Ensure label takes full width */
+      margin-bottom: 5px;
+    }
+
+    .form-control {
+      /* Modern input field styling */
+      height: 45px;
+      padding: 10px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    }
+
+    .form-passwod-group {
+      position: relative;
+    }
+
+    /* .togglePassword {
+    position: absolute;
+    right: 15px;
+    top: 50%; 
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 1.2em; 
+} */
+
+    /* Footer Link Area (Don't have an account?) */
+    .form-footer-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9em;
+      margin-bottom: 25px;
+      /* Space before the button */
+    }
+
+    .form-footer-link a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Primary Button */
+    .form-btn {
+      height: 48px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border-radius: 8px;
+      /* Matches input fields */
+    }
+
+
+    /* Container for the fixed bubble */
+    #guestAccessBubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      font-family: Arial, sans-serif;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Hide the bubble when the 'hidden' class is applied */
+    #guestAccessBubble.hidden {
+      transform: translateY(150%);
+    }
+
+    /* Floating Action Button (FAB) Icon */
+    .bubble-icon {
+      width: 50px;
+      height: 50px;
+      background-color: #007bff;
+      /* Primary color */
+      color: white;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .bubble-icon:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Content Area - Hidden by default, shown on hover/click */
+    .bubble-content {
+      position: absolute;
+      bottom: 60px;
+      /* Position above the icon */
+      right: 0;
+      width: 250px;
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Show content when the parent is hovered (or use JavaScript for click toggle) */
+    #guestAccessBubble:hover .bubble-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Content Styling */
+    .content-title {
+      font-weight: bold;
+      color: #333;
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-size: 1.1em;
+    }
+
+    .content-text {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .credentials-box {
+      background-color: #f0f4f8;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      border: 1px dashed #c3daff;
+    }
+
+    .credentials-box p {
+      margin: 3px 0;
+      font-size: 0.85em;
+      color: #1a1a1a;
+    }
+
+    .credentials-box span {
+      font-weight: bold;
+      color: #007bff;
+      float: right;
+    }
+
+    .btn-close-bubble {
+      background: none;
+      border: none;
+      color: #007bff;
+      cursor: pointer;
+      font-size: 0.9em;
+      padding: 0;
+      float: right;
+    }
+  </style>
+</head>
+
+<body style="background-color: beige;width: 100%;">
+  <div class="wrapper d-flex flex-column" style="padding-bottom: 20px;">
+    <section class="hero-section">
+      <div class="hero-content">
+        <h3 class="hero-title">Discover & Rank Your Skills</h3>
+        <p class="hero-subtitle mb-0">
+          Personalize your tech stack. Rate your proficiency, organize your favorites, and track your growth.
+        </p>
+      </div>
+    </section>
+
+    <section class="login-section-area flex-grow-1 d-flex flex-column justify-content-center">
+      <div class="login-form-container">
+        <div class="login-section">
+          <div class="skill-section-header header-center">
+            <h3>Enter your credentials</h3>
+            <div class="title-border"></div>
+          </div>
+          <div class="form-group">
+            <label for="login-user-name" class="col-form-label">Username: </label>
+            <input name="username" type="text" class="form-control" id="login-user-name" value="">
+          </div>
+          <div class="form-group form-passwod-group">
+            <label for="login-user-pass" class="col-form-label">Password: </label>
+            <input name="password" type="password" class="form-control input-password" id="login-user-pass" value="">
+            <i class="ph ph-eye togglePassword" id="" style="float: right;"></i>
+          </div>
+          <small class="form-footer-link">
+            <span>Don't have an account ?</span>
+            <a id="newAccount" href="#createaccount">Create account</a>
+          </small>
+          <button type="submit" class="btn btn-block btn-primary form-btn">Login</button>
+        </div>
+
+        <div class="signup-section d-none">
+          <div class="skill-section-header header-center">
+            <h3>Create your account here</h3>
+            <div class="title-border"></div>
+          </div>
+          <div class="form-group">
+            <label for="user-name" class="col-form-label">Username: </label>
+            <input name="username" type="text" class="form-control" id="user-name">
+          </div>
+          <div class="form-group">
+            <label for="user-email" class="col-form-label">Email: </label>
+            <input name="email" type="email" class="form-control" id="user-email">
+          </div>
+          <div class="form-group form-passwod-group">
+            <label for="user-pass" class="col-form-label">Password: </label>
+            <input name="password" type="password" class="form-control input-password" id="user-pass">
+            <i class="ph ph-eye togglePassword" id=""></i>
+          </div>
+          <button type="submit" class="btn btn-block btn-primary form-btn">Create my account</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="guestAccessBubble">
+      <div class="bubble-icon" title="Guest Login Info">
+        <i class="ph-bold ph-info" style="font-size: 20px;"></i>
+      </div>
+      <div class="bubble-content">
+        <p class="content-title">Guest Login 🔑</p>
+        <p class="content-text">
+          For demo access, please use:
+        </p>
+        <div class="credentials-box">
+          <p><strong>Username:</strong> <span>guest</span></p>
+          <p><strong>Password:</strong> <span>demo123</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- <section class="flex-grow-1 d-flex flex-column justify-content-center">
+      <div class="card card-form">
+        <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 30px;">
+          <div class="login-section">
+            <div class="skill-section-header d-flex flex-column justify-content-center align-items-center"
+              style="margin: 30px 0px;">
+              <h3>Enter your credentials</h3>
+              <div class="title-border" style="width: 250px;"></div>
+            </div>
+            <form action="/login" th:action="@{/login}" method="post">
+              <div class="form-group">
+                <label for="login-user-name" class="col-form-label">Username: </label>
+                <input name="username" type="text" class="form-control" id="login-user-name" value="">
+              </div>
+              <div class="form-group form-passwod-group">
+                <label for="login-user-pass" class="col-form-label">Password: </label>
+                <input name="password" type="password" class="form-control input-password" id="login-user-pass"
+                  value="">
+                <i class="ph ph-eye togglePassword" id=""></i>
+              </div>
+              <div class="form-group">
+                <small class="d-inline-block" style="width: 100%;">
+                  <span style="float: left;">Don't have an account ?</span>
+                  <span style="float: right;">
+                    <a id="newAccount" href="#createaccount">Create account</a>
+                  </span>
+                </small>
+              </div>
+              <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+              <button type="submit" class="btn btn-block btn-primary form-btn">Login</button>
+            </form>
+          </div>
+          <div class="signup-section d-none">
+            <div class="skill-section-header d-flex flex-column justify-content-center align-items-center"
+              style="margin: 30px 0px;">
+              <h3>Create your account here</h3>
+              <div class="title-border" style="width: 250px;"></div>
+            </div>
+            <form action="#" th:action="@{/register}" method="post">
+              <div class="form-group">
+                <label for="user-name" class="col-form-label">Username: </label>
+                <input name="username" type="text" class="form-control" id="user-name">
+              </div>
+              <div class="form-group">
+                <label for="user-email" class="col-form-label">Email: </label>
+                <input name="email" type="email" class="form-control" id="user-email">
+              </div>
+              <div class="form-group form-passwod-group">
+                <label for="user-pass" class="col-form-label">Password: </label>
+                <input name="password" type="password" class="form-control input-password" id="user-pass">
+                <i class="ph ph-eye togglePassword" id=""></i>
+              </div>
+              <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+              <button type="submit" class="btn btn-block btn-primary form-btn">Create my account</button>
+            </form>
+          </div>
+        </div>
+      </div> 
+    </section> -->
+  </div>
+
+
+  <script src="js/passvisiblity.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      loginsec = document.querySelector(".login-section");
+      signupsec = document.querySelector(".signup-section");
+      newaccbtn = document.querySelector("#newAccount");
+      const bubble = document.getElementById('guestAccessBubble');
+      const icon = bubble.querySelector('.bubble-icon');
+      const content = bubble.querySelector('.bubble-content');
+
+      newaccbtn.addEventListener("click", function () {
+        loginsec.classList.add("hide-modal");
+        setTimeout(() => {
+          signupsec.classList.remove("d-none");
+          signupsec.classList.add("show-modal");
+        }, 500);
+
+      });
+
+      icon.addEventListener('click', () => {
+        // Toggle the visibility of the content
+        const isVisible = content.style.opacity === '1';
+        content.style.opacity = isVisible ? '0' : '1';
+        content.style.visibility = isVisible ? 'hidden' : 'visible';
+        content.style.transform = isVisible ? 'translateY(10px)' : 'translateY(0)';
+      });
+    });
+  </script>
+</body>
+
+</html>

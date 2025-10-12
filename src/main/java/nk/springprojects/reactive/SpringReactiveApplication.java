@@ -1,11 +1,10 @@
 package nk.springprojects.reactive;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;import java.util.stream.Collector;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +16,6 @@ import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.javafaker.Faker;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import nk.springprojects.reactive.home.HomeService;
@@ -37,69 +35,10 @@ public class SpringReactiveApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringReactiveApplication.class, args);
 	}
-	
-	// ========================= Helper ===============================
-	
-	@Bean
-	CommandLineRunner jsonReadRUnner() {
-		boolean flag = false;
-		return args ->{
-			if(flag == true) {
-				System.out.println("testing something out");
-				InputStream jsoncont = resource.getInputStream();	
-				ObjectMapper mapper = new ObjectMapper();
-				List<Icon> iconlist = mapper.readValue(jsoncont, new TypeReference<List<Icon>>() {});
-				List<String> iconnames = iconlist.stream().map(i ->i.icon).collect(Collectors.toList());
-				//iconlist.stream().map(i ->i.name).forEach(System.out::println);
-				for(String name: iconnames) {
-					System.out.println("icon names "+name);
-				}
-			}
-		};
-	}
-	
-   // ========================= Seeder and DB Manager Helper ===============================
-	
-	@Bean
-	CommandLineRunner emptyDB(HomeService hservice) {
-		boolean flag = false;
-		return args ->{
-			if(flag == true) {
-				List<Skill> skills =  hservice.getRepository().findAll().collectList().block();
-				if(skills.size()>0) {
-					hservice.getRepository().deleteAll().subscribe();
-				}
-			}
-		};
-		
-	}
-	
-	@Bean
-	CommandLineRunner devIconbSkillsSeedRunner(HomeService hservice) {
-		boolean flag = false;
-		return args ->{
-			System.out.println("hello from DevIcon skill seeder Bean");
-			List<Skill> skills =  hservice.getRepository().findAll().collectList().block();
-			System.out.println("the size of all skills exiting is "+skills.size());
-			if(skills.size()<=0) {
-				InputStream jsoncont = resource.getInputStream();	
-				ObjectMapper mapper = new ObjectMapper();
-				List<Icon> iconlist = mapper.readValue(jsoncont, new TypeReference<List<Icon>>() {});
-				List<String> iconlist_names = iconlist.stream().map(iconskill -> iconskill.name).collect(Collectors.toList());
-				
-				for(Icon icon: iconlist) {
-					System.out.println("===========> Seeding started ============");
-					hservice.saveSkill(Skill.builder()
-						.skillname(icon.name())
-						.skillicon(icon.icon())
-						.skilluuid(UUID.randomUUID().toString())
-						.rating(0)
-						.build()).subscribe();
-				}
-			}
-		};
-	}
-	
+
+
+    //====================== OLD COD: STILL VALID NO MORE USED ================
+
 	@Bean
 	CommandLineRunner searchIcon(HomeService hservice) throws IOException {
 		boolean flag = false;
@@ -111,7 +50,7 @@ public class SpringReactiveApplication {
 		String defaultIcon = "devicon-vscode-plain colored";
 		return args ->{
 			if(flag == true) {
-				hservice.getRepository().findTop4ByOrderByRatingDesc()
+				hservice.getRepository().findTop5ByOrderByRatingDesc()
 					.collectList()
 					.flatMap(skilllist -> {
 						HashMap<Skill, String> skillmap = new HashMap<Skill, String>();
@@ -127,12 +66,7 @@ public class SpringReactiveApplication {
 			}
 		};
 	}
-	
-	
-	
-	//=============== OLD CODE ============================================
-	
-	
+
 	@Bean
 	CommandLineRunner githubSkillsSeedRunner(HomeService hservice) {
 		boolean flag = false;

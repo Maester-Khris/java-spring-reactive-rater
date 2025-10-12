@@ -11,7 +11,7 @@ public interface HomeRepository extends ReactiveCrudRepository<Skill, Integer> {
 	
 	Mono<Skill> findFirstBySkillname(String skillname);
 	
-	Flux<Skill> findTop4ByOrderByRatingDesc();
+	Flux<Skill> findTop5ByOrderByRatingDesc();
 	
 	Flux<Skill> findAllByOrderByRatingDesc();
 

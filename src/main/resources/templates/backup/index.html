@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" th:href="@{/img/favicon.ico}" type="image/x-icon">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 
   <title>Home page</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -17,49 +17,117 @@
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   
-  <link rel="stylesheet" th:href="@{/css/app.css}">
+  <link rel="stylesheet" href="css/app.css">
+  <style>
+    label.form-group {
+      padding: 3px 0px !important;
+    }
+
+    .form-group {
+      margin-bottom: 8px !important;
+    }
+
+    .modal-body {
+      padding: 8px 16px !important;
+    }
+
+    .modal-content {
+      margin-top: 50px;
+      height: 410px !important;
+    }
+
+    .form-passwod-group {
+      position: relative;
+    }
+
+    i.togglePassword {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      font-size: 19px;
+      cursor: pointer;
+    }
+
+    label.form-group {
+      padding: 3px 0px !important;
+    }
+
+    .form-group {
+      margin-bottom: 8px !important;
+    }
+
+    .modal-body {
+      padding: 8px 16px !important;
+    }
+
+    .modal-content {
+      margin-top: 50px;
+      height: 410px !important;
+    }
+
+    .hide-modal {
+      animation: Slideout 500ms ease-in forwards;
+    }
+
+    .show-modal {
+      animation: Slidein 500ms ease-in forwards;
+    }
+
+    .imp{
+      text-decoration: underline;
+      font-weight: 300;
+    }
+
+    .carousel{
+      border-radius: 10px;
+    }
+    .carousel-item{
+      height: 400px;
+    }
+    .carousel-item img{
+      max-width:100%;
+      max-height:100%;
+    }
+   .carousel-item h5, .carousel-item p{
+    color: black;
+    font-weight: bold;
+   }
+    .carousel-control-prev-icon, .carousel-control-next-icon, .carousel-indicators{
+      filter: invert(100%);
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body style="background-color: beige;height: 100vh;width: 100%;">
   <div class="wrapper" style="padding-bottom: 20px;">
-      <section class="hero-section">
-          <div class="hero-content">
-              <h1 class="hero-title">Discover & Rank Your Skills</h1>
-              <p class="hero-subtitle">
-                  Personalize your tech stack. Rate your proficiency, organize your favorites, and track your growth.
-              </p>
-              <div class="hero-actions" th:switch="${isUserAuthenticated}">
-                  <!-- Case: Not logged in -->
-                  <a th:case="false" href="/login" class="btn btn-primary hero-btn btn-info auth-btn">
-                      <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i> Login
-                  </a>
-                  <!-- Case: Logged in -->
-                  <form th:case="true" th:action="@{/logout}" method="post" class="d-inline">
-                      <button type="submit" class="btn btn-primary hero-btn btn-info auth-btn"
-                              style="background-color: #c17e7e;border-color: #c17e7e;">
-                          <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
-                          <span sec:authentication="name"></span>, Logout
-                      </button>
-                  </form>
-                  <!-- Always visible link -->
-                  <a href="/votes" class="btn btn-secondary hero-btn">
-                      <i class="ph-bold ph-ranking" style="font-size:18px;margin-right: 3px;"></i> Explore Public Ranks
-                  </a>
-              </div>
-          </div>
-      </section>
-
-      <nav aria-label="breadcrumb">
+   <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Discover & Rank Your Skills</h1>
+                <p class="hero-subtitle">
+                    Personalize your tech stack. Rate your proficiency, organize your favorites, and track your growth.
+                </p>
+                <div class="hero-actions">
+                    <a href="/login.html" class="btn btn-primary hero-btn btn-info auth-btn">
+                        <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i> Login
+                    </a>
+                    <a href="/skills.html" class="btn btn-secondary hero-btn">
+                        <i class="ph-bold ph-ranking" style="font-size:18px;margin-right: 3px;"></i> Explore Public Ranks
+                    </a>
+                </div>
+            </div>
+        </section>
+    <nav aria-label="breadcrumb">
       <ol class="breadcrumb" style="position: relative;">
-        <li class="breadcrumb-item active" aria-current="page"><a href="/"><i class="ph-fill ph-house-line"></i> Home</a></li>
-        <li class="breadcrumb-item"><a href="/votes"><i class="ph-fill ph-sparkle"></i> Skill stats</a></li>
-        <li class="breadcrumb-item"><a href="/myratings"><i class="ph-fill ph-pencil-ruler"></i> Give your rating</a></li>
-        <li class="breadcrumb-item"><a href="/swagger-ui.html" target="_blank" style="position:absolute;right:10px;"><i class="ph-fill ph-arrow-square-out"></i>API documentation</a></li>
+  <li class="breadcrumb-item active" aria-current="page"><a href="index.html"><i class="ph-fill ph-house-line"></i> Home</a></li>
+  <li class="breadcrumb-item"><a href="skills.html"><i class="ph-fill ph-sparkle"></i> Skill stats</a></li>
+  <li class="breadcrumb-item"><a href="myratings.html"><i class="ph-fill ph-pencil-ruler"></i> Give your rating</a></li>
+  <li class="breadcrumb-item"><a href="swagger-ui.html" target="_blank" style="position:absolute;right:10px;"><i class="ph-fill ph-arrow-square-out"></i>API documentation</a></li>
       </ol>
 
     </nav>
     <section>
-  <div class="skill-section-header">
+      <div class="skill-section-header" style="">
         <h3>Project "Skills Rater" Overview</h3>
         <div class="title-border"></div>
       </div>
@@ -76,7 +144,7 @@
         producer for efficient event handling.
       </p>
       <p style="margin-bottom: 5px;">Following are some keypoints that has been focused on:</p>
-  <ul>
+      <ul style="">
         <li>Web Security with Form authentication and Basic Api Authorization</li>
         <li>Restful Api Design and Documentation</li>
         <li>Asynchronous CRUD Operation using Reactive Crud Repository</li>
@@ -102,19 +170,19 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img th:src="@{/img/spring-reactive-arch-v2.drawio.png}" class="d-block w-100" alt="...">
+            <img src="img/spring-reactive-arch-v2.drawio.png" class="d-block w-100" alt="Spring Reactive Architecture">
           </div>
           <div class="carousel-item">
-            <img th:src="@{/img/springboot_cicd.png}" class="d-block w-100" alt="...">
+            <img src="img/springboot_cicd.png" class="d-block w-100" alt="Spring Boot CI/CD">
           </div>
           <div class="carousel-item">
-            <img th:src="@{/img/jmeter_result.png}" class="d-block w-100" alt="...">
+            <img src="img/jmeter_result.png" class="d-block w-100" alt="JMeter Result">
           </div>
           <div class="carousel-item">
-            <img th:src="@{/img/splunk_perf_monitoring.png}" class="d-block w-100" alt="...">
+            <img src="img/splunk_perf_monitoring.png" class="d-block w-100" alt="Splunk Performance Monitoring">
           </div>
           <div class="carousel-item">
-            <img th:src="@{/img/splunk_log_management.png}" class="d-block w-100" alt="...">
+            <img src="img/splunk_log_management.png" class="d-block w-100" alt="Splunk Log Management">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-target="#carouselExampleCaptions" data-slide="prev">
@@ -129,9 +197,9 @@
     </section>
   </div>
   <div id="back-to-top" class="d-flex justify-content-center align-items-center">
-      <i class="ph-bold ph-caret-double-up"></i>
+    <i class="ph-bold ph-caret-double-up"></i>
   </div>
 
-  <script th:src="@{/js/backtotop.js}"></script>
+  <script src="js/backtotop.js"></script>
 </body>
 </html>

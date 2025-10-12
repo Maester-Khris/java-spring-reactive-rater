@@ -72,12 +72,15 @@ public class ThreadComponent {
 	                .flatMap(skill -> {
 	                    //System.out.println("Skill to vote UUID: " + skill.getSkillname() + " - " + skill.getRating());
 	                    if (random.nextBoolean()) { // Simulate a like
-	                        skill.setRating(skill.getRating() + 1);
+//	                        skill.setRating(skill.getRating() + 1);
+                            skill.setUpvote(skill.getUpvote()+1);
 	                    } else { // Simulate a dislike
-	                        if (skill.getRating() > 0) {
-	                            skill.setRating(skill.getRating() - 1);
-	                        }
+//	                        if (skill.getRating() > 0) {
+//	                            skill.setRating(skill.getRating() - 1);
+//	                        }
+                            skill.setDownvote(skill.getDownvote()+1);
 	                    }
+                        skill.updateRating();
 	                    return service.getRepository().save(skill)
 	                        .doOnSuccess(updatedSkill -> {
 	                            //System.out.println("Skill after vote: " + updatedSkill.getSkillname() + " - " + updatedSkill.getRating());
@@ -95,14 +98,5 @@ public class ThreadComponent {
 		System.out.println("============skill received inside web producer of thread component=============");
 		localsink.tryEmitNext(skill);
 	}
-	
-	
-//	Skill producedskill = Skill.builder()
-//	.skillname(popularSkillNames.get(rand.nextInt(0, 2)))
-//	.skilluuid(UUID.randomUUID().toString())
-//	.rating(0)
-//	.build();
-//System.out.println("the produced skill is"+producedskill.toString());
-//sink.tryEmitNext(producedskill);
-	
+
 }

@@ -1,4 +1,4 @@
-package nk.springprojects.reactive;
+package nk.springprojects.reactive.configurations;
 
 import java.util.concurrent.Executor;
 

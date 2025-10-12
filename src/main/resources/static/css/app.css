@@ -1,9 +1,197 @@
+/*
+    app.css — reorganized
+    - Sections: header, variables, utilities, layout, components, forms, animations, legacy
+    - Created: 2025-10-09 (automated restructure)
+    - Keep backup at css/backup.css
+*/
+
+/* ==========================
+     0) Variables / Color tokens
+     ========================== */
+:root{
+    --brand-blue: #007bff;
+    --muted: #f8f9fa;
+    --accent: #ffcf40;
+    --success: #28a745;
+    --danger: #cc0000;
+}
+
+/* ==========================
+    1) Utilities
+    ========================== */
+.container-centered { width: 800px; margin: 0 auto; }
+.wrapper { width: 800px; margin: 0 auto; padding-top: 30px; }
+.bg-beige { background-color: beige; min-height: 100vh; width: 100%; }
+.wrapper-padded { padding-bottom: 20px; }
+.jumbotron-padded { padding-bottom: 30px; }
+.btn-login { background-color: #4b9dbd; border-color: #4b9dbd; }
+.mb-5 { margin-bottom: 5px; }
+.text-center { text-align:center; }
+.hidden { display:none !important; }
+
+/* small width helpers (use sparingly) */
+.w-90{ width:90%; }
+.w-80{ width:80%; }
+.w-70{ width:70%; }
+.w-30{ width:30%; }
+.w-25{ width:25%; }
+
+/* ==========================
+    2) Layout
+    ========================== */
+.main-flex-container { display:flex; align-items:flex-start; gap:24px; }
+.tools-section { flex:1; }
+
+.title-border { background-color: var(--accent); height:5px; width:100px; display:block; }
+
+ol.breadcrumb { margin-bottom:10px; }
+.breadcrumb i{ margin-right:6px; color:var(--accent); }
+
+
+/* ==========================
+    3) Components
+    ========================== */
+/* Hero */
+.hero-section { background-color:#f0f4f8; padding:40px 20px; margin-bottom:10px; text-align:center; border-bottom:1px solid #e0e6ed; position:relative; overflow:hidden; }
+.hero-content { max-width:800px; margin:0 auto; }
+.hero-title { font-size:2.5rem; color:#333; margin-bottom:20px; font-weight:700; line-height:1.1; }
+.hero-subtitle { font-size:1.1rem; color:#555; margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; }
+.hero-actions { display:flex; justify-content:center; gap:15px; }
+.hero-btn { padding:10px 18px; border-radius:6px; display:inline-flex; align-items:center; gap:8px; }
+.btn-primary { background-color:var(--brand-blue); color:#fff; border:1px solid var(--brand-blue); }
+.btn-secondary { background:transparent; color:var(--brand-blue); border:1px solid var(--brand-blue); }
+
+@media (max-width:768px){ .hero-actions{ flex-direction:column; } .hero-btn{ width:80%; margin:0 auto; } }
+
+
+/* Skill cards */
+.skill-card-wrapper{ display:flex; flex-wrap:wrap; gap:12px; }
+.skill-card{ min-width:130px; max-width:160px; padding:12px 10px; background:#fff; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.08); display:flex; flex-direction:column; align-items:center; text-align:center; }
+.skill-card .card-body{ padding:0; }
+
+
+/* Ranking panel */
+.ranking-panel{ background:var(--muted); border-radius:12px; padding:16px; position:sticky; top:20px; box-shadow:0 2px 10px rgba(0,0,0,0.06); }
+.ranking-panel h4{ margin:0 0 8px 0; padding-bottom:6px; border-bottom:2px solid #ffd700; }
+.ranking-list{ list-style:none; padding:0; margin:0; }
+.rank-item{ display:flex; align-items:center; justify-content:space-between; padding:8px 6px; border-radius:6px; }
+.rank-item + .rank-item{ margin-top:8px; }
+.rank-name{ font-weight:600; }
+.rank-likes{ color:#666; font-size:.95rem; }
+.gold{ color:#FFD700; } .silver{ color:#C0C0C0; } .bronze{ color:#CD7F32; }
+
+
+/* Back to top */
+#back-to-top{ position:fixed; right:25px; bottom:25px; width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; background:linear-gradient(145deg,#56c1e1,#337f9b); box-shadow:0 6px 15px rgba(0,0,0,0.25); transition:all .2s ease; z-index:1000; }
+#back-to-top:hover{ transform:translateY(-5px) scale(1.06); background:linear-gradient(145deg,#5fc8ea,#2c6f8c); }
+#back-to-top i{ font-size:22px; }
+
+
+/* ==========================
+    4) Forms / Modals
+    ========================== */
+label.form-group{ padding:3px 0 !important; }
+.form-group{ margin-bottom:8px !important; }
+.modal-body{ padding:8px 16px !important; }
+.modal-content{ margin-top:50px; height:410px !important; }
+.form-passwod-group{ position:relative; }
+.togglePassword{ position:absolute; right:12px; bottom:10px; cursor:pointer; }
+.form-control{ border-radius:6px; height:44px; padding:8px 12px; }
+.form-control:focus{ box-shadow:0 0 0 3px rgba(0,123,255,0.12); }
+
+
+/* ==========================
+    5) Animations & Keyframes
+    ========================== */
+@keyframes floatUpDown{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-6px);} }
+@keyframes moveArrow{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-4px);} }
+@keyframes spinner-c7wet2{ 100%{ transform: rotate(1turn); } }
+@keyframes extendsSize{ 0%{ width:100px;} 50%{ width:300px;} 100%{ width:100px;} }
+@keyframes moveUp{ 0%{ transform:translateY(0);} 50%{ transform:translateY(-3px);} 100%{ transform:translateY(0);} }
+@keyframes Slideout{ from{ transform:translateX(0);} to{ transform:translateX(-10%); display:none; } }
+@keyframes Slidein{ from{ transform:translateX(10%);} to{ transform:translateX(0);} }
+
+
+/* spinner helper (include both mask & -webkit-mask for compatibility) */
+.spinner{ width:20px; height:20px; border-radius:50%; margin:0 auto; background: radial-gradient(farthest-side, rgba(255,255,255,0.69) 94%, transparent) top/3.8px 3.8px no-repeat, conic-gradient(transparent 30%, rgba(255,255,255,0.69)); mask: radial-gradient(farthest-side, transparent calc(100% - 3.8px), #000 0); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3.8px), #000 0); -webkit-mask-composite: xor; mask-composite: exclude; animation:spinner-c7wet2 1s linear infinite; }
+
+
+/* ==========================
+    6) Utilities & Backwards-compat duplicates (kept intentionally)
+    - Smaller duplicate helpers kept for older markup compatibility
+    ========================== */
+.icon-user{ font-size:18px; margin-right:3px; }
+.icon-heart{ color:#ee2e2e; margin-right:3px; }
+.icon-thumb{ font-size:18px; margin-right:3px; }
+
+
+/* ==========================
+    7) Legacy / commented archive
+    - Keep large commented blocks here for reference
+    ========================== */
+/*
+  Legacy snippets moved here (originally scattered across file):
+
+  - old back-to-top variations
+  - alternate hero/button styles
+  - commented keyframes
+
+  If you want to permanently remove these, tell me and I'll delete them.
+*/
+
+/* End of app.css */
 .wrapper {
     width: 800px;
     margin: 0 auto;
     padding-top: 30px;
+/* Generic utility classes */
+.bg-beige {
+    background-color: beige;
+    height: 100vh;
+    width: 100%;
 }
-
+.wrapper-padded {
+    padding-bottom: 20px;
+}
+.jumbotron-padded {
+    padding-bottom: 30px;
+}
+.btn-login {
+    background-color: #4b9dbd;
+    border-color: #4b9dbd;
+}
+.icon-user {
+    font-size: 18px;
+    margin-right: 3px;
+}
+.breadcrumb-rel {
+    position: relative;
+}
+.api-link {
+    position: absolute;
+    right: 10px;
+}
+.skills-section-body-pt10 {
+    padding-top: 10px;
+}
+.ranking-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+/* End generic utility classes */
+}
+.w-80{
+    width: 80%!important;
+}
+.w-20{
+    width: 20%!important;
+}
+.w-70{
+    width: 70%!important;
+}
+.w-30{
+    width: 30%!important;
+}
 .jumbotron {
     margin-bottom: 10px !important;
     padding: 10px 25px !important;
@@ -60,11 +248,12 @@ li.active a{
     border-radius: 50%;
     background: radial-gradient(farthest-side,rgba(255, 255, 255, 0.69) 94%,#0000) top/3.8px 3.8px no-repeat,
     conic-gradient(#0000 30%,rgba(255, 255, 255, 0.69));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 3.8px), #000 0);
     -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 3.8px),#000 0);
     animation: spinner-c7wet2 1s infinite linear;
 }
 
-#back-to-top{
+/* #back-to-top{
     position: fixed;
     bottom: 15px;
     right: 15px;
@@ -85,7 +274,152 @@ li.active a{
   #back-to-top i{
     font-size: 20px;
     animation: moveArrow 2s ease-in-out infinite;
-  }
+  } */
+
+  #back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #56c1e1, #337f9b);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+#back-to-top:hover {
+  cursor: pointer;
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 25px rgba(86, 193, 225, 0.6);
+  background: linear-gradient(145deg, #5fc8ea, #2c6f8c);
+}
+
+#back-to-top i {
+  font-size: 22px;
+  animation: moveArrow 2s ease-in-out infinite;
+}
+
+
+
+
+/* Hero Section Styling */
+.hero-section {
+    background-color: #f0f4f8; /* Light blue-gray background */
+    padding: 40px 20px; /* Ample padding top/bottom */
+    margin-bottom: 10px;
+    text-align: center; /* Center align all content */
+    border-bottom: 1px solid #e0e6ed; /* Subtle separator at the bottom */
+    position: relative;
+    overflow: hidden; /* Ensures no content spills out */
+}
+
+.hero-content {
+    max-width: 800px; /* Constrain width for readability */
+    margin: 0 auto; /* Center the content block */
+    z-index: 1; /* Ensure content is above any background effects */
+    position: relative;
+}
+
+.hero-title {
+    font-size: 2.5em; /* Large, prominent title */
+    color: #333; /* Darker text for contrast */
+    margin-bottom: 20px; /* Space below title */
+    font-weight: 700; /* Bold font weight */
+    line-height: 1.1; /* Tighter line height for large text */
+}
+
+.hero-subtitle {
+    font-size: 1.3em; /* Readable subtitle size */
+    color: #555; /* Slightly lighter text for subtitle */
+    margin-bottom: 40px; /* More space before buttons */
+    line-height: 1.6;
+    max-width: 600px; /* Keep subtitle concise */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 15px; /* Space between buttons */
+}
+
+.hero-btn {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border-radius: 6px;
+    text-decoration: none; /* Remove underline from anchor tags */
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+    display: flex; /* Allow icon and text to align */
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Primary brand color */
+    color: white;
+    border: 1px solid #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker on hover */
+    border-color: #004085;
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.btn-secondary:hover {
+    background-color: #e6f2ff; /* Light background on hover */
+    color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5em;
+    }
+    .hero-subtitle {
+        font-size: 1em;
+    }
+    .hero-actions {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        gap: 10px;
+    }
+    .hero-btn {
+        width: 80%; /* Make buttons wider */
+        margin: 0 auto; /* Center stacked buttons */
+    }
+}
+
+
+
+
+
+/* ✨ Floating animation */
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* ⬆️ Arrow bounce animation */
+@keyframes moveArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
 
 @keyframes spinner-c7wet2 {
     100% {
@@ -141,14 +475,893 @@ li.active a{
     }
   }
 
-  @keyframes moveArrow {
+  /* @keyframes moveArrow {
     0% {
-        transform: translateY(0); /* Starting position */
+        transform: translateY(0); 
     }
     50% {
-        transform: translateY(-10px); /* Move up */
+        transform: translateY(-10px); 
     }
     100% {
-        transform: translateY(0); /* Return to starting position */
+        transform: translateY(0); 
     }
-  }
+  } */
+
+
+  label.form-group {
+      padding: 3px 0px !important;
+    }
+
+    .form-group {
+      margin-bottom: 8px !important;
+    }
+
+    .modal-body {
+      padding: 8px 16px !important;
+    }
+
+    .modal-content {
+      margin-top: 50px;
+      height: 410px !important;
+    }
+
+    .form-passwod-group {
+      position: relative;
+    }
+
+    i.togglePassword {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      font-size: 19px;
+      cursor: pointer;
+    }
+
+    label.form-group {
+      padding: 3px 0px !important;
+    }
+
+    .form-group {
+      margin-bottom: 8px !important;
+    }
+
+    .modal-body {
+      padding: 8px 16px !important;
+    }
+
+    .modal-content {
+      margin-top: 50px;
+      height: 410px !important;
+    }
+
+    .hide-modal {
+      animation: Slideout 500ms ease-in forwards;
+    }
+
+    .show-modal {
+      animation: Slidein 500ms ease-in forwards;
+    }
+
+    .imp{
+      text-decoration: underline;
+      font-weight: 300;
+    }
+
+    .carousel{
+      border-radius: 10px;
+    }
+    .carousel-item{
+      height: 400px;
+    }
+    .carousel-item img{
+      max-width:100%;
+      max-height:100%;
+    }
+   .carousel-item h5, .carousel-item p{
+    color: black;
+    font-weight: bold;
+   }
+    .carousel-control-prev-icon, .carousel-control-next-icon, .carousel-indicators{
+      filter: invert(100%);
+      font-weight: bold;
+    }
+
+    .bg-beige {
+            background-color: beige;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .wrapper-padded {
+            padding-bottom: 20px;
+        }
+
+        .jumbotron-padded {
+            padding-bottom: 30px;
+        }
+
+        .btn-login {
+            background-color: #4b9dbd;
+            border-color: #4b9dbd;
+        }
+
+        .icon-user {
+            font-size: 18px;
+            margin-right: 3px;
+        }
+
+        .breadcrumb-rel {
+            position: relative;
+        }
+
+        .api-link {
+            position: absolute;
+            right: 10px;
+        }
+
+        .skills-section-body-pt10 {
+            padding-top: 10px;
+        }
+
+        .ranking-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .icon-heart {
+            margin-right: 3px;
+            color: #ee2e2e;
+        }
+
+        .icon-thumb {
+            font-size: 18px;
+            margin-right: 3px;
+        }
+
+        .icon-arrow-up {
+            color: green;
+        }
+
+        .icon-arrow-down {
+            color: red;
+        }
+
+        .card {
+            background-color: azure;
+        }
+
+        /* .skill-card {
+            width: 150px;
+            height: 140px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        } */
+
+        /* Card Container */
+        .skill-card {
+            /* Remove fixed width: 150px; and height: 140px; */
+
+            /* Set a minimum width and allow resizing */
+            min-width: 130px;
+            max-width: 130px !important;
+            /* Set a comfortable minimum width for content */
+
+            max-height: 150px;
+            /* Use padding to control the vertical size if height is removed */
+            padding: 15px 10px;
+
+            /* Retain margins for spacing between elements */
+            margin: 0 10px 10px 0;
+
+            /* Essential Flexbox properties for responsiveness */
+            /* * flex-grow: 1  -> Allows cards to grow and fill the gaps.
+            * flex-shrink: 1 -> Allows cards to shrink slightly if needed.
+            * flex-basis: 0 -> Allows the browser to distribute space evenly before 
+            * considering min-width.
+            */
+            flex: 1 1 0;
+
+            /* Keep existing aesthetic styling */
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            /* Maintain flex for internal content centering */
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+            /* Add max-width to prevent cards from becoming too wide in non-multiple scenarios */
+            max-width: 160px;
+        }
+
+        /* Ensure the wrapper uses flexbox to manage the cards */
+        .skill-card-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allows the cards to wrap to the next row */
+            /* Use a negative margin to counteract the card margin-right/bottom,
+            ensuring the cards start flush with the wrapper edge */
+            /* margin-right: -10px;  */
+        }
+
+        .w-90 {
+            width: 90%;
+        }
+
+        .w-80 {
+            width: 80%;
+        }
+
+        .circle-icon {
+            height: 30px;
+            width: 30px;
+            border-radius: 15px;
+            padding: 5px;
+            color: white;
+            cursor: pointer;
+
+        }
+
+        .main-flex-container {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .tools-section {
+            flex: 1;
+            margin-right: 32px;
+        }
+
+        .ranking-panel {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            position: sticky;
+            top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            height: fit-content;
+        }
+
+        .ranking-panel h4 {
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .ranking-list {
+            list-style: none;
+            padding-left: 0px;
+            margin: 0;
+        }
+
+        .rank-item {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            padding: 8px 8px;
+            margin-bottom: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .rank-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .rank-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+
+        .rank-name {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .rank-likes {
+            margin-right: 10px;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .rank-medal {
+            font-size: 1.2em;
+        }
+
+        .gold {
+            color: #FFD700;
+        }
+
+        .silver {
+            color: #C0C0C0;
+        }
+
+        .bronze {
+            color: #CD7F32;
+        }
+
+        .bg-beige {
+            background-color: beige;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .jumbotron-padded {
+            padding-bottom: 30px;
+        }
+
+        .btn-login {
+            background-color: #4b9dbd;
+            border-color: #4b9dbd;
+        }
+
+        .icon-user {
+            font-size: 18px;
+            margin-right: 3px;
+        }
+
+        .breadcrumb-rel {
+            position: relative;
+        }
+
+        .api-link {
+            position: absolute;
+            right: 10px;
+        }
+
+        .header-rank-width {
+            width: 60px;
+            margin-right: 20px;
+        }
+
+        .header-tool-flex {
+            flex: 1;
+            margin: 0px 20px;
+        }
+
+        .header-score-width {
+            width: 150px;
+            margin: 0px 20px;
+            text-align: left;
+        }
+
+        .header-rank-pad {
+            padding-left: 10px;
+        }
+
+        .header-score-align {
+            text-align: left;
+        }
+
+        .header-remove-align {
+            text-align: center;
+        }
+
+        .drawer-title-style {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .ranked-list-flex {
+            display: flex;
+        }
+
+        .rank-control-mr {
+            margin-right: 20px;
+        }
+
+        .rank-input-wide {
+            width: 60px;
+            padding: 3px 10px;
+            text-align: left;
+        }
+
+        .tool-info-content-flex {
+            flex: 1;
+            margin: 0px 20px;
+        }
+
+        .tool-icon-lg {
+            font-size: 25px;
+        }
+
+        .tool-score-stars-m {
+            margin: 0px 20px;
+        }
+
+        .btn-remove-rank {
+            background: none !important;
+            border: none !important;
+            color: #c00;
+            font-size: 1.5em;
+            padding: 0 8px;
+            cursor: pointer;
+            outline: none;
+            box-shadow: none;
+            transition: color 0.2s;
+        }
+
+        .btn-remove-rank:hover {
+            color: #a00;
+        }
+
+        .btn-update {
+            width: 80px;
+            height: 28px;
+        }
+
+        .btn-update:disabled {
+            background-color: #06402B;
+            border-color: #06402B;
+        }
+
+        .form-group {
+            margin-bottom: 8px !important;
+        }
+
+        .clearfix {
+            overflow: auto;
+        }
+
+        .skill-info,
+        table th {
+            text-align: center !important;
+        }
+
+        input {
+            border-radius: 5px;
+        }
+
+        #skill-rater {
+            visibility: hidden;
+        }
+
+
+        /* Basic reset/container styles */
+        .personal-ranking-container {
+            max-width: 1200px;
+            /* Adjust as needed */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Split View Flexbox Layout */
+        .ranking-split-view {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        /* LEFT Panel - Main Ranking List */
+        .my-ranked-tools {
+            /* flex: 3; */
+            /* Takes up more space */
+            background-color: #fcfcf4;
+            /* Match the previous light background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .ranking-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 100px 50px;
+            /* Adjust column widths */
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .ranking-header-plus {
+            display: grid;
+            grid-template-columns: 80px 1fr 170px 60px;
+            /* Defined column sizes for alignment */
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 5px;
+        }
+
+        .ranked-list,
+        .unranked-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ranked-list li {
+            display: grid;
+            grid-template-columns: 80px 1fr 170px 60px;
+            /* MUST match the header */
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .rank-control {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .rank-input {
+            width: 35px;
+            text-align: right;
+            border: 1px solid #ccc;
+            padding: 3px;
+            margin-right: 3px;
+            border-radius: 4px;
+        }
+
+        .tool-info-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .tool-icon {
+            /* width: 24px;
+            height: 24px; */
+            margin-right: 10px;
+        }
+
+        /* RIGHT Panel - Unranked Tools Drawer */
+        .available-tools-drawer {
+            /* flex: 1; */
+            /* Takes up less space */
+            background-color: #fcfcf4;
+            padding: 15px;
+            border-radius: 8px;
+            /* Optional: Fixed height and scrolling for long lists */
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .drawer-search input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .unranked-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dotted #eee;
+        }
+
+        .unranked-list .btn-add-rank {
+            /* Style for the + Rank button */
+            /* background-color: #6c757d; */
+            /* Placeholder color */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .rank-input {
+            width: 60px;
+            padding: 3px 5px;
+            text-align: center;
+            /* Center the rank number for better aesthetics */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .btn-remove-rank {
+            margin: 0 auto;
+            /* Center the button in its column */
+            font-weight: bold;
+            color: #cc0000;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tool-score-stars {
+            display: flex;
+            align-items: center;
+        }
+
+
+
+ label.form-group {
+      padding: 3px 0px !important;
+    }
+
+    .form-group {
+      margin-bottom: 8px !important;
+    }
+
+    .form-passwod-group {
+      position: relative;
+    }
+
+    i.togglePassword {
+      position: absolute;
+      bottom: 10px;
+      right: 12px;
+      font-size: 19px;
+      cursor: pointer;
+    }
+
+    label.form-group {
+      padding: 3px 0px !important;
+    }
+
+    .form-group {
+      margin-bottom: 20px !important;
+    }
+
+    form {
+      width: 500px;
+      margin-bottom: 50px;
+    }
+
+    .card-form {
+      animation: cardFade 2s forwards;
+    }
+
+    .form-btn {
+      padding: 10px 0px;
+      margin-top: 40px;
+      font-weight: bold;
+    }
+
+    .hide-modal {
+      animation: Slideout 500ms ease-in forwards;
+    }
+
+    .show-modal {
+      animation: Slidein 500ms ease-in forwards;
+    }
+
+    @keyframes cardFade {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: translateY(-10px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+
+    /* Login sectin applied code here */
+    /* HERO SECTION (Assuming previous clean styles are applied) */
+    .hero-section {
+      /* Keep this area clean and separated */
+      background-color: #eef1f6;
+      /* Subtle, slightly darker shade than body */
+      padding: 60px 20px 40px;
+      border-bottom: 5px solid #007bff;
+      /* Add a primary color accent line */
+    }
+
+    /* LOGIN SECTION LAYOUT */
+    .login-section-area {
+      padding: 20px 0px;
+      /* padding-top: 20px!important; */
+    }
+
+    /* FORM CONTAINER (Replaces .card-form) */
+    .login-form-container {
+      max-width: 100%;
+      /* Constrain width for better focus */
+      width: 100%;
+      margin: 0 auto;
+      background-color: white;
+      /* Clean white background */
+      padding: 40px 30px;
+      border-radius: 12px;
+      /* Smoother, modern rounded corners */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      /* Subtle, deep shadow */
+      transition: box-shadow 0.3s ease;
+    }
+
+    /* Header Alignment */
+    .skill-section-header.header-center {
+      /* Centralize headers cleanly */
+      margin: 0 0 30px 0;
+    }
+
+    .skill-section-header h3 {
+      font-size: 1.8em;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .title-border {
+      /* Keep the separator, but use a cleaner color/style */
+      width: 100px !important;
+      /* Smaller, focused line */
+      height: 4px;
+      background-color: #007bff;
+      /* Primary brand color */
+      border-radius: 2px;
+      margin-top: 5px;
+    }
+
+
+    /* Form Element Styling */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .col-form-label {
+      font-weight: 500;
+      color: #444;
+      display: block;
+      /* Ensure label takes full width */
+      margin-bottom: 5px;
+    }
+
+    .form-control {
+      /* Modern input field styling */
+      height: 45px;
+      padding: 10px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    }
+
+    .form-passwod-group {
+      position: relative;
+    }
+
+    /* Footer Link Area (Don't have an account?) */
+    .form-footer-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9em;
+      margin-bottom: 25px;
+      /* Space before the button */
+    }
+
+    .form-footer-link a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Primary Button */
+    .form-btn {
+      height: 48px;
+      font-size: 1.1em;
+      font-weight: 600;
+      border-radius: 8px;
+      /* Matches input fields */
+    }
+
+
+    /* Container for the fixed bubble */
+    #guestAccessBubble {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      font-family: Arial, sans-serif;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Hide the bubble when the 'hidden' class is applied */
+    #guestAccessBubble.hidden {
+      transform: translateY(150%);
+    }
+
+    /* Floating Action Button (FAB) Icon */
+    .bubble-icon {
+      width: 50px;
+      height: 50px;
+      background-color: #007bff;
+      /* Primary color */
+      color: white;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .bubble-icon:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Content Area - Hidden by default, shown on hover/click */
+    .bubble-content {
+      position: absolute;
+      bottom: 60px;
+      /* Position above the icon */
+      right: 0;
+      width: 250px;
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Show content when the parent is hovered (or use JavaScript for click toggle) */
+    #guestAccessBubble:hover .bubble-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Content Styling */
+    .content-title {
+      font-weight: bold;
+      color: #333;
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-size: 1.1em;
+    }
+
+    .content-text {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .credentials-box {
+      background-color: #f0f4f8;
+      padding: 8px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      border: 1px dashed #c3daff;
+    }
+
+    .credentials-box p {
+      margin: 3px 0;
+      font-size: 0.85em;
+      color: #1a1a1a;
+    }
+
+    .credentials-box span {
+      font-weight: bold;
+      color: #007bff;
+      float: right;
+    }
+
+    .btn-close-bubble {
+      background: none;
+      border: none;
+      color: #007bff;
+      cursor: pointer;
+      font-size: 0.9em;
+      padding: 0;
+      float: right;
+    }

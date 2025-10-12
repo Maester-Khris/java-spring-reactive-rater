@@ -27,4 +27,6 @@ public class UserSkillRating extends SkillDefinition{
     private Integer skillid; // Foreign key to Skill
     
     private int rating;
+
+    private int proficiency;
 }

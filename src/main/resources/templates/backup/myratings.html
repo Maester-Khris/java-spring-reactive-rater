@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- CSRF meta tags removed for static file -->
+
+    <title>Rating page</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="css/app.css">
+
+    <style>
+        .bg-beige {
+            background-color: beige;
+            height: 100vh;
+            width: 100%;
+        }
+        .jumbotron-padded {
+            padding-bottom: 30px;
+        }
+        .btn-login {
+            background-color: #4b9dbd;
+            border-color: #4b9dbd;
+        }
+        .icon-user {
+            font-size: 18px;
+            margin-right: 3px;
+        }
+        .breadcrumb-rel {
+            position: relative;
+        }
+        .api-link {
+            position: absolute;
+            right: 10px;
+        }
+        .header-rank-width {
+            width: 60px;
+            margin-right: 20px;
+        }
+        .header-tool-flex {
+            flex: 1;
+            margin: 0px 20px;
+        }
+        .header-score-width {
+            width: 150px;
+            margin: 0px 20px;
+            text-align: left;
+        }
+        .header-rank-pad {
+            padding-left: 10px;
+        }
+        .header-score-align {
+            text-align: left;
+        }
+        .header-remove-align {
+            text-align: center;
+        }
+        .drawer-title-style {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .ranked-list-flex {
+            display: flex;
+        }
+        .rank-control-mr {
+            margin-right: 20px;
+        }
+        .rank-input-wide {
+            width: 60px;
+            padding: 3px 10px;
+            text-align: left;
+        }
+        .tool-info-content-flex {
+            flex: 1;
+            margin: 0px 20px;
+        }
+        .tool-icon-lg {
+            font-size: 25px;
+        }
+        .tool-score-stars-m {
+            margin: 0px 20px;
+        }
+        .btn-remove-rank {
+            background: none !important;
+            border: none !important;
+            color: #c00;
+            font-size: 1.5em;
+            padding: 0 8px;
+            cursor: pointer;
+            outline: none;
+            box-shadow: none;
+            transition: color 0.2s;
+        }
+
+        .btn-remove-rank:hover {
+            color: #a00;
+        }
+
+        .btn-update {
+            width: 80px;
+            height: 28px;
+        }
+
+        .btn-update:disabled {
+            background-color: #06402B;
+            border-color: #06402B;
+        }
+
+        .form-group {
+            margin-bottom: 8px !important;
+        }
+
+        .clearfix {
+            overflow: auto;
+        }
+
+        .skill-info,
+        table th {
+            text-align: center !important;
+        }
+
+        input {
+            border-radius: 5px;
+        }
+
+        #skill-rater {
+            visibility: hidden;
+        }
+
+
+        /* Basic reset/container styles */
+        .personal-ranking-container {
+            max-width: 1200px;
+            /* Adjust as needed */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Split View Flexbox Layout */
+        .ranking-split-view {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        /* LEFT Panel - Main Ranking List */
+        .my-ranked-tools {
+            /* flex: 3; */
+            /* Takes up more space */
+            background-color: #fcfcf4;
+            /* Match the previous light background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .ranking-header {
+            display: grid;
+            grid-template-columns: 80px 1fr 100px 50px;
+            /* Adjust column widths */
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .ranked-list,
+        .unranked-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ranked-list li {
+            display: grid;
+            grid-template-columns: 80px 1fr 100px 50px;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .rank-control {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .rank-input {
+            width: 35px;
+            text-align: right;
+            border: 1px solid #ccc;
+            padding: 3px;
+            margin-right: 3px;
+            border-radius: 4px;
+        }
+
+        .tool-info-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .tool-icon {
+            /* width: 24px;
+            height: 24px; */
+            margin-right: 10px;
+        }
+
+        /* RIGHT Panel - Unranked Tools Drawer */
+        .available-tools-drawer {
+            /* flex: 1; */
+            /* Takes up less space */
+            background-color: #fcfcf4;
+            padding: 15px;
+            border-radius: 8px;
+            /* Optional: Fixed height and scrolling for long lists */
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .drawer-search input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .unranked-list li {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dotted #eee;
+        }
+
+        .unranked-list .btn-add-rank {
+            /* Style for the + Rank button */
+            /* background-color: #6c757d; */
+            /* Placeholder color */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body style="background-color: beige;height: 100vh;width: 100%;">
+    <div class="wrapper">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">Discover & Rank Your Skills</h1>
+                <p class="hero-subtitle">
+                    Personalize your tech stack. Rate your proficiency, organize your favorites, and track your growth.
+                </p>
+                <div class="hero-actions">
+                    <a href="/login" class="btn btn-primary hero-btn btn-info auth-btn">
+                        <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i> Login
+                    </a>
+                    <a href="/skills.html" class="btn btn-secondary hero-btn">
+                        <i class="ph-bold ph-ranking" style="font-size:18px;margin-right: 3px;"></i> Explore Public Ranks
+                    </a>
+                </div>
+            </div>
+        </section>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="position: relative;">
+                <li class="breadcrumb-item"><a href="index.html"><i class="ph-fill ph-house-line"></i> Home</a></li>
+                <li class="breadcrumb-item"><a href="skills.html"><i class="ph-fill ph-sparkle"></i>Skill stats</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="myratings.html"><i
+                            class="ph-fill ph-pencil-ruler"></i>Skills rating</a></li>
+                <li class="breadcrumb-item"><a href="swagger-ui.html" target="_blank"
+                        style="position:absolute;right:10px;"><i class="ph-fill ph-arrow-square-out"></i>API
+                        documentation</a></li>
+            </ol>
+        </nav>
+
+
+
+        <section class="personal-ranking-container">
+            <div class="skill-section-header">
+                <h3>My Personal Ranking <span id="ranked-count">(0 Tools)</span></h3>
+                <div class="title-border"></div>
+            </div>
+            <p class="leading">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur animi repellat,
+                nihil obcaecati laboriosam repellendus! Magni a dolores ratione aliquid corporis rem placeat
+                maxime similique delectus.
+            </p>
+
+            <div class="ranking-split-view">
+                <div class="my-ranked-tools w-70">
+                    <!-- <div class="ranking-header" style="display:flex; align-items: center;">
+                        <span class="header-rank" style="width: 60px; margin-right:20px;">RANK</span>
+                        <span class="header-tool" style="flex: 1; margin:0px 20px;">TOOL</span>
+                        <span class="header-score"
+                            style="width: 150px; margin:0px 20px;text-align: left;">SCORE</span>
+                        <span class="header-remove">REMOVE</span>
+                    </div> -->
+                    <div class="ranking-header" style="
+                        display: grid; 
+                        grid-template-columns: 80px 1fr 170px 60px; /* Defined column sizes for alignment */
+                        align-items: center; 
+                        padding-bottom: 10px; 
+                        border-bottom: 1px solid #ddd;
+                        margin-bottom: 5px;
+                    ">
+                        <span class="header-rank" style="padding-left: 10px;">RANK</span>
+                        <span class="header-tool">TOOL</span>
+                        <span class="header-score" style="text-align: left;">SCORE</span>
+                        <span class="header-remove" style="text-align: center;">REMOVE</span>
+                    </div>
+                    <ul id="personalRankedList" class="ranked-list"></ul>
+                    <span id="saveFeedback" class="save-feedback d-none">Saved.</span>
+                </div>
+
+                <div class="available-tools-drawer w-30">
+                    <h4 class="drawer-title mt-2"
+                        style="font-size: 18px; font-weight: bold; text-transform: uppercase;">Find & Add Tools</h4>
+                    <div class="drawer-search">
+                        <input type="text" id="toolSearchInput" placeholder="Search tools..."
+                            aria-label="Search available tools">
+                    </div>
+
+                    <ul id="unrankedToolsList" class="unranked-list">
+                        <li data-skill-uuid="skill456">
+                            <img src="path/to/swift_icon.png" alt="Swift Icon" class="tool-icon">
+                            <span class="tool-name">Swift</span>
+                            <button class="btn btn-success btn-add-rank">+ Rank</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="back-to-top" class="d-flex justify-content-center align-items-center">
+        <i class="ph-bold ph-arrow-up"></i>
+    </div>
+
+    <script src="js/backtotop.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script>
+        const skillsData = [
+            // Setting a few items with an explicit 'rank' property to simulate ranked items (Left Panel)
+            { name: 'JavaScript', icon: 'devicon-javascript-plain', rating: 5, rank: 1, skilluuid: 'js1' },
+            { name: 'Python', icon: 'devicon-python-plain', rating: 4, rank: 2, skilluuid: 'py2' },
+            { name: 'Node.js', icon: 'devicon-nodejs-plain', rating: 4, rank: 3, skilluuid: 'node3' },
+
+            // Items with rank: 0 or undefined are considered Unranked (Right Panel)
+            { name: 'Java', icon: 'devicon-java-plain', rating: 4, rank: 0, skilluuid: 'java4' },
+            { name: 'React', icon: 'devicon-react-original', rating: 5, rank: 0, skilluuid: 'react5' },
+            { name: 'Spring', icon: 'devicon-spring-plain', rating: 3, rank: 0, skilluuid: 'spring6' },
+            { name: 'TypeScript', icon: 'devicon-typescript-plain', rating: 4, rank: 0, skilluuid: 'ts7' },
+            { name: 'Angular', icon: 'devicon-angularjs-plain', rating: 3, rank: 0, skilluuid: 'ng8' },
+            { name: 'Vue.js', icon: 'devicon-vuejs-plain', rating: 3, rank: 0, skilluuid: 'vue9' },
+            { name: 'C++', icon: 'devicon-cplusplus-plain', rating: 3, rank: 0, skilluuid: 'cplus10' },
+            { name: 'C#', icon: 'devicon-csharp-plain', rating: 3, rank: 0, skilluuid: 'csharp11' },
+            { name: 'Go', icon: 'devicon-go-plain', rating: 2, rank: 0, skilluuid: 'go12' },
+            { name: 'Ruby', icon: 'devicon-ruby-plain', rating: 2, rank: 0, skilluuid: 'ruby13' },
+            { name: 'PHP', icon: 'devicon-php-plain', rating: 2, rank: 0, skilluuid: 'php14' },
+            { name: 'Kotlin', icon: 'devicon-kotlin-plain', rating: 2, rank: 0, skilluuid: 'kt15' }
+        ];
+
+        /**
+         * Helper function to generate the HTML for a ranked skill item (Left Panel).
+         * @param {Object} skill - The skill object.
+         * @returns {string} The HTML string for the list item.
+         */
+        // function createRankedSkillItem(skill) {
+        //     // Generate star string based on the rating (proficiency)
+        //     const stars = '⭐'.repeat(skill.rating) + '☆'.repeat(5 - skill.rating);
+
+        //     return `
+        //     <li data-skill-uuid="${skill.skilluuid}" data-rank="${skill.rank}" style="display:flex;">
+        //         <span class="rank-control" style="margin-right:20px;">
+        //             <input type="number" min="1" value="${skill.rank}" class="rank-input" style="width:60px; padding:3px 10px; text-align:left;">
+        //         </span>
+        //         <div class="tool-info-content" style="flex:1; margin:0px 20px;">
+        //             <i class="${skill.icon} colored tool-icon" style="font-size:25px;" ></i>
+        //             <span class="tool-name">${skill.name}</span>
+        //         </div>
+        //         <div class="tool-score-stars" data-rating="${skill.rating}" style="width: 150px;margin:0px 20px;">
+        //             ${stars}
+        //         </div>
+        //         <button class="px-3 py-.5 btn-remove-rank" title="Remove from rank">
+        //             &times;
+        //         </button>
+        //     </li>
+        // `;
+        // }
+
+        function createRankedSkillItem(skill) {
+            // Generate star string based on the rating (proficiency)
+            const stars = '⭐'.repeat(skill.rating) + '☆'.repeat(5 - skill.rating);
+
+            return `
+                <li data-skill-uuid="${skill.skilluuid}" data-rank="${skill.rank}" style="
+                        display: grid; 
+                        grid-template-columns: 80px 1fr 170px 60px; /* MUST match the header */
+                        align-items: center; 
+                        padding: 10px 0;
+                        border-bottom: 1px solid #eee;
+                        font-size: 14px;
+                    ">
+                    <span class="rank-control" style="padding-left: 10px;">
+                        <input type="number" min="1" value="${skill.rank}" class="rank-input" style="
+                            width: 60px; 
+                            padding: 3px 5px; 
+                            text-align: center; /* Center the rank number for better aesthetics */
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                        ">
+                    </span>
+            
+                    <div class="tool-info-content" style="display: flex; align-items: center; ">
+                        <i class="${skill.icon} colored tool-icon" style="font-size:25px; margin-right: 10px;" ></i>
+                        <span class="tool-name">${skill.name}</span>
+                    </div>
+                    
+                    <div class="tool-score-stars" data-rating="${skill.rating}" style="
+                        display: flex; 
+                        align-items: center;
+                        /* No need for explicit width here, the grid column handles it */
+                    ">
+                        ${stars}
+                    </div>
+                    
+                    <button class="px-3 py-.5 btn-remove-rank" title="Remove from rank" style="
+                        margin: 0 auto; /* Center the button in its column */
+                        font-weight: bold;
+                        color: #cc0000;
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                    ">
+                        &times;
+                    </button>
+                </li>
+            `;
+        }
+
+        /**
+         * Helper function to generate the HTML for an unranked skill item (Right Panel).
+         * @param {Object} skill - The skill object.
+         * @returns {string} The HTML string for the list item.
+         */
+        function createUnrankedSkillItem(skill) {
+            return `
+            <li data-skill-uuid="${skill.skilluuid}">
+                <div>
+                    <i class="${skill.icon} colored tool-icon"></i>
+                    <span class="tool-name">${skill.name}</span>    
+                </div>
+                <button class="btn btn-success btn-add-rank" data-skill-uuid="${skill.skilluuid}">+ Rank</button>
+            </li>
+        `;
+        }
+
+        /**
+         * Main function to load and insert skills into the DOM lists.
+         */
+        function loadSkillsToDOM() {
+            const rankedListContainer = document.getElementById('personalRankedList');
+            const unrankedListContainer = document.getElementById('unrankedToolsList');
+            const rankedCountSpan = document.getElementById('ranked-count');
+
+            let rankedHTML = '';
+            let unrankedHTML = '';
+            let rankedCount = 0;
+
+            // 1. Separate and Sort the skills
+            const rankedSkills = skillsData
+                .filter(skill => skill.rank > 0)
+                .sort((a, b) => a.rank - b.rank); // Sort by rank for initial display
+
+            const unrankedSkills = skillsData
+                .filter(skill => skill.rank === 0 || skill.rank === null || skill.rank === undefined)
+                .sort((a, b) => a.name.localeCompare(b.name)); // Sort unranked alphabetically
+
+            // 2. Generate HTML for ranked items (Left Panel)
+            rankedSkills.forEach(skill => {
+                rankedHTML += createRankedSkillItem(skill);
+                rankedCount++;
+            });
+
+            // 3. Generate HTML for unranked items (Right Panel)
+            unrankedSkills.forEach(skill => {
+                unrankedHTML += createUnrankedSkillItem(skill);
+            });
+
+            // 4. Insert HTML into the DOM
+            if (rankedListContainer) {
+                rankedListContainer.innerHTML = rankedHTML;
+                if (rankedCountSpan) {
+                    rankedCountSpan.textContent = `(${rankedCount} Tools)`;
+                }
+            }
+
+            if (unrankedListContainer) {
+                unrankedListContainer.innerHTML = unrankedHTML;
+            }
+
+            // NOTE: You would typically attach event listeners here 
+            // for the rank-input changes and the + Rank buttons.
+        }
+
+        function toggleUpdateBnState(element, deactivated_flag) {
+            element.disabled = deactivated_flag;
+            element.querySelector("span").classList.toggle("d-none");
+            element.querySelector(".spinner").classList.toggle("d-none");
+        }
+        function upateview(skilldata) {
+            var skillElt = document.querySelector(`td[skill-id='${skilldata.skillid}']`);
+            skillElt.innerText = skilldata.rating;
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            let table = new DataTable('#skillsTable');
+            let updatebtns = document.querySelectorAll(".btn-update");
+            let updateform = document.querySelector("#skill-rater");
+
+            loadSkillsToDOM();
+
+            document.getElementById('skillsTable').addEventListener('click', function (e) {
+                const button = e.target.closest('.btn-update');
+                if (button) {
+                    e.preventDefault();
+                    toggleUpdateBnState(button, true);
+                    const formData = new FormData(updateform);
+                    formData.append('skilluuid', button.previousElementSibling.getAttribute("skill-uuid"));
+                    if (!button.previousElementSibling.value) {
+                        formData.append('rating', 0);
+                    } else {
+                        formData.append('rating', button.previousElementSibling.value);
+                    }
+                    const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute('content');
+                    const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
+                    fetch('/skill-rate-update', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            [csrfHeader]: csrfToken
+                        }
+                    })
+                        .then(res => { return res.json(); })
+                        .then(data => {
+                            console.log(data);
+                            upateview(data.skill)
+                            toggleUpdateBnState(button, false);
+                            button.previousElementSibling.value = 0;
+                        });
+                }
+            });
+        });
+
+        //=== this code is verified and works, has been commented for client side testing
+        //startEventSource();
+        //let form = document.querySelector("#rating-form");
+        /**
+        *  form.addEventListener("submit",function(e){
+            e.preventDefault();
+            console.log("what...");
+            let formdata = new FormData(e.target);
+                try{
+                    axios.post("/post-rating",{
+                    "skilluuid":formdata.get("skill"),
+                    "rating":formdata.get("rating")
+                    }).then(function(res){
+                        console.log(res.data);
+                    });
+            }catch(e){
+                console.log("following error rose ",e);
+            }
+        });
+        */
+        // Run the function when the entire DOM is loaded
+        // document.addEventListener('DOMContentLoaded', loadSkillsToDOM);
+    </script>
+</body>
+
+</html>

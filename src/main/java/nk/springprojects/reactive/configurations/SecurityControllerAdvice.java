@@ -1,4 +1,4 @@
-package nk.springprojects.reactive;
+package nk.springprojects.reactive.configurations;
 
 import org.springframework.security.web.reactive.result.view.CsrfRequestDataValueProcessor;
 import org.springframework.security.web.server.csrf.CsrfToken;
