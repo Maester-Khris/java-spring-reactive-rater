@@ -1,4 +1,4 @@
-package nk.springprojects.reactive.home;
+package nk.springprojects.reactive.exception;
 
 public class SkillNotFoundException extends RuntimeException {
 	public SkillNotFoundException(String message) {

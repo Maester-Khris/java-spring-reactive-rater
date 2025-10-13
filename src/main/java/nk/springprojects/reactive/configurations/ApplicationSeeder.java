@@ -3,9 +3,8 @@ package nk.springprojects.reactive.configurations;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import nk.springprojects.reactive.SpringReactiveApplication;
-import nk.springprojects.reactive.home.HomeService;
-import nk.springprojects.reactive.home.Skill;
+import nk.springprojects.reactive.service.SkillRatingService;
+import nk.springprojects.reactive.model.Skill;
 import nk.springprojects.reactive.users.User;
 import nk.springprojects.reactive.users.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,7 +34,7 @@ public class ApplicationSeeder {
     record Icon(String name, String icon) {}
 
     @Bean
-    CommandLineRunner emptyDB(HomeService hservice) {
+    CommandLineRunner emptyDB(SkillRatingService hservice) {
         boolean flag = false;
         return args ->{
             if(flag == true) {
@@ -74,7 +73,7 @@ public class ApplicationSeeder {
 
     // this is the default application seeder bean
     @Bean
-    CommandLineRunner devIconbSkillsSeedRunner(HomeService hservice) {
+    CommandLineRunner devIconbSkillsSeedRunner(SkillRatingService hservice) {
         boolean flag = false;
         return args ->{
             System.out.println("hello from DevIcon skill seeder Bean");

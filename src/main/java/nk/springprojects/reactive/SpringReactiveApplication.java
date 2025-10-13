@@ -18,8 +18,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import nk.springprojects.reactive.home.HomeService;
-import nk.springprojects.reactive.home.Skill;
+import nk.springprojects.reactive.service.SkillRatingService;
+import nk.springprojects.reactive.model.Skill;
 import reactor.core.publisher.Mono;
 
 @SpringBootApplication
@@ -40,7 +40,7 @@ public class SpringReactiveApplication {
     //====================== OLD COD: STILL VALID NO MORE USED ================
 
 	@Bean
-	CommandLineRunner searchIcon(HomeService hservice) throws IOException {
+	CommandLineRunner searchIcon(SkillRatingService hservice) throws IOException {
 		boolean flag = false;
 		System.out.println("hello from Icon search Bean");
 		InputStream jsoncont = resource.getInputStream();	
@@ -68,7 +68,7 @@ public class SpringReactiveApplication {
 	}
 
 	@Bean
-	CommandLineRunner githubSkillsSeedRunner(HomeService hservice) {
+	CommandLineRunner githubSkillsSeedRunner(SkillRatingService hservice) {
 		boolean flag = false;
 		return args ->{
 			List<Skill> skills =  hservice.getRepository().findAll().collectList().block();

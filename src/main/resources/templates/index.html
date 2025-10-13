@@ -34,11 +34,11 @@
                       <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i> Login
                   </a>
                   <!-- Case: Logged in -->
-                  <form th:case="true" th:action="@{/logout}" method="post" class="d-inline">
+                  <form th:case="true" th:action="@{/logout}" method="post" class="d-inline w-auto mb-0">
                       <button type="submit" class="btn btn-primary hero-btn btn-info auth-btn"
                               style="background-color: #c17e7e;border-color: #c17e7e;">
                           <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
-                          <span sec:authentication="name"></span>, Logout
+                          <span sec:authentication="name" style="text-transform:capitalize;"></span>, Logout
                       </button>
                   </form>
                   <!-- Always visible link -->

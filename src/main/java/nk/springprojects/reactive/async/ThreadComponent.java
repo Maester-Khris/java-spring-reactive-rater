@@ -6,28 +6,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collectors;
 
+import nk.springprojects.reactive.service.SkillRatingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.github.javafaker.Faker;
 
-import nk.springprojects.reactive.home.HomeService;
-import nk.springprojects.reactive.home.Skill;
+import nk.springprojects.reactive.model.Skill;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 import reactor.core.publisher.Sinks;
 
 
 @Component
 public class ThreadComponent {
 
-	@Autowired 
-	HomeService service;
+	@Autowired
+    SkillRatingService service;
 	Faker faker = new Faker();
 	Random random = new Random();
 	

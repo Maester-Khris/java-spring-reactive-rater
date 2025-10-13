@@ -1,8 +1,9 @@
-package nk.springprojects.reactive.home;
+package nk.springprojects.reactive.service;
 
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import nk.springprojects.reactive.exception.SkillNotFoundException;
+import nk.springprojects.reactive.model.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -16,9 +17,9 @@ import reactor.core.publisher.Mono;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class HomeService {
+public class SkillRatingService {
 	private final CopyOnWriteArrayList<Skill> localRating = new CopyOnWriteArrayList<Skill>();
-	private final HomeRepository repository;
+	private final SkillRepository repository;
 	private final UserSkillRatingRepository USRrepository;
 
     public Mono<Skill> saveSkill(Skill s){

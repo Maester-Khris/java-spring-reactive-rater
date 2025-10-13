@@ -2,7 +2,7 @@ package nk.springprojects.reactive.async;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import nk.springprojects.reactive.home.Skill;
+import nk.springprojects.reactive.model.Skill;
 
 public class WebThreadProducer implements Runnable {
 	

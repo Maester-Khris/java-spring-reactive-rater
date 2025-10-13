@@ -36,11 +36,11 @@
                     <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i> Login
                 </a>
                 <!-- Case: Logged in -->
-                <form th:case="true" th:action="@{/logout}" method="post" class="d-inline">
+                <form th:case="true" th:action="@{/logout}" method="post" class="d-inline w-auto mb-0">
                     <button type="submit" class="btn btn-primary hero-btn btn-info auth-btn"
                             style="background-color: #c17e7e;border-color: #c17e7e;">
                         <i class="ph-bold ph-user" style="font-size:18px;margin-right: 3px;"></i>
-                        <span sec:authentication="name"></span>, Logout
+                        <span sec:authentication="name" style="text-transform:capitalize;"></span>, Logout
                     </button>
                 </form>
                 <!-- Always visible link -->
@@ -83,34 +83,28 @@
                         <div th:each="skill, iterStat : ${skills}" class="card skill-card">
                             <div class="card-body p-0 d-flex flex-column align-items-center" th:skill-uuid="${skill.skilluuid}">
                                 <!-- Icon -->
-                                <i th:class="${skill.skillicon}" style="font-size:25px;"></i>
+                                <i th:class="${skill.skillicon} + ' colored'" style="font-size:25px;"></i>
                                 <!-- Name -->
-                                <strong style="margin: 5px 0px;" th:text="${skill.skillname}"></strong>
-                                <!-- Rating -->
+                                <strong style="margin: 5px 0px; width: 85px;text-transform:capitalize;"
+                                        th:text="${skill != null and skill.skillname != null
+                                         ? (skill.skillname.length() > 6
+                                             ? #strings.substring(skill.skillname, 0, 6) + ' ...'
+                                             : skill.skillname)
+                                         : ''}">
+                                </strong>
                                 <small>
                                     <span th:text="${skill.rating}"></span>
                                     <i class="ph-bold ph-heart" style="margin-right:3px; color:#ee2e2e;"></i>
                                 </small>
                                 <!-- Like / Dislike Buttons -->
                                 <div class="w-100 d-flex justify-content-between" style="margin-top: 2px;">
-                                    <div th:if="${isUserAuthenticated}" id="like-btn" class="circle-icon"
+                                    <div id="like-btn" class="circle-icon"
                                          style="background-color: #329932;">
                                         <i class="ph-bold ph-thumbs-up" style="font-size:18px;margin-right:3px;"></i>
                                     </div>
-                                    <div th:if="${isUserAuthenticated}" id="dislike-btn" class="circle-icon"
+                                    <div id="dislike-btn" class="circle-icon"
                                          style="background-color: #FF4C4C;">
                                         <i class="ph-bold ph-thumbs-down" style="font-size:18px;margin-right:3px;"></i>
-                                    </div>
-                                    <!-- For unauthenticated users, show disabled icons -->
-                                    <div th:if="${!isUserAuthenticated}" class="circle-icon disabled"
-                                         style="background-color: #ccc; cursor:not-allowed;">
-                                        <i class="ph-bold ph-thumbs-up"
-                                           style="font-size:18px;margin-right:3px; opacity:0.5;"></i>
-                                    </div>
-                                    <div th:if="${!isUserAuthenticated}" class="circle-icon disabled"
-                                         style="background-color: #ccc; cursor:not-allowed;">
-                                        <i class="ph-bold ph-thumbs-down"
-                                           style="font-size:18px;margin-right:3px; opacity:0.5;"></i>
                                     </div>
                                 </div>
                             </div>
@@ -118,14 +112,15 @@
                     </div>
                     <!-- RIGHT: Top Ranked Tools -->
                     <div class="w-25 ranking-panel">
-                        <h4 class="" style="font-size:18px;font-weight:bold;">Top Ranked Tools</h4>
+                        <h4 class="" style="font-size:18px;font-weight:bold;">Top ranked tools</h4>
                         <ul id="top-tools-list" class="ranking-list">
                             <li th:each="tool, iterStat : ${top5skills}" th:if="${iterStat.index < 5}">
                                 <div class="rank-item">
                                     <i th:class="${tool.skillicon} + ' colored mr-2'" style="font-size:25px;"></i>
                                     <div style="flex:1 1 0%;">
-                                        <h5 class="rank-name text-left mb-0" style="font-size:15px;"
-                                            th:text="${tool.skillname}"></h5>
+                                        <h5 class="rank-name text-left mb-0" style="font-size:15px;text-transform:capitalize;"
+                                            th:text="${tool.skillname.length() >7 ? #strings.concat(#strings.substring(tool.skillname, 0, 7), ' ...'): tool.skillname}"></h5>
+
                                         <span class="rank-likes">
                                             <i class="ph-bold ph-arrow-circle-up" style="color:green;"></i>
                                             <span th:text="${tool.upvote}">0</span>

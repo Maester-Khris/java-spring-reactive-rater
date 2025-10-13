@@ -1,8 +1,8 @@
-package nk.springprojects.reactive.home;
+package nk.springprojects.reactive.model;
 
+import nk.springprojects.reactive.dto.VoteType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 
@@ -12,8 +12,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 @Setter
@@ -53,7 +51,7 @@ public class Skill extends SkillDefinition{
         this.rating = Math.max(this.upvote - this.downvote, 0);
     }
 
-    public void applyVote(HomeController.VoteType voteType) {
+    public void applyVote(VoteType voteType) {
         switch (voteType) {
             case UPVOTE -> upvote++;
             case DOWNVOTE -> downvote++;

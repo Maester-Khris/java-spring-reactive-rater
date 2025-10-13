@@ -1,4 +1,4 @@
-package nk.springprojects.reactive.home;
+package nk.springprojects.reactive.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;

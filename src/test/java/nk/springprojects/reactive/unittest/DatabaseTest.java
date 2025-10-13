@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import nk.springprojects.reactive.service.SkillRatingService;
+import nk.springprojects.reactive.model.SkillRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,9 +20,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import nk.springprojects.reactive.home.HomeRepository;
-import nk.springprojects.reactive.home.HomeService;
-import nk.springprojects.reactive.home.Skill;
+import nk.springprojects.reactive.model.Skill;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -28,10 +28,10 @@ import reactor.core.publisher.Mono;
 public class DatabaseTest {
 
 	@InjectMocks
-	private HomeService service;
+	private SkillRatingService service;
 	
 	@Mock
-	private HomeRepository repository;
+	private SkillRepository repository;
 	
 	private ObjectMapper objectMapper;
 	private Skill skill;

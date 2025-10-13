@@ -55,7 +55,8 @@ public class MySecurityConfig{
 		http
 			 .csrf((csrf) -> csrf
 					 .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
-			  )
+//                     .ignoringRequestMatchers("/api/**")
+             )
 			 .authorizeExchange((authorize) -> authorize
 					 .pathMatchers("/", "/login", "/skills", "/swagger-ui/index.html").permitAll()
 					 .pathMatchers("/skill-vote").permitAll()

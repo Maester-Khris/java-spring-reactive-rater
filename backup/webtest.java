@@ -16,8 +16,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import nk.springprojects.reactive.home.HomeRepository;
-import nk.springprojects.reactive.home.HomeService;
+import nk.springprojects.reactive.model.HomeRepository;
+import nk.springprojects.reactive.model.HomeService;
 
 @ContextConfiguration(classes = TestSecurityConfig.class)
 @WebFluxTest(controllers = HomeController.class)

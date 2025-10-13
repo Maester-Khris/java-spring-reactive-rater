@@ -1,11 +1,11 @@
-package nk.springprojects.reactive.home;
+package nk.springprojects.reactive.model;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-public interface HomeRepository extends ReactiveCrudRepository<Skill, Integer> {
+public interface SkillRepository extends ReactiveCrudRepository<Skill, Integer> {
 	
 	Mono<Skill> findFirstBySkilluuid(String skilluuid);
 	
