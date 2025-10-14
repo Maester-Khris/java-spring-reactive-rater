@@ -1,0 +1,9 @@
+spring:
+  r2dbc:
+    url: r2dbc:h2:mem:///testdb;DB_CLOSE_DELAY=-1;MODE=MYSQL
+    username: sa
+    password:
+
+  flyway:
+    enabled: false  # ✅ Disable Flyway during tests (optional but common)
+#    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=MYSQL

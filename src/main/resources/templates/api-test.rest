@@ -1,0 +1,7 @@
+POST http://localhost:8080/api/v1/data/skill-vote
+Content-Type: application/json
+
+{
+    "skilluuid": "603fd845-c821-4644-9b28-f1215d44c49e",
+    "voteType": "UPVOTE"
+}
