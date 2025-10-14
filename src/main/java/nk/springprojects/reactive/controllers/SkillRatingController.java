@@ -38,8 +38,8 @@ import reactor.core.scheduler.Schedulers;
 public class SkillRatingController {
     @Autowired
     SkillRatingService service;
-    @Autowired
-    ThreadComponent threadcomponent;
+//    @Autowired
+//    ThreadComponent threadcomponent;
 
 
     /**
@@ -121,44 +121,36 @@ public class SkillRatingController {
      * Use a Scheduler to handle the web production in a non-blocking way
      * Use boundedElastic for blocking operations
      */
-    @PostMapping("/post-rating")
-    public Mono<ResponseEntity<String>> postSkillRating(@RequestBody SkillRating rating) {
-        System.out.println("the skill code is " + rating.skilluuid() + " its rating is " + rating.rating());
+//    @PostMapping("skill-vote")
+//    public Mono<ResponseEntity<String>>voteSkill(@ModelAttribute VoteRequest voteRequest) {
+//        ObjectMapper mapper = new ObjectMapper();
+//        return service.handleVote(voteRequest)
+//            .map(updatedSkill -> {
+//                try{
+//                    String jsonres = mapper.writeValueAsString(new ApiSkillResponse("Skill public vote done", updatedSkill));
+//                    return Mono.just(ResponseEntity.ok(jsonres));
+//                } catch (JsonProcessingException e) {
+//                    e.printStackTrace();
+//                    return Mono.just(ResponseEntity.status(500).body("Error processing JSON"));
+//                }
+//            })
+//            .defaultIfEmpty(ResponseEntity.notFound().build());
+//    }
+//    @PostMapping("/post-rating")
+//    public Mono<ResponseEntity<String>> postSkillRating(@RequestBody SkillRating rating) {
+//        System.out.println("the skill code is " + rating.skilluuid() + " its rating is " + rating.rating());
+//
+//        return service.updateSkill(rating.skilluuid(), rating.rating())
+//            .then(service.getRepository().findFirstBySkilluuid(rating.skilluuid()))
+//            .flatMap(skill -> {
+//                // Use a Scheduler to handle the web production in a non-blocking way
+//                return Mono.fromRunnable(() -> threadcomponent.webProducer(skill))
+//                    .subscribeOn(Schedulers.boundedElastic()) // Use boundedElastic for blocking operations
+//                    .then(Mono.just(skill));
+//            })
+//            .then(Mono.just(new ResponseEntity<>("Your response was registered", HttpStatus.OK)));
+//    }
 
-        return service.updateSkill(rating.skilluuid(), rating.rating())
-            .then(service.getRepository().findFirstBySkilluuid(rating.skilluuid()))
-            .flatMap(skill -> {
-                // Use a Scheduler to handle the web production in a non-blocking way
-                return Mono.fromRunnable(() -> threadcomponent.webProducer(skill))
-                    .subscribeOn(Schedulers.boundedElastic()) // Use boundedElastic for blocking operations
-                    .then(Mono.just(skill));
-            })
-            .then(Mono.just(new ResponseEntity<>("Your response was registered", HttpStatus.OK)));
-    }
-
-    @PostMapping("skill-vote")
-    public Mono<ResponseEntity<String>> voteSkill(@ModelAttribute VoteRequest voteRequest) {
-        ObjectMapper mapper = new ObjectMapper();
-        return service.getRepository().findFirstBySkilluuid(voteRequest.skilluuid())
-            .flatMap(skill -> {
-                skill.applyVote(voteRequest.voteType());
-                return service.getRepository().save(skill)
-                    .doOnSuccess(updatedskill -> {
-                        Mono.fromRunnable(() -> threadcomponent.webProducer(updatedskill)).subscribe();
-                    })
-                    .flatMap(updatedskill -> {
-                        try {
-                            String jsonres = mapper.writeValueAsString(new ApiSkillResponse("Skill public vote done", updatedskill));
-                            return Mono.just(ResponseEntity.ok(jsonres));
-                        } catch (JsonProcessingException e) {
-                            e.printStackTrace();
-                            return Mono.just(ResponseEntity.status(500).body("Error processing JSON"));
-                        }
-                    });
-            })
-            .subscribeOn(Schedulers.boundedElastic())
-            .defaultIfEmpty(ResponseEntity.notFound().build());
-    }
 
     /**
      * ======================================== OLD TEST Methods ===================================
@@ -207,3 +199,23 @@ public class SkillRatingController {
 //        }
 //    }
 }
+
+//        return service.getRepository().findFirstBySkilluuid(voteRequest.skilluuid())
+//            .flatMap(skill -> {
+//                skill.applyVote(voteRequest.voteType());
+//                return service.getRepository().save(skill)
+//                    .doOnSuccess(updatedskill -> {
+//                        Mono.fromRunnable(() -> threadcomponent.webProducer(updatedskill)).subscribe();
+//                    })
+//                    .flatMap(updatedskill -> {
+//                        try {
+//                            String jsonres = mapper.writeValueAsString(new ApiSkillResponse("Skill public vote done", updatedskill));
+//                            return Mono.just(ResponseEntity.ok(jsonres));
+//                        } catch (JsonProcessingException e) {
+//                            e.printStackTrace();
+//                            return Mono.just(ResponseEntity.status(500).body("Error processing JSON"));
+//                        }
+//                    });
+//            })
+//            .subscribeOn(Schedulers.boundedElastic())
+//            .defaultIfEmpty(ResponseEntity.notFound().build());

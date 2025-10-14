@@ -143,7 +143,7 @@
         </div>
     </section>
 
-    <form class="invisible" action="#" th:action="@{/skill-vote}" id="skill-voter" method="post">
+    <form class="invisible" action="#" th:action="@{http://localhost:8080//api/v1/data/skill-vote}" id="skill-voter" method="post">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
         <button type="submit">Submit</button>
     </form>
@@ -167,17 +167,34 @@
             upateview(JSON.parse(event.data));
         };
     }
-    function newvote(formdata){
-        const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute('content');
-        const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
-        return  fetch('/skill-vote',{
-            method:'POST',
-            body:formdata,
-            headers: {
-                [csrfHeader]: csrfToken
-            }
-        });
-    }
+<!--    function newvote(formdata){-->
+<!--        const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute('content');-->
+<!--        const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute('content');-->
+<!--        return  fetch('/skill-vote',{-->
+<!--            method:'POST',-->
+<!--            body:formdata,-->
+<!--            headers: {-->
+<!--                [csrfHeader]: csrfToken-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+        function newVote(skilluuid, voteType) {
+            const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute('content');
+            const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
+
+           // , [csrfHeader]: csrfToken
+
+            return fetch('/api/v1/data/skill-vote', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    skilluuid: skilluuid,
+                    voteType: voteType
+                })
+            });
+        }
     function upateview(skilldata){
         var  skillElt = document.querySelector(`div[skill-uuid='${skilldata.skilluuid}']`);
         var skillEltRating = skillElt.querySelector("small>span");
@@ -193,15 +210,19 @@
         liketbns.forEach(btn =>{
             btn.addEventListener("click",()=>{
                 var skilluuid = btn.closest(".card-body").getAttribute("skill-uuid");
-                const formData = new FormData(voteteform);
-                formData.append('skilluuid', skilluuid);
-                formData.append('voteType', "UPVOTE");
-                newvote(formData)
-                    .then(res => {return res.json();})
-                    .then(res =>{
-                        console.log(res);
-<!--                        upateview(res.skill);-->
-                    });
+                // const formData = new FormData(voteteform);
+                    // formData.append('skilluuid', skilluuid);
+                    // formData.append('vote', "like");
+                    // newvote(formData)
+                    //     .then(res => { return res.json(); })
+                    //     .then(res => {
+                    //         console.log(res);
+                    //     });
+                    newVote(skilluuid, "UPVOTE")
+                        .then(response => response.json())
+                        .then(res => {
+                            console.log(res);
+                        });
             });
             btn.addEventListener("mousedown",function(){
                 this.querySelector("i").style.color="#329932";
@@ -215,15 +236,19 @@
         disliketbns.forEach(btn =>{
             btn.addEventListener("click",()=> {
                 var skilluuid = btn.closest(".card-body").getAttribute("skill-uuid");
-                const formData = new FormData(voteteform);
-                formData.append('skilluuid', skilluuid);
-                formData.append('voteType', "DOWNVOTE");
-                newvote(formData)
-                    .then(res => {return res.json();})
-                    .then(res =>{
-                        console.log(res);
-<!--                        upateview(res.skill);-->
-                    });
+                // const formData = new FormData(voteteform);
+                    // formData.append('skilluuid', skilluuid);
+                    // formData.append('vote', "dislike");
+                    // newvote(formData)
+                    //     .then(res => { return res.json(); })
+                    //     .then(res => {
+                    //         console.log(res);
+                    //     });
+                    newVote(skilluuid, "DOWNVOTE")
+                        .then(response => response.json())
+                        .then(res => {
+                            console.log(res);
+                        });
             });
             btn.addEventListener("mousedown",function(){
                 this.querySelector("i").style.color="#FF4C4C";

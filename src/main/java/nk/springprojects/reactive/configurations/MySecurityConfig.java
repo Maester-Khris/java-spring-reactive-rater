@@ -3,6 +3,7 @@ package nk.springprojects.reactive.configurations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.ReactiveAuthenticationManager;
 import org.springframework.security.authentication.UserDetailsRepositoryReactiveAuthenticationManager;
 import org.springframework.security.config.Customizer;
@@ -15,10 +16,13 @@ import org.springframework.security.web.server.authentication.logout.DelegatingS
 import org.springframework.security.web.server.authentication.logout.SecurityContextServerLogoutHandler;
 import org.springframework.security.web.server.authentication.logout.WebSessionServerLogoutHandler;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
+import org.springframework.security.web.server.csrf.CsrfWebFilter;
+import org.springframework.security.web.server.util.matcher.AndServerWebExchangeMatcher;
 import org.springframework.security.web.server.util.matcher.NegatedServerWebExchangeMatcher;
 import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatcher;
 
 import nk.springprojects.reactive.users.MyUserDetailsService;
+import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatchers;
 
 @Configuration
 @EnableWebFluxSecurity
@@ -51,11 +55,24 @@ public class MySecurityConfig{
 		DelegatingServerLogoutHandler logoutHandler = new DelegatingServerLogoutHandler(
 	            new SecurityContextServerLogoutHandler(), new WebSessionServerLogoutHandler()
 	    );
-		
-		http
+
+        NegatedServerWebExchangeMatcher csrfIgnoredUrls = new NegatedServerWebExchangeMatcher(
+                ServerWebExchangeMatchers.pathMatchers(
+                        HttpMethod.POST,  "/api/**"
+                )
+        );
+
+        // Combine the default CSRF matcher with the ignored URLs
+        AndServerWebExchangeMatcher csrfProtectionMatcher = new AndServerWebExchangeMatcher(
+                CsrfWebFilter.DEFAULT_CSRF_MATCHER, // Default matcher for PUT, POST, DELETE
+                csrfIgnoredUrls
+        );
+
+
+        http
 			 .csrf((csrf) -> csrf
-					 .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
-//                     .ignoringRequestMatchers("/api/**")
+                     .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
+                     .requireCsrfProtectionMatcher(csrfProtectionMatcher)
              )
 			 .authorizeExchange((authorize) -> authorize
 					 .pathMatchers("/", "/login", "/skills", "/swagger-ui/index.html").permitAll()
@@ -71,5 +88,4 @@ public class MySecurityConfig{
 		
 		return http.build();		
 	}
-	
 }

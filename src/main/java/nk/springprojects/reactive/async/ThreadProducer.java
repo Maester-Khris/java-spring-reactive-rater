@@ -7,25 +7,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ThreadProducer {
-
-	@Autowired
-	ThreadComponent threadComponent;
-	
-	@Async
-	@Scheduled(fixedRate = 3000)
-	public void producer1() {
-		threadComponent.produceData();
-	}
-	
-	@Async
-	@Scheduled(fixedRate = 30000)
-	public void producer2() {
-		threadComponent.produceData();
-	}
-	
-	@Async
-	@Scheduled(fixedRate = 10000)
-	public void producer3() {
-		threadComponent.produceData();
-	}
+    public ThreadProducer() {
+    }
 }

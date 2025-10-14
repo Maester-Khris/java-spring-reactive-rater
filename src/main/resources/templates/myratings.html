@@ -109,12 +109,12 @@
                         </li>
                     </ul>
                     <!-- Bulk save button -->
-                    <div class="d-none rank-bulk-update position-absolute" style="bottom: 8px;left: 0px;margin: 0px 10px;display: flex;justify-content: flex-end; width: 96%;">
-                        <button id="saveAllRankedBtn" class="btn" style="background-color:gold;">
-                            <i class="ph ph-pencil-simple"></i> Save all ratings
-                        </button>
+                    <div class="d-none rank-bulk-update position-absolute" style="bottom: 8px;left: 0px;margin: 0px 10px;display:flex;flex-direction: row; justify-content:flex-end; width: 96%;">
+                         <span id="saveFeedback" class="d-none save-feedback" style="font-weight: bold; padding: 6px 12px;">
+                            <i class="ph ph-check" style="font-size: 23px; color: #0d6efd;"></i> Saved
+                        </span>
+                        <button id="saveAllRankedBtn" class="btn btn-primary">Save All Ratings</button>
                     </div>
-                    <span id="saveFeedback" class="save-feedback d-none">Saved.</span>
                 </div>
 
                 <!-- RIGHT SIDE: Available Tools Drawer -->
@@ -319,13 +319,15 @@
 
                 console.log("Skills to save:", skillData);
                 const csrfToken = getCookie('XSRF-TOKEN');
-                fetch(`http://localhost:8080/api/v1/data//users/${loggedUserId}/rating-update`, {
+                fetch(`http://localhost:8080/api/v1/data/users/${loggedUserId}/rating-update`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'X-XSRF-TOKEN': csrfToken },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(skillData)
-                }).then(r => r.json())
+                })
+                //.then(r => r.json())
                   .then(res => {
                       document.getElementById('saveFeedback').classList.remove('d-none');
+                      document.getElementById('saveFeedback').classList.add('d-inline-block');
                       setTimeout(() => document.getElementById('saveFeedback').classList.add('d-none'), 1500);
                       // remove dirty flags
                       rankedList.forEach(li => li.dataset.dirty = "false");

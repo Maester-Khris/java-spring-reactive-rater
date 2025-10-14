@@ -38,9 +38,7 @@ public class DatabaseTest {
 	private final String skillname = "Java";
 	private final String skilluuid = "java-sp-boot";
 	private final int rating = 3;
-	
-	
-	
+
 	 @BeforeEach
 	 public void testCaseSetup() {
 		 MockitoAnnotations.openMocks(this);
