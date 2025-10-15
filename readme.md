@@ -22,4 +22,5 @@ Instruction to use the docker container
 
 
 ## Future Improvements
+- revisit the asynchronous vote publishing and streaming model
 We are open to suggestion and contributions.
