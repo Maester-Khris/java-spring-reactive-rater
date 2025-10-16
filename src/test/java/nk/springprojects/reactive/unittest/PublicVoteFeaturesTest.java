@@ -5,11 +5,14 @@ import nk.springprojects.reactive.model.Skill;
 import nk.springprojects.reactive.model.SkillRepository;
 import nk.springprojects.reactive.service.SkillRatingService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.ActiveProfiles;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
@@ -22,6 +25,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
+@ActiveProfiles("test")
 public class PublicVoteFeaturesTest {
     @InjectMocks
     private SkillRatingService service;
@@ -72,6 +76,7 @@ public class PublicVoteFeaturesTest {
     }
 
     @Test
+    @DisplayName("Unit test feature -> Upvote Skill")
     public void testUpVoteSkill() {
         StepVerifier.create(service.upVoteSkill(skilluuid))
             .assertNext(updatedSkill -> {
@@ -84,6 +89,7 @@ public class PublicVoteFeaturesTest {
     }
 
     @Test
+    @DisplayName("Unit test feature -> downvote Skill")
     public void testDownVoteSkill() {
         StepVerifier.create(service.downVoteSkill(skilluuid))
             .assertNext(updatedSkill -> {
@@ -100,6 +106,7 @@ public class PublicVoteFeaturesTest {
     }
 
     @Test
+    @DisplayName("Unit test feature -> vote on not found skill")
     public void testUpVoteSkill_NotFound() {
         String invalidUuid = "invalid-uuid";
 

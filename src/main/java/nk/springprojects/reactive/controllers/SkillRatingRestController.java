@@ -31,7 +31,7 @@ import reactor.core.publisher.Mono;
 public class SkillRatingRestController {
 	
     //@Autowired
-    private final ThreadComponent consumer;
+    //private final ThreadComponent consumer;
 	private final SkillRatingService service;
     private final UserRepository userepos;
     private final SkillEventBus eventBus;

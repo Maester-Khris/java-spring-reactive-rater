@@ -76,7 +76,7 @@ public class ApplicationSeeder {
     CommandLineRunner devIconbSkillsSeedRunner(SkillRatingService hservice) {
         boolean flag = false;
         return args ->{
-            System.out.println("hello from DevIcon skill seeder Bean");
+            System.out.println("hello from Dev skill seeder Bean");
             List<Skill> skills =  hservice.getRepository().findAll().collectList().block();
             System.out.println("the size of all skills exiting is "+skills.size());
             if(skills.isEmpty()) {
@@ -85,8 +85,8 @@ public class ApplicationSeeder {
                 List<ApplicationSeeder.Icon> iconlist = mapper.readValue(jsoncont, new TypeReference<List<ApplicationSeeder.Icon>>() {});
                 List<String> iconlist_names = iconlist.stream().map(iconskill -> iconskill.name).collect(Collectors.toList());
 
+                System.out.println("===========> DB Seeding started ============");
                 for(ApplicationSeeder.Icon icon: iconlist) {
-                    System.out.println("===========> Seeding started ============");
                     hservice.saveSkill(Skill.builder()
                             .skillname(icon.name())
                             .skillicon(icon.icon())
@@ -94,6 +94,7 @@ public class ApplicationSeeder {
                             .rating(0)
                             .build()).subscribe();
                 }
+                System.out.println("===========> DB Seeding finished ============");
             }
         };
     }

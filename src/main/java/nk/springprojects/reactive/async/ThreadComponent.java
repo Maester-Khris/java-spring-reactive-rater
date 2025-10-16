@@ -14,6 +14,7 @@ import nk.springprojects.reactive.dto.VoteRequest;
 import nk.springprojects.reactive.dto.VoteType;
 import nk.springprojects.reactive.service.SkillRatingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,7 @@ import reactor.core.publisher.Sinks;
 
 @Component
 @RequiredArgsConstructor
+@Profile({"dev", "prod"})
 public class ThreadComponent {
 
     private final SkillRatingService service;
