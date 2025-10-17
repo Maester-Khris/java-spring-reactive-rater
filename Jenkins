@@ -1,0 +1,68 @@
+pipeline {
+    agent any
+    environment {
+         SONAR_HOST_URL = 'http://54.82.52.198:9000'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Retrieving code from GitHub...'
+                git branch: 'main',
+                    url: 'git@github.com:Maester-Khris/java-spring-reactive-rater.git',
+                    credentialsId: 'jenkins_github'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building project...'
+                sh './mvnw clean package -DskipTests'
+            }
+        }
+        
+        stage('SonarQube Analysis') {
+          steps {
+            // inject Sonar server env (optional but recommended)
+            withSonarQubeEnv('sonarqube-server') {
+              // inject token and run sonar analysis
+              withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                sh "mvn -B -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_TOKEN} sonar:sonar"
+              }
+            }
+          }
+        }
+
+        stage('Quality Gate') {
+          steps {
+            // Wait for SonarQube Quality Gate result; requires webhook configured
+            timeout(time: 5, unit: 'MINUTES') {
+              waitForQualityGate abortPipeline: true
+            }
+          }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                sh 'SPRING_PROFILES_ACTIVE=test ./mvnw test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                echo 'Packaging the application...'
+                sh 'ls -lh target/*.jar'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Build completed successfully.'
+        }
+        failure {
+            echo '❌ Build failed.'
+        }
+    }
+}
