@@ -19,67 +19,7 @@
   <link rel="stylesheet" th:href="@{/css/app.css}">
 
   <style>
-<!--     label.form-group {-->
-<!--      padding: 3px 0px !important;-->
-<!--    }-->
 
-<!--    .form-group {-->
-<!--      margin-bottom: 8px !important;-->
-<!--    }-->
-
-<!--    .form-passwod-group {-->
-<!--      position: relative;-->
-<!--    }-->
-
-<!--    i.togglePassword {-->
-<!--      position: absolute;-->
-<!--      bottom: 10px;-->
-<!--      right: 12px;-->
-<!--      font-size: 19px;-->
-<!--      cursor: pointer;-->
-<!--    }-->
-
-<!--    label.form-group {-->
-<!--      padding: 3px 0px !important;-->
-<!--    }-->
-
-<!--    .form-group {-->
-<!--      margin-bottom: 20px !important;-->
-<!--    }-->
-<!--     form{-->
-<!--        width: 500px;-->
-<!--        margin-bottom: 50px;-->
-<!--     }-->
-
-<!--    .card-form {-->
-<!--      animation: cardFade 2s forwards;-->
-<!--    }-->
-<!--    .form-btn{-->
-<!--      padding: 10px 0px; margin-top: 40px;font-weight: bold;-->
-<!--    }-->
-
-<!--    .hide-modal {-->
-<!--      animation: Slideout 500ms ease-in forwards;-->
-<!--    }-->
-
-<!--    .show-modal {-->
-<!--      animation: Slidein 500ms ease-in forwards;-->
-<!--    }-->
-
-<!--    @keyframes cardFade {-->
-<!--      0% {-->
-<!--        opacity: 0;-->
-<!--        transform: translateY(-20px);-->
-<!--      }-->
-<!--      50% {-->
-<!--        opacity: 0.5;-->
-<!--        transform: translateY(-10px);-->
-<!--      }-->
-<!--      100% {-->
-<!--        opacity: 1;-->
-<!--        transform: translateY(0px);-->
-<!--      }-->
-<!--    }-->
   </style>
 </head>
 
@@ -113,8 +53,8 @@
       </section>
       <section class="login-section-area flex-grow-1 d-flex flex-column justify-content-center">
           <div class="login-form-container">
-                <!-- account login -->
-                  <div class="login-section">
+              <!-- account login -->
+              <div class="login-section d-flex justify-content-center">
                       <form action="/login" th:action="@{/login}" method="post">
                       <div class="skill-section-header header-center">
                           <h3>Enter your credentials</h3>
@@ -126,7 +66,7 @@
                       </div>
                       <div class="form-group form-passwod-group">
                           <label for="login-user-pass" class="col-form-label">Password: </label>
-                          <input name="password" type="password" class="form-control input-password" id="login-user-pass" value="demo123">
+                          <input name="password" type="password" class="form-control input-password" id="login-user-pass" th:value="${guestpassword}">
                           <i class="ph ph-eye togglePassword" id="" style="float: right;"></i>
                       </div>
                       <small class="form-footer-link">
@@ -137,9 +77,8 @@
                       </form>
                   </div>
 
-
               <!-- account signup -->
-              <div class="signup-section d-none">
+              <div class="signup-section d-none justify-content-center">
                   <form action="#" th:action="@{/register}" method="post">
                   <div class="skill-section-header header-center">
                       <h3>Create your account here</h3>
@@ -175,7 +114,7 @@
               </p>
               <div class="credentials-box">
                   <p><strong>Username:</strong> <span>guest</span></p>
-                  <p><strong>Password:</strong> <span>demo123</span></p>
+                  <p><strong>Password:</strong> <span th:text="${guestpassword}"></span></p>
               </div>
           </div>
       </div>
@@ -250,8 +189,10 @@
 
       newaccbtn.addEventListener("click", function () {
         loginsec.classList.add("hide-modal");
+        loginsec.classList.add("d-none");
         setTimeout(()=>{
           signupsec.classList.remove("d-none");
+          signupsec.classList.add("d-flex");
           signupsec.classList.add("show-modal");
         },500);
         

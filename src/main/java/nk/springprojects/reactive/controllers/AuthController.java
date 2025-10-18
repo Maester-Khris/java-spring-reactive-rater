@@ -4,7 +4,9 @@ import java.net.URI;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,15 +22,21 @@ import nk.springprojects.reactive.users.UserRepository;
 import reactor.core.publisher.Mono;
 
 @Controller
+@Slf4j
 public class AuthController {
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 	
 	@Autowired
 	UserRepository repository;
+
+    @Value("${app.guest.password}")
+    private String guestPassword;
 	
 	@GetMapping("/login")
 	public Mono<Rendering> displayLogin(){
+        log.info("[skillrater] INFO | login attempt");
 		return Mono.just(Rendering.view("login")
+                .modelAttribute("guestpassword", guestPassword)
 				.build()
 			);
 	}

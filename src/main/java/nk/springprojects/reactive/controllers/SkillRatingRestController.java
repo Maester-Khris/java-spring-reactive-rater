@@ -6,6 +6,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import nk.springprojects.reactive.async.SkillEventBus;
 import nk.springprojects.reactive.dto.ApiSkillResponse;
 import nk.springprojects.reactive.dto.SkillRating;
@@ -28,10 +29,8 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/data")
+@Slf4j
 public class SkillRatingRestController {
-	
-    //@Autowired
-    //private final ThreadComponent consumer;
 	private final SkillRatingService service;
     private final UserRepository userepos;
     private final SkillEventBus eventBus;
@@ -75,6 +74,7 @@ public class SkillRatingRestController {
         ObjectMapper mapper = new ObjectMapper();
         return service.handleVote(voteRequest)
                 .flatMap(updatedSkill -> {
+                    log.info("[skillrater] INFO | REST vote | skillUUId={} | voteType={}", voteRequest.skilluuid(), voteRequest.voteType());
                     try {
                         String json = mapper.writeValueAsString(
                                 new ApiSkillResponse("Skill public vote done", updatedSkill)
@@ -105,7 +105,7 @@ public class SkillRatingRestController {
                                     .flatMap(existing -> {
                                         existing.setRating(skillRating.rating());
                                         existing.setProficiency(skillRating.proficiency());
-                                        return service.getUSRrepository().save(existing);
+                                        return service.getUSRrepository().save(existing).doOnSuccess(usr-> log.info("[skillrater] INFO | USER personal rating update | skillId={}", usr.getSkillid()));
                                     })
                                     .switchIfEmpty(
                                         Mono.defer(() -> {

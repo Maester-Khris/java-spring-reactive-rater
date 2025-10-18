@@ -2,6 +2,7 @@ package nk.springprojects.reactive.service;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import lombok.extern.slf4j.Slf4j;
 import nk.springprojects.reactive.async.SkillEventBus;
 import nk.springprojects.reactive.async.ThreadComponent;
 import nk.springprojects.reactive.dto.VoteRequest;
@@ -22,6 +23,7 @@ import reactor.core.scheduler.Schedulers;
 @Getter
 @Setter
 @RequiredArgsConstructor
+@Slf4j
 public class SkillRatingService {
 	private final CopyOnWriteArrayList<Skill> localRating = new CopyOnWriteArrayList<Skill>();
 	private final SkillRepository repository;
@@ -35,6 +37,7 @@ public class SkillRatingService {
     public Mono<Skill> handleVote(VoteRequest voteRequest) {
         return repository.findFirstBySkilluuid(voteRequest.skilluuid())
             .flatMap(skill -> {
+                log.debug("[skillrater] DEBUG | Computing new rating for skillId={}", skill.getId());
                 skill.applyVote(voteRequest.voteType());
                 return repository.save(skill)
                         .doOnSuccess(eventBus::publish);

@@ -4,7 +4,21 @@ spring:
   profiles:
     default: dev
     
-    
+logging:
+  file:
+    path: /home/nklinux/Documents/workspace/projects/skillrater/logs
+  level:
+    root: INFO
+    reactor: WARN
+    org.springframework.web: INFO
+    nk.springprojects.reactive: INFO
+  logback:
+    rollingpolicy:
+      file-name-pattern: app-%d{yyyy-MM-dd}.log
+      max-file-size: 10MB
+      max-history: 7
+
+
 server:
   error:
     whitelabel:

@@ -3,6 +3,8 @@ package nk.springprojects.reactive.configurations;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import nk.springprojects.reactive.async.DBSeedCompletedEvent;
 import nk.springprojects.reactive.service.SkillRatingService;
 import nk.springprojects.reactive.model.Skill;
 import nk.springprojects.reactive.users.User;
@@ -10,6 +12,7 @@ import nk.springprojects.reactive.users.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -24,6 +27,7 @@ import java.util.stream.Collectors;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class ApplicationSeeder {
 
     private final UserRepository userRepository;
@@ -32,6 +36,12 @@ public class ApplicationSeeder {
     @Value("classpath:data/alliconsv1.json")
     private Resource resource;
     record Icon(String name, String icon) {}
+
+    @Value("${app.guest.username}")
+    private String guestUsername;
+
+    @Value("${app.guest.password}")
+    private String guestPassword;
 
     @Bean
     CommandLineRunner emptyDB(SkillRatingService hservice) {
@@ -49,9 +59,6 @@ public class ApplicationSeeder {
     @Bean
     public ApplicationRunner initGuestUser() {
         return args -> {
-            String guestUsername = "guest";
-            String guestPassword = "demo123";
-
             userRepository.existsByUsername(guestUsername)
                 .flatMap(exists -> {
                     if (!exists) {
@@ -60,10 +67,10 @@ public class ApplicationSeeder {
                         guest.setUsername(guestUsername);
                         guest.setPassword(passwordEncoder.encode(guestPassword));
                         guest.setCreated_at(LocalDateTime.now());
-                        System.out.println("✅ Creating default guest user: " + guestUsername);
+                        log.info("✅ Creating default guest user: " + guestUsername);
                         return userRepository.save(guest);
                     } else {
-                        System.out.println("ℹ️ Guest user already exists, skipping creation.");
+                        log.info("ℹ️ Guest user already exists, skipping creation.");
                         return Mono.empty();
                     }
                 })
@@ -73,19 +80,17 @@ public class ApplicationSeeder {
 
     // this is the default application seeder bean
     @Bean
-    CommandLineRunner devIconbSkillsSeedRunner(SkillRatingService hservice) {
+    CommandLineRunner devIconbSkillsSeedRunner(SkillRatingService hservice, ApplicationEventPublisher publisher) {
         boolean flag = false;
         return args ->{
-            System.out.println("hello from Dev skill seeder Bean");
             List<Skill> skills =  hservice.getRepository().findAll().collectList().block();
-            System.out.println("the size of all skills exiting is "+skills.size());
             if(skills.isEmpty()) {
                 InputStream jsoncont = resource.getInputStream();
                 ObjectMapper mapper = new ObjectMapper();
                 List<ApplicationSeeder.Icon> iconlist = mapper.readValue(jsoncont, new TypeReference<List<ApplicationSeeder.Icon>>() {});
                 List<String> iconlist_names = iconlist.stream().map(iconskill -> iconskill.name).collect(Collectors.toList());
 
-                System.out.println("===========> DB Seeding started ============");
+                log.info("===========> DB Seeding started");
                 for(ApplicationSeeder.Icon icon: iconlist) {
                     hservice.saveSkill(Skill.builder()
                             .skillname(icon.name())
@@ -94,7 +99,8 @@ public class ApplicationSeeder {
                             .rating(0)
                             .build()).subscribe();
                 }
-                System.out.println("===========> DB Seeding finished ============");
+                log.info("===========> DB Seeding finished");
+                publisher.publishEvent(new DBSeedCompletedEvent(this));
             }
         };
     }

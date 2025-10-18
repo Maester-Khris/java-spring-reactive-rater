@@ -7,11 +7,17 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.event.ContextClosedEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.core.io.Resource;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -24,6 +30,7 @@ import reactor.core.publisher.Mono;
 
 @SpringBootApplication
 @OpenAPIDefinition
+@Slf4j
 public class SpringReactiveApplication {
 	
 	@Value("classpath:data/alliconsv1.json")
@@ -32,9 +39,27 @@ public class SpringReactiveApplication {
 	record Language(String name, String[] aliases) {}
 	record Icon(String name, String icon) {}
 
-	public static void main(String[] args) {
+    //private static final Logger log = LoggerFactory.getLogger(SpringReactiveApplication.class);
+
+	/**
+    public static void main(String[] args) {
 		SpringApplication.run(SpringReactiveApplication.class, args);
-	}
+	}*/
+
+    public static void main(String[] args) {
+        log.info("[{}] INFO | Application main starting", "skillrater");
+        SpringApplication.run(SpringReactiveApplication.class, args);
+    }
+
+    @EventListener
+    public void onApplicationReady(ApplicationReadyEvent event) {
+        log.info("[{}] INFO | Application started and ready", "skillrater");
+    }
+
+    @EventListener
+    public void onContextClosed(ContextClosedEvent event) {
+        log.info("[{}] INFO | Application stopping", "skillrater");
+    }
 
 
     //====================== OLD COD: STILL VALID NO MORE USED ================

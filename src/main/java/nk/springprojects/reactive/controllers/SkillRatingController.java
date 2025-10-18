@@ -5,6 +5,7 @@ import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
 import nk.springprojects.reactive.dto.*;
 import nk.springprojects.reactive.model.SkillDefinition;
 import nk.springprojects.reactive.service.SkillRatingService;
@@ -35,12 +36,10 @@ import reactor.core.scheduler.Schedulers;
 @Controller
 @RequestMapping("/")
 @RequiredArgsConstructor
+@Slf4j
 public class SkillRatingController {
     @Autowired
     SkillRatingService service;
-//    @Autowired
-//    ThreadComponent threadcomponent;
-
 
     /**
      * =================================== Helper Methods ============================================
