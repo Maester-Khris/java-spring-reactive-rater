@@ -1,4 +1,4 @@
-CREATE TABLE skills (
+CREATE TABLE IF NOT EXISTS  skills (
   id INT AUTO_INCREMENT PRIMARY KEY,
   skilluuid VARCHAR(255),
   skillname VARCHAR(255),
@@ -8,7 +8,7 @@ CREATE TABLE skills (
   rating INT,
   version INT
 );
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS  users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     useruuid VARCHAR(255) UNIQUE,
     username VARCHAR(255),
