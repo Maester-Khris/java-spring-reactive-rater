@@ -8,8 +8,3 @@ spring:
     url: jdbc:mysql://localhost:3306/javatutos 
     user: ${spring.r2dbc.username}
     password: ${spring.r2dbc.password}
-    
-app:
-  guest:
-    username: guest
-    password: la1LmJz?

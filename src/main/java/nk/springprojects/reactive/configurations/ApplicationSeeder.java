@@ -15,6 +15,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import reactor.core.publisher.Mono;
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
 @Configuration
 @RequiredArgsConstructor
 @Slf4j
+//@Profile({"dev", "prod"})
 public class ApplicationSeeder {
 
     private final UserRepository userRepository;
@@ -100,8 +102,9 @@ public class ApplicationSeeder {
                             .build()).subscribe();
                 }
                 log.info("===========> DB Seeding finished");
-                publisher.publishEvent(new DBSeedCompletedEvent(this));
             }
+            log.info("===========> Can start vote simulation now");
+            publisher.publishEvent(new DBSeedCompletedEvent(this));
         };
     }
 }

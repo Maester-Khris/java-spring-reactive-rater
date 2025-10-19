@@ -1,13 +1,21 @@
 package nk.springprojects.reactive.controllers;
 
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.resilience4j.ratelimiter.RateLimiter;
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
+import io.github.resilience4j.reactor.ratelimiter.operator.RateLimiterOperator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nk.springprojects.reactive.async.SkillEventBus;
+import nk.springprojects.reactive.async.VoteQueue;
+import nk.springprojects.reactive.configurations.VoteRateLimiterProvider;
 import nk.springprojects.reactive.dto.ApiSkillResponse;
 import nk.springprojects.reactive.dto.SkillRating;
 import nk.springprojects.reactive.dto.VoteRequest;
@@ -18,11 +26,13 @@ import nk.springprojects.reactive.users.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import nk.springprojects.reactive.async.ThreadComponent;
+import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -34,6 +44,8 @@ public class SkillRatingRestController {
 	private final SkillRatingService service;
     private final UserRepository userepos;
     private final SkillEventBus eventBus;
+    private final VoteQueue votequeue;
+    private final VoteRateLimiterProvider RatelimiterProvider;
 	
 	@Hidden
 	@Operation(summary = "Get real time skill data from public vote", description = "This endpoint publish skills update on real-time action after each public vote using server sent event ")
@@ -70,21 +82,42 @@ public class SkillRatingRestController {
 	}
 
     @PostMapping("/skill-vote")
-    public Mono<ResponseEntity<String>> voteSkill(@RequestBody VoteRequest voteRequest) {
+    public Mono<ResponseEntity<String>> voteSkill(@RequestBody VoteRequest voteRequest,  ServerWebExchange exchange) {
+        //String clientIp = exchange.getRequest().getRemoteAddress().getAddress().getHostAddress();
+        String clientIp = Optional.ofNullable(exchange.getRequest().getRemoteAddress())
+                .map(InetSocketAddress::getAddress)
+                .map(InetAddress::getHostAddress)
+                .orElse("unknown");
+
+
+        RateLimiter limiter = RatelimiterProvider.getPublicVoteLimiter();
         ObjectMapper mapper = new ObjectMapper();
-        return service.handleVote(voteRequest)
-                .flatMap(updatedSkill -> {
-                    log.info("[skillrater] INFO | REST vote | skillUUId={} | voteType={}", voteRequest.skilluuid(), voteRequest.voteType());
-                    try {
-                        String json = mapper.writeValueAsString(
-                                new ApiSkillResponse("Skill public vote done", updatedSkill)
-                        );
-                        return Mono.just(ResponseEntity.ok(json));
-                    } catch (JsonProcessingException e) {
-                        return Mono.just(ResponseEntity.status(500).body("Error processing JSON"));
-                    }
-                })
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+
+        return Mono.defer(() -> service.handleVote(voteRequest))
+        .transformDeferred(RateLimiterOperator.of(limiter))
+            .flatMap(updatedSkill ->{
+                log.info("[skillrater] INFO | REST vote | IP={} | skillUUID={} | type={}",
+                        clientIp, voteRequest.skilluuid(), voteRequest.voteType());
+                try {
+                    String json = mapper.writeValueAsString(
+                            new ApiSkillResponse("Skill public vote done", updatedSkill)
+                    );
+                    return Mono.just(ResponseEntity.ok(json));
+                } catch (JsonProcessingException e) {
+                    return Mono.just(ResponseEntity.status(500).body("Error processing JSON"));
+                }
+            })
+            .onErrorResume(throwable -> {
+                if (throwable instanceof RequestNotPermitted) {
+                    log.warn("[skillrater] WARN | Rate limit exceeded for IP={}", clientIp);
+                    // fallback: push vote request to queue
+                    return votequeue.enqueue(voteRequest)
+                        .thenReturn(ResponseEntity.status(429)
+                            .body("Too many votes. Your request has been queued."));
+                }
+                return Mono.just(ResponseEntity.status(500).body("Unexpected error"));
+            })
+            .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Rate or update a skill on user personal dashboard", description = "This endpoint update the personal rating of a logged user. The definition of a skillRating update is present at the bottom of this page ")
@@ -132,3 +165,19 @@ public class SkillRatingRestController {
             );
     }
 }
+
+
+// ============== OLD Code for voteSkill method ==============
+//return service.handleVote(voteRequest)
+//    .flatMap(updatedSkill -> {
+//        log.info("[skillrater] INFO | REST vote | skillUUId={} | voteType={}", voteRequest.skilluuid(), voteRequest.voteType());
+//        try {
+//            String json = mapper.writeValueAsString(
+//                    new ApiSkillResponse("Skill public vote done", updatedSkill)
+//            );
+//            return Mono.just(ResponseEntity.ok(json));
+//        } catch (JsonProcessingException e) {
+//            return Mono.just(ResponseEntity.status(500).body("Error processing JSON"));
+//        }
+//    })
+//    .defaultIfEmpty(ResponseEntity.notFound().build());
