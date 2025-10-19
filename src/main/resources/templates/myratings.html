@@ -206,14 +206,11 @@
                 s.classList.add('ph-star');
             });
         }
-
         function getCookie(name) {
           return document.cookie.split('; ')
             .find(row => row.startsWith(name + '='))
             ?.split('=')[1];
         }
-
-
        document.addEventListener("DOMContentLoaded", function () {
            const personalList = document.getElementById("personalRankedList");
             const rankbtns = document.querySelectorAll(".btn-add-rank");
@@ -354,27 +351,6 @@
                 }
             });
         });
-
-        //=== this code is verified and works, has been commented for client side testing
-        //startEventSource();
-        //let form = document.querySelector("#rating-form");
-        /**
-        *  form.addEventListener("submit",function(e){
-            e.preventDefault();
-            console.log("what...");
-            let formdata = new FormData(e.target);
-                try{
-                    axios.post("/post-rating",{
-                    "skilluuid":formdata.get("skill"),
-                    "rating":formdata.get("rating")
-                    }).then(function(res){
-                        console.log(res.data);
-                    });
-            }catch(e){
-                console.log("following error rose ",e);
-            }
-        });
-        */
     </script>
 </body>
 

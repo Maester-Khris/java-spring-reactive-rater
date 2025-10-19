@@ -70,13 +70,11 @@
                     <h3>Stats of the Languages and frameworks you know</h3>
                     <div class="title-border"></div>
                 </div>
-
                 <p class="leading">
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur animi repellat,
                     nihil obcaecati laboriosam repellendus! Magni a dolores ratione aliquid corporis rem placeat
                     maxime similique delectus.
                 </p>
-
                 <div class="skills-section-body d-flex" style="padding-top: 10px;">
                     <!-- LEFT: All Skills -->
                     <div class="w-75 skills-section-body-list skill-card-wrapper d-flex flex-wrap">
@@ -120,7 +118,6 @@
                                     <div style="flex:1 1 0%;">
                                         <h5 class="rank-name text-left mb-0" style="font-size:15px;text-transform:capitalize;"
                                             th:text="${tool.skillname.length() >7 ? #strings.concat(#strings.substring(tool.skillname, 0, 7), ' ...'): tool.skillname}"></h5>
-
                                         <span class="rank-likes">
                                             <i class="ph-bold ph-arrow-circle-up" style="color:green;"></i>
                                             <span th:text="${tool.upvote}">0</span>
@@ -167,34 +164,20 @@
             upateview(JSON.parse(event.data));
         };
     }
-<!--    function newvote(formdata){-->
-<!--        const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute('content');-->
-<!--        const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute('content');-->
-<!--        return  fetch('/skill-vote',{-->
-<!--            method:'POST',-->
-<!--            body:formdata,-->
-<!--            headers: {-->
-<!--                [csrfHeader]: csrfToken-->
-<!--            }-->
-<!--        });-->
-<!--    }-->
-        function newVote(skilluuid, voteType) {
-            const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute('content');
-            const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
-
-           // , [csrfHeader]: csrfToken
-
-            return fetch('/api/v1/data/skill-vote', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    skilluuid: skilluuid,
-                    voteType: voteType
-                })
-            });
-        }
+    function newVote(skilluuid, voteType) {
+        const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute('content');
+        const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute('content');
+        return fetch('/api/v1/data/skill-vote', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                skilluuid: skilluuid,
+                voteType: voteType
+            })
+        });
+    }
     function upateview(skilldata){
         var  skillElt = document.querySelector(`div[skill-uuid='${skilldata.skilluuid}']`);
         var skillEltRating = skillElt.querySelector("small>span");
@@ -210,19 +193,11 @@
         liketbns.forEach(btn =>{
             btn.addEventListener("click",()=>{
                 var skilluuid = btn.closest(".card-body").getAttribute("skill-uuid");
-                // const formData = new FormData(voteteform);
-                    // formData.append('skilluuid', skilluuid);
-                    // formData.append('vote', "like");
-                    // newvote(formData)
-                    //     .then(res => { return res.json(); })
-                    //     .then(res => {
-                    //         console.log(res);
-                    //     });
-                    newVote(skilluuid, "UPVOTE")
-                        .then(response => response.json())
-                        .then(res => {
-                            console.log(res);
-                        });
+                newVote(skilluuid, "UPVOTE")
+                    .then(response => response.json())
+                    .then(res => {
+                        console.log(res);
+                    });
             });
             btn.addEventListener("mousedown",function(){
                 this.querySelector("i").style.color="#329932";
@@ -236,19 +211,11 @@
         disliketbns.forEach(btn =>{
             btn.addEventListener("click",()=> {
                 var skilluuid = btn.closest(".card-body").getAttribute("skill-uuid");
-                // const formData = new FormData(voteteform);
-                    // formData.append('skilluuid', skilluuid);
-                    // formData.append('vote', "dislike");
-                    // newvote(formData)
-                    //     .then(res => { return res.json(); })
-                    //     .then(res => {
-                    //         console.log(res);
-                    //     });
-                    newVote(skilluuid, "DOWNVOTE")
-                        .then(response => response.json())
-                        .then(res => {
-                            console.log(res);
-                        });
+                newVote(skilluuid, "DOWNVOTE")
+                    .then(response => response.json())
+                    .then(res => {
+                        console.log(res);
+                    });
             });
             btn.addEventListener("mousedown",function(){
                 this.querySelector("i").style.color="#FF4C4C";

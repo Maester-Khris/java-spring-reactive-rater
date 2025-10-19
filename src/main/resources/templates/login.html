@@ -17,10 +17,6 @@
     crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <link rel="stylesheet" th:href="@{/css/app.css}">
-
-  <style>
-
-  </style>
 </head>
 
 <body style="background-color: beige;height: 100vh;width: 100%;">
@@ -118,67 +114,7 @@
               </div>
           </div>
       </div>
-<!--    <section class="flex-grow-1 d-flex flex-column justify-content-center">-->
-<!--        <div class="card card-form">-->
-<!--            <div class="card-body d-flex flex-column justify-content-center align-items-center" style="padding-top: 30px;">-->
-<!--              <div class="login-section">-->
-<!--                <div class="skill-section-header d-flex flex-column justify-content-center align-items-center" style="margin: 30px 0px;">-->
-<!--                  <h3>Enter your Login details here</h3>-->
-<!--                  <div class="title-border" style="width: 250px;"></div>-->
-<!--              </div>-->
-<!--               <form action="/login" th:action="@{/login}" method="post">-->
-<!--                  <div class="form-group">-->
-<!--                  <label for="login-user-name" class="col-form-label">Username: </label>-->
-<!--                  <input name="username" type="text" class="form-control" id="login-user-name" value="">-->
-<!--                  </div>-->
-<!--                  <div class="form-group form-passwod-group">-->
-<!--                  <label for="login-user-pass" class="col-form-label">Password: </label>-->
-<!--                  <input name="password" type="password" class="form-control input-password" id="login-user-pass"-->
-<!--                      value="">-->
-<!--                  <i class="ph ph-eye togglePassword" id=""></i>-->
-<!--                  </div>-->
-<!--                  <div class="form-group">-->
-<!--                  <small class="d-inline-block" style="width: 100%;">-->
-<!--                      <span style="float: left;">Don't have an account ?</span>-->
-<!--                      <span style="float: right;">-->
-<!--                      <a id="newAccount" href="#createaccount">Create account</a>-->
-<!--                      </span>-->
-<!--                  </small>-->
-<!--                  </div>-->
-<!--                  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >-->
-<!--                  <button type="submit" class="btn btn-block btn-primary form-btn">Login</button>-->
-<!--              </form>-->
-<!--              </div>-->
-<!--              <div class="signup-section d-none">-->
-<!--                <div class="skill-section-header d-flex flex-column justify-content-center align-items-center" style="margin: 30px 0px;">-->
-<!--                  <h3>Create your account here</h3>-->
-<!--                  <div class="title-border" style="width: 250px;"></div>-->
-<!--                </div>-->
-<!--                <form action="#" th:action="@{/register}" method="post">-->
-<!--                    <div class="form-group">-->
-<!--                      <label for="user-name" class="col-form-label">Username: </label>-->
-<!--                      <input name="username" type="text" class="form-control" id="user-name">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                      <label for="user-email" class="col-form-label">Email: </label>-->
-<!--                      <input name="email" type="email" class="form-control" id="user-email">-->
-<!--                    </div>-->
-<!--                    <div class="form-group form-passwod-group">-->
-<!--                      <label for="user-pass" class="col-form-label">Password: </label>-->
-<!--                      <input name="password" type="password" class="form-control input-password" id="user-pass">-->
-<!--                      <i class="ph ph-eye togglePassword" id=""></i>-->
-<!--                    </div>-->
-<!--                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" >-->
-<!--                    <button type="submit" class="btn btn-block btn-primary form-btn">Create my account</button>-->
-<!--                </form>-->
-<!--              </div>-->
-<!--              -->
-<!--               -->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
   </div>
-
 
   <script th:src="@{/js/passvisiblity.js}"></script>
   <script>
@@ -186,16 +122,15 @@
       loginsec = document.querySelector(".login-section");
       signupsec = document.querySelector(".signup-section");
       newaccbtn = document.querySelector("#newAccount");
-
       newaccbtn.addEventListener("click", function () {
         loginsec.classList.add("hide-modal");
+        loginsec.classList.remove("d-flex");
         loginsec.classList.add("d-none");
         setTimeout(()=>{
           signupsec.classList.remove("d-none");
           signupsec.classList.add("d-flex");
           signupsec.classList.add("show-modal");
         },500);
-        
       });       
     });
   </script>

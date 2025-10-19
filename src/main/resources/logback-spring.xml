@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true">
 
-    <property name="LOG_PATH" value="${LOG_PATH:-/home/nklinux/Documents/workspace/projects/skillrater/logs}"/>
+    <property name="LOG_PATH" value="${LOG_PATH:-./logs}"/>
     <property name="APP_NAME" value="${spring.application.name:-skillrater}"/>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
