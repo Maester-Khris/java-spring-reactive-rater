@@ -35,13 +35,9 @@ public class PublicVoteFeaturesTest {
 
     private Skill skill;
     private final String skilluuid ="java-sp-boot";
-    // "ff505ec6-b372-4397-9a5f-a4b8ef3e3846";
 
     @BeforeEach
     public void setup() {
-//        MockitoAnnotations.openMocks(this);
-
-        // Initialize a Skill with 0 upvotes and downvotes
         skill = Skill.builder()
             .id(1)
             .skilluuid(skilluuid)
@@ -82,7 +78,6 @@ public class PublicVoteFeaturesTest {
             .assertNext(updatedSkill -> {
                 assertEquals(1, updatedSkill.getUpvote(), "Upvote should increase by 1");
                 assertEquals(0, updatedSkill.getDownvote(), "Downvote should remain unchanged");
-                // Optionally check rating logic
                 assertEquals(updatedSkill.getUpvote() - updatedSkill.getDownvote(), updatedSkill.getRating());
             })
             .verifyComplete();
@@ -95,11 +90,10 @@ public class PublicVoteFeaturesTest {
             .assertNext(updatedSkill -> {
                 assertEquals(1, updatedSkill.getDownvote(), "Downvote should increase by 1");
                 assertEquals(0, updatedSkill.getUpvote(), "Upvote should remain unchanged");
-                // Optionally check rating logic
                 assertEquals(
-                        Math.max(updatedSkill.getUpvote() - updatedSkill.getDownvote(), 0),
-                        updatedSkill.getRating(),
-                        "Rating should never be lower than 0"
+                    Math.max(updatedSkill.getUpvote() - updatedSkill.getDownvote(), 0),
+                    updatedSkill.getRating(),
+                    "Rating should never be lower than 0"
                 );
             })
             .verifyComplete();
@@ -121,6 +115,7 @@ public class PublicVoteFeaturesTest {
     }
 
     @Test
+    @DisplayName("Unit test feature -> Upvote/downvote Skill not found")
     public void testDownVoteSkill_NotFound() {
         String invalidUuid = "invalid-uuid";
 
