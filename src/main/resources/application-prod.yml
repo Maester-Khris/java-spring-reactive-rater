@@ -1,10 +1,34 @@
-spring:  
+#spring:
+#  r2dbc:
+#    url: r2dbc:mysql://johnny.heliohost.org:3306/nkhris_skillrater
+#    username: nkhris_heliostdba
+#    password: heliostdba_@
+#
+#  flyway:
+#    url: jdbc:mysql://johnny.heliohost.org:3306/nkhris_skillrater
+#    user: ${spring.r2dbc.username}
+#    password: ${spring.r2dbc.password}
+spring:
   r2dbc:
-    url: r2dbc:mysql://johnny.heliohost.org:3306/nkhris_skillrater
-    username: nkhris_heliostdba
-    password: heliostdba_@
-    
+    url: r2dbc:mysql://localhost:3306/javatutos
+    username: app_user
+    password: "PanFz$6d"
+
   flyway:
-    url: jdbc:mysql://johnny.heliohost.org:3306/nkhris_skillrater 
+    url: jdbc:mysql://localhost:3306/javatutos
     user: ${spring.r2dbc.username}
     password: ${spring.r2dbc.password}
+
+logging:
+  file:
+    path: /opt/skillrater/logs
+  level:
+    root: INFO
+    reactor: WARN
+    org.springframework.web: INFO
+    nk.springprojects.reactive: INFO
+  logback:
+    rollingpolicy:
+      file-name-pattern: app-%d{yyyy-MM-dd}.log
+      max-file-size: 10MB
+      max-history: 7
