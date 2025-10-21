@@ -14,7 +14,7 @@ resilience4j.ratelimiter:
 
 logging:
   file:
-    path: /home/nklinux/Documents/workspace/projects/skillrater/logs
+    path: ./logs
   level:
     root: INFO
     reactor: WARN

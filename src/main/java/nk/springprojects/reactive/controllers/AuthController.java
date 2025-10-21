@@ -61,35 +61,4 @@ public class AuthController {
 	public ResponseEntity<String> hello () {
 		return ResponseEntity.ok().body("salut les terriens");
 	}
-	
-	
-	
-//	public ResponseEntity<String> register (@ModelAttribute User newuser) {
-//		return ResponseEntity.accepted().body("user well registered");
-//    RedirectAttributes redirectAttributes,
-//    redirectAttributes.addFlashAttribute("message", "user well registered");
-//    return "redirect:/";
-//  ================ tried to insert data in session so that it can be used to display to the user ====================
-//  exchange.getSession()
-//    	    .flatMap(session -> {
-//    	        session.getAttributes().put("message", "User successfully registered");
-//    	        System.out.println("========== the content of the session:"+session.toString());
-//    	        return Mono.just(session); // Return the session for further processing
-//    	    })
-//    	    .flatMap(session -> {
-//    	        exchange.getResponse().setStatusCode(HttpStatus.FOUND);
-//    	        exchange.getResponse().getHeaders().setLocation(URI.create("/"));
-//    	        return exchange.getResponse().setComplete(); // Complete the response
-//    	    })
-//    	    .subscribe(); // Subscribe to execute the chain
-//
-//    return Mono.empty();        
-//    redirection with data to the home page
-//    exchange.getSession().flatMap(session -> {
-//        session.getAttributes().put("message", "User successfully registered");
-//        return Mono.empty();
-//    }).subscribe();
-
-//	}
-
 }

@@ -20,7 +20,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient
 @ActiveProfiles("test")
-@Disabled("All tests in this class are temporarily disabled")
 public class PublicVoteTest {
     @Autowired
     private WebTestClient webTestClient;

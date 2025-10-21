@@ -27,7 +27,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @ExtendWith(SpringExtension.class)
-@Disabled("All tests in this class are temporarily disabled")
+//@Disabled("All tests in this class are temporarily disabled")
 @ActiveProfiles("test")
 public class DatabaseTest {
 

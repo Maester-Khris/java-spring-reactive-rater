@@ -19,6 +19,8 @@ import nk.springprojects.reactive.configurations.VoteRateLimiterProvider;
 import nk.springprojects.reactive.dto.ApiSkillResponse;
 import nk.springprojects.reactive.dto.SkillRating;
 import nk.springprojects.reactive.dto.VoteRequest;
+import nk.springprojects.reactive.exception.SkillNotFoundException;
+import nk.springprojects.reactive.exception.UserNotFoundException;
 import nk.springprojects.reactive.model.Skill;
 import nk.springprojects.reactive.service.SkillRatingService;
 import nk.springprojects.reactive.model.UserSkillRating;
@@ -59,36 +61,26 @@ public class SkillRatingRestController {
 	public Mono<ResponseEntity<List<Skill>>> listAllSkills() {
 	    return service.getRepository().findAll()
 	        .collectList()
-	        .flatMap(skills -> {
-	            if (skills.isEmpty()) {
-	                return Mono.just(ResponseEntity.notFound().build());
-	            } else {
-	                return Mono.just(ResponseEntity.ok(skills));
-	            }
-	        });
+                .switchIfEmpty(Mono.error(new SkillNotFoundException("Empty skills list, no items found")))
+                .map(ResponseEntity::ok);
 	}
 	
-	@Operation(summary = "Get the list of registered skill with their data", description = "This endpoint retrieve all skills stored in the database. The definition of a skill is present at the bottom of this page ")
+
+    @Operation(summary = "Get the list of registered skill with their data", description = "This endpoint retrieve all skills stored in the database. The definition of a skill is present at the bottom of this page ")
 	@GetMapping(value = "/list/skills/{id}")
 	public Mono<ResponseEntity<Skill>> skillDetail(@RequestParam int id) {
 	    return service.getRepository().findById(Integer.valueOf(id))
-	        .flatMap(skill -> {
-	            if (Objects.isNull(skill)) {
-	                return Mono.just(ResponseEntity.notFound().build());
-	            } else {
-	                return Mono.just(ResponseEntity.ok(skill));
-	            }
-	        });
+	        .switchIfEmpty(Mono.error(new SkillNotFoundException("No Skill found with id: " + id)))
+            .map(ResponseEntity::ok);
 	}
 
+    @Operation(summary = "Register a new public vote", description = "This endpoint is used to add a new public upvote/downvote on a specific skill item")
     @PostMapping("/skill-vote")
     public Mono<ResponseEntity<String>> voteSkill(@RequestBody VoteRequest voteRequest,  ServerWebExchange exchange) {
-        //String clientIp = exchange.getRequest().getRemoteAddress().getAddress().getHostAddress();
         String clientIp = Optional.ofNullable(exchange.getRequest().getRemoteAddress())
-                .map(InetSocketAddress::getAddress)
-                .map(InetAddress::getHostAddress)
-                .orElse("unknown");
-
+            .map(InetSocketAddress::getAddress)
+            .map(InetAddress::getHostAddress)
+            .orElse("unknown");
 
         RateLimiter limiter = RatelimiterProvider.getPublicVoteLimiter();
         ObjectMapper mapper = new ObjectMapper();
@@ -98,26 +90,25 @@ public class SkillRatingRestController {
             .flatMap(updatedSkill ->{
                 log.info("[skillrater] INFO | REST vote | IP={} | skillUUID={} | type={}",
                         clientIp, voteRequest.skilluuid(), voteRequest.voteType());
-                try {
-                    String json = mapper.writeValueAsString(
-                            new ApiSkillResponse("Skill public vote done", updatedSkill)
-                    );
-                    return Mono.just(ResponseEntity.ok(json));
-                } catch (JsonProcessingException e) {
-                    return Mono.just(ResponseEntity.status(500).body("Error processing JSON"));
-                }
+
+                return Mono.fromCallable(() -> mapper.writeValueAsString(
+                        new ApiSkillResponse("Skill public vote done", updatedSkill)
+                    ))
+                    .map(ResponseEntity::ok)
+                    .onErrorMap(JsonProcessingException.class,
+                    ex -> new RuntimeException("Failed to serialize response", ex));
+
             })
             .onErrorResume(throwable -> {
                 if (throwable instanceof RequestNotPermitted) {
                     log.warn("[skillrater] WARN | Rate limit exceeded for IP={}", clientIp);
-                    // fallback: push vote request to queue
                     return votequeue.enqueue(voteRequest)
                         .thenReturn(ResponseEntity.status(429)
                             .body("Too many votes. Your request has been queued."));
                 }
-                return Mono.just(ResponseEntity.status(500).body("Unexpected error"));
+                return Mono.error(new RuntimeException("Unexpected server error", throwable));
             })
-            .defaultIfEmpty(ResponseEntity.notFound().build());
+            .switchIfEmpty(Mono.error(new SkillNotFoundException("Skill not found for vote request.")));
     }
 
     @Operation(summary = "Rate or update a skill on user personal dashboard", description = "This endpoint update the personal rating of a logged user. The definition of a skillRating update is present at the bottom of this page ")
@@ -151,33 +142,11 @@ public class SkillRatingRestController {
                                         })
                                     )
                             )
-                            .switchIfEmpty(
-                                Mono.error(new IllegalStateException(
-                                        "Skill not found for UUID: " + skillRating.skilluuid()))
-                            )
+                            .switchIfEmpty(Mono.error(new SkillNotFoundException("Skill not found for UUID: " + skillRating.skilluuid())))
                     )
                     .then(Mono.just(ResponseEntity.ok("Ratings updated successfully for user " + id)))
             )
-            .switchIfEmpty(
-                Mono.just(ResponseEntity
-                    .status(HttpStatus.NOT_FOUND)
-                    .body("User not found with id " + id))
-            );
+            .switchIfEmpty(Mono.error(new UserNotFoundException("User not found with id " + id)));
     }
 }
 
-
-// ============== OLD Code for voteSkill method ==============
-//return service.handleVote(voteRequest)
-//    .flatMap(updatedSkill -> {
-//        log.info("[skillrater] INFO | REST vote | skillUUId={} | voteType={}", voteRequest.skilluuid(), voteRequest.voteType());
-//        try {
-//            String json = mapper.writeValueAsString(
-//                    new ApiSkillResponse("Skill public vote done", updatedSkill)
-//            );
-//            return Mono.just(ResponseEntity.ok(json));
-//        } catch (JsonProcessingException e) {
-//            return Mono.just(ResponseEntity.status(500).body("Error processing JSON"));
-//        }
-//    })
-//    .defaultIfEmpty(ResponseEntity.notFound().build());
