@@ -39,20 +39,20 @@ public class SpringReactiveApplication {
 	record Language(String name, String[] aliases) {}
 	record Icon(String name, String icon) {}
 
-    private static final String appName = "skillrater";
+    private static final String APP_NAME = "skillrater";
 
     public static void main(String[] args) {
-        log.info("[{}] INFO | Application main starting", appName);
+        log.info("[{}] INFO | Application main starting", APP_NAME);
         SpringApplication.run(SpringReactiveApplication.class, args);
     }
 
     @EventListener
     public void onApplicationReady(ApplicationReadyEvent event) {
-        log.info("[{}] INFO | Application started and ready", appName);
+        log.info("[{}] INFO | Application started and ready", APP_NAME);
     }
 
     @EventListener
     public void onContextClosed(ContextClosedEvent event) {
-        log.info("[{}] INFO | Application stopping", appName);
+        log.info("[{}] INFO | Application stopping", APP_NAME);
     }
 }
