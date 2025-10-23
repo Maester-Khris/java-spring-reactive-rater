@@ -49,7 +49,7 @@ public class DatabaseTest {
 	     objectMapper = new ObjectMapper();
 	        
 		 skill = Skill.builder()
-					.id(new Integer(1))
+					.id(Integer.valueOf(1))
 					.skillname(skillname)
 					.skilluuid(skilluuid)
 					.rating(rating)
