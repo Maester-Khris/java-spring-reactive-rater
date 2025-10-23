@@ -11,7 +11,6 @@ import nk.springprojects.reactive.service.SkillRatingService;
 import nk.springprojects.reactive.model.SkillRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,7 +28,7 @@ import reactor.core.publisher.Mono;
 @ExtendWith(SpringExtension.class)
 //@Disabled("All tests in this class are temporarily disabled")
 @ActiveProfiles("test")
-public class DatabaseTest {
+class DatabaseTest {
 
 	@InjectMocks
 	private SkillRatingService service;

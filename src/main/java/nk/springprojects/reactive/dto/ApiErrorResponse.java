@@ -2,7 +2,6 @@ package nk.springprojects.reactive.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.time.LocalDateTime;
 

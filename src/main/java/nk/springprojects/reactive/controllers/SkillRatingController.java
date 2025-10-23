@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import lombok.extern.slf4j.Slf4j;
 import nk.springprojects.reactive.dto.*;
-import nk.springprojects.reactive.model.SkillDefinition;
 import nk.springprojects.reactive.service.SkillRatingService;
 import nk.springprojects.reactive.model.UserSkillRating;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +15,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.reactive.result.view.Rendering;
 import org.springframework.web.server.ServerWebExchange;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
-import nk.springprojects.reactive.async.ThreadComponent;
 import nk.springprojects.reactive.users.UserPrincipal;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 
 @Controller
 @RequestMapping("/")

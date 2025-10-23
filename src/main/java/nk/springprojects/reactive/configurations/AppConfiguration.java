@@ -49,15 +49,4 @@ public class AppConfiguration {
                     .doOnSuccess(aVoid -> log.debug("[skillrater] DEBUG | Completed handling request | {} | {}", method, path));
         };
     }
-
-//	@Bean
-//	Executor TaskExecutor() {
-//		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-//		executor.setCorePoolSize(5);
-//		executor.setMaxPoolSize(10);
-//		executor.setQueueCapacity(100);
-//		executor.setThreadNamePrefix("MyExecutor-");
-//		executor.initialize();
-//		return executor;
-//	}
 }

@@ -47,7 +47,7 @@ public class SkillRatingRestController {
     private final UserRepository userepos;
     private final SkillEventBus eventBus;
     private final VoteQueue votequeue;
-    private final VoteRateLimiterProvider RatelimiterProvider;
+    private final VoteRateLimiterProvider rateLimiterProvider;
 	
 	@Hidden
 	@Operation(summary = "Get real time skill data from public vote", description = "This endpoint publish skills update on real-time action after each public vote using server sent event ")
@@ -82,7 +82,7 @@ public class SkillRatingRestController {
             .map(InetAddress::getHostAddress)
             .orElse("unknown");
 
-        RateLimiter limiter = RatelimiterProvider.getPublicVoteLimiter();
+        RateLimiter limiter = rateLimiterProvider.getPublicVoteLimiter();
         ObjectMapper mapper = new ObjectMapper();
 
         return Mono.defer(() -> service.handleVote(voteRequest))

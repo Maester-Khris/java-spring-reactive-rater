@@ -5,7 +5,6 @@ import nk.springprojects.reactive.dto.VoteType;
 import nk.springprojects.reactive.model.Skill;
 import nk.springprojects.reactive.model.SkillRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient
 @ActiveProfiles("test")
-public class PublicVoteTest {
+class PublicVoteTest {
     @Autowired
     private WebTestClient webTestClient;
 

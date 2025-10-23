@@ -7,21 +7,16 @@ import nk.springprojects.reactive.configurations.VoteRateLimiterProvider;
 import nk.springprojects.reactive.dto.VoteRequest;
 import nk.springprojects.reactive.dto.VoteType;
 import nk.springprojects.reactive.model.Skill;
-import nk.springprojects.reactive.model.SkillRepository;
 import nk.springprojects.reactive.service.SkillRatingService;
 import org.junit.jupiter.api.*;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.client.AutoConfigureWebClient;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import java.time.Duration;
@@ -33,7 +28,7 @@ import java.util.UUID;
         "spring.task.scheduling.enabled=false"
 })
 @ActiveProfiles("test")
-public class RestVoteRateLimitingTest {
+class RestVoteRateLimitingTest {
     @Autowired
     private WebTestClient webTestClient;
 

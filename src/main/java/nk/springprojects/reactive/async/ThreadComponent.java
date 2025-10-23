@@ -54,9 +54,9 @@ public class ThreadComponent implements ApplicationListener<DBSeedCompletedEvent
                         ThreadLocalRandom.current().nextBoolean() ? VoteType.UPVOTE : VoteType.DOWNVOTE,
                         skill.getSkilluuid()
                 );
-                return service.handleVote(request).doOnSuccess(result -> {
-                    log.info("[skillrater] INFO | new vote simulation added", request.getClass().getSimpleName());
-                });  // ✅ this now triggers eventBus.publish internally
+                return service.handleVote(request).doOnSuccess(result ->
+                    log.info("[skillrater] INFO | new vote simulation added", request.getClass().getSimpleName())
+                );  // ✅ this now triggers eventBus.publish internally
             })
             .subscribe();
     }

@@ -1,6 +1,5 @@
 package nk.springprojects.reactive.model;
 
-import nk.springprojects.reactive.users.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;

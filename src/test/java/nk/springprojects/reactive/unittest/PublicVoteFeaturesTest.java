@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 @ActiveProfiles("test")
-public class PublicVoteFeaturesTest {
+class PublicVoteFeaturesTest {
     @InjectMocks
     private SkillRatingService service;
 

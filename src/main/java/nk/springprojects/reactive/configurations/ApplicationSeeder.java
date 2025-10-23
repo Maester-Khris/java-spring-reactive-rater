@@ -60,7 +60,7 @@ public class ApplicationSeeder {
 
     @Bean
     public ApplicationRunner initGuestUser() {
-        return args -> {
+        return args ->
             userRepository.existsByUsername(guestUsername)
                 .flatMap(exists -> {
                     if (!exists) {
@@ -77,7 +77,7 @@ public class ApplicationSeeder {
                     }
                 })
                 .subscribe(); // trigger execution
-        };
+
     }
 
     // this is the default application seeder bean
