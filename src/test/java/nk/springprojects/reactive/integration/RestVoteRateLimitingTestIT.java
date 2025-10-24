@@ -28,7 +28,7 @@ import java.util.UUID;
         "spring.task.scheduling.enabled=false"
 })
 @ActiveProfiles("test")
-class RestVoteRateLimitingTest {
+class RestVoteRateLimitingTestIT {
     @Autowired
     private WebTestClient webTestClient;
 
@@ -107,7 +107,6 @@ class RestVoteRateLimitingTest {
 
     @Test
     @DisplayName("Should successfully process a queued vote when manually triggered")
-    @Disabled
     void testQueuedVoteProcessedLater() {
         // Exceed rate limit to enqueue a vote
         int limit = 10;
