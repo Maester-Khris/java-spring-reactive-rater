@@ -39,7 +39,7 @@ public class MySecurityConfig{
 	@Bean
 	public ReactiveAuthenticationManager authmanager() {
 		UserDetailsRepositoryReactiveAuthenticationManager authenticationManager =
-	                 new UserDetailsRepositoryReactiveAuthenticationManager(userdetailservice);
+             new UserDetailsRepositoryReactiveAuthenticationManager(userdetailservice);
 
         authenticationManager.setPasswordEncoder(passEncoder());
         return authenticationManager;
@@ -53,39 +53,38 @@ public class MySecurityConfig{
 	@Bean 
 	public SecurityWebFilterChain securityConfig(ServerHttpSecurity http) {
 		DelegatingServerLogoutHandler logoutHandler = new DelegatingServerLogoutHandler(
-	            new SecurityContextServerLogoutHandler(), new WebSessionServerLogoutHandler()
+            new SecurityContextServerLogoutHandler(), new WebSessionServerLogoutHandler()
 	    );
 
         NegatedServerWebExchangeMatcher csrfIgnoredUrls = new NegatedServerWebExchangeMatcher(
-                ServerWebExchangeMatchers.pathMatchers(
-                        HttpMethod.POST,  "/api/**"
-                )
+            ServerWebExchangeMatchers.pathMatchers(
+                HttpMethod.POST,  "/api/v1/data/**", "/register", "/login"
+            )
         );
 
         // Combine the default CSRF matcher with the ignored URLs
         AndServerWebExchangeMatcher csrfProtectionMatcher = new AndServerWebExchangeMatcher(
-                CsrfWebFilter.DEFAULT_CSRF_MATCHER, // Default matcher for PUT, POST, DELETE
-                csrfIgnoredUrls
+            CsrfWebFilter.DEFAULT_CSRF_MATCHER, // Default matcher for PUT, POST, DELETE
+            csrfIgnoredUrls
         );
-
 
         http
 			 .csrf((csrf) -> csrf
-                     .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
-                     .requireCsrfProtectionMatcher(csrfProtectionMatcher)
+                 .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
+                 .requireCsrfProtectionMatcher(csrfProtectionMatcher)
              )
 			 .authorizeExchange((authorize) -> authorize
-					 .pathMatchers("/", "/login", "/skills", "/swagger-ui/index.html").permitAll()
-					 .pathMatchers("/skill-vote").permitAll()
-		             .pathMatchers("/myratings").authenticated()
-		             .anyExchange().permitAll())
+                 .pathMatchers("/", "/login", "/skills", "/swagger-ui/index.html").permitAll()
+                 .pathMatchers("/skill-vote").permitAll()
+                 .pathMatchers("/myratings").authenticated()
+                 .pathMatchers("/api/auth/csrf-token").authenticated()
+                 .anyExchange().permitAll())
 		    .httpBasic(Customizer.withDefaults())
 		    .formLogin((formLogin) -> formLogin
-		    		.authenticationManager(authmanager())
-		    		.loginPage("/login"))
+                .authenticationManager(authmanager())
+                .loginPage("/login"))
 		    .logout(logout -> logout.logoutHandler(logoutHandler));
 
-		
 		return http.build();		
 	}
 }

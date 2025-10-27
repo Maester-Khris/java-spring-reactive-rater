@@ -10,6 +10,7 @@ public interface UserRepository extends ReactiveCrudRepository<User, Integer>{
 
 	Mono<User> findByUsername(String username);
     Mono<Boolean> existsByUsername(String username);
+    Mono<Void> deleteByUsername(String username);
 
     default void debugLogCall(String operation) {
         Logger log = LoggerFactory.getLogger(UserRepository.class);
