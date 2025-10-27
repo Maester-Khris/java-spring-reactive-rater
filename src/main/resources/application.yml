@@ -3,6 +3,10 @@ spring:
     name: spring-reactive-skillrater
   profiles:
     default: dev
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
 resilience4j.ratelimiter:
   instances:

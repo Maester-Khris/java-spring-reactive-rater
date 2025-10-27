@@ -22,27 +22,20 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.github.javafaker.Faker;
-
-import nk.springprojects.reactive.model.Skill;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Sinks;
-
-
 @Component
 @RequiredArgsConstructor
 @Profile({"dev", "prod"})
 @Slf4j
 public class ThreadComponent implements ApplicationListener<DBSeedCompletedEvent>, ThreadVoter {
-
     private final SkillRatingService service;
     private final AtomicBoolean canStart = new AtomicBoolean(false);
 
-    @Async
+    @Async("voteSimulationExecutor")
     @Scheduled(fixedRate = 3000)
     public void simulateVotes() {
         if (!canStart.get()) return;
 
+        String voteThreadName = Thread.currentThread().getName();
         service.getRepository().count()
             .flatMap(count ->
                     service.getRepository()
@@ -55,7 +48,11 @@ public class ThreadComponent implements ApplicationListener<DBSeedCompletedEvent
                         skill.getSkilluuid()
                 );
                 return service.handleVote(request).doOnSuccess(result ->
-                    log.info("[skillrater] INFO | new vote simulation added", request.getClass().getSimpleName())
+                        log.info(
+                                "[skillrater] INFO | launched by Thread: {} | new vote simulation added for {}",
+                               voteThreadName, // ✅ Added thread name here
+                                request.getClass().getSimpleName()
+                        )
                 );  // ✅ this now triggers eventBus.publish internally
             })
             .subscribe();

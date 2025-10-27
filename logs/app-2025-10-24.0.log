@@ -1,0 +1,875 @@
+[skillrater] INFO | 2025-10-23 22:28:20.888 | main | n.s.r.integration.PublicVoteTest:50 | Starting PublicVoteTest using Java 17.0.16 with PID 175540 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-23 22:28:20.892 | main | n.s.r.integration.PublicVoteTest:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-23 22:28:22.994 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-23 22:28:23.175 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 174 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-23 22:28:25.352 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-23 22:28:26.765 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 46411 (http)
+[skillrater] INFO | 2025-10-23 22:28:26.817 | main | n.s.r.integration.PublicVoteTest:56 | Started PublicVoteTest in 6.515 seconds (process running for 8.033)
+[skillrater] INFO | 2025-10-23 22:28:27.013 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-23 22:28:28.483 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-23 22:28:28.484 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-23 22:28:28.485 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-23 22:28:28.687 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-23 22:28:28.703 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-23 22:28:29.856 | parallel-3 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"45"] 
+[skillrater] ERROR | 2025-10-23 22:28:29.894 | parallel-3 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:29.929 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=DOWNVOTE
+[skillrater] INFO | 2025-10-23 22:28:30.060 | parallel-5 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"49"] 
+[skillrater] ERROR | 2025-10-23 22:28:30.063 | parallel-5 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:30.099 | parallel-7 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"43"] 
+[skillrater] ERROR | 2025-10-23 22:28:30.102 | parallel-7 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:30.109 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:30.174 | main | o.s.t.c.s.AnnotationConfigContextLoaderUtils:83 | Could not detect default configuration classes for test class [nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT]: RestVoteRateLimitingTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[skillrater] INFO | 2025-10-23 22:28:30.187 | main | o.s.b.t.c.SpringBootTestContextBootstrapper:234 | Found @SpringBootConfiguration nk.springprojects.reactive.SpringReactiveApplication for test class nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT
+[skillrater] INFO | 2025-10-23 22:28:30.303 | main | n.s.r.i.RestVoteRateLimitingTest:50 | Starting RestVoteRateLimitingTest using Java 17.0.16 with PID 175540 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-23 22:28:30.304 | main | n.s.r.i.RestVoteRateLimitingTest:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-23 22:28:30.829 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-23 22:28:30.841 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 11 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-23 22:28:32.019 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-23 22:28:32.433 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 34161 (http)
+[skillrater] INFO | 2025-10-23 22:28:32.462 | main | n.s.r.i.RestVoteRateLimitingTest:56 | Started RestVoteRateLimitingTest in 2.246 seconds (process running for 13.678)
+[skillrater] INFO | 2025-10-23 22:28:32.482 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-23 22:28:32.483 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-23 22:28:32.489 | main | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-23 22:28:32.491 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-23 22:28:32.585 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.607 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:32.623 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c29eea3f-a01c-4ad8-8003-5adc3fe2a828 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:32.652 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.656 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:32.669 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c29eea3f-a01c-4ad8-8003-5adc3fe2a828 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:32.681 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.687 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:32.699 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c29eea3f-a01c-4ad8-8003-5adc3fe2a828 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:32.712 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"4", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.717 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:32.734 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c29eea3f-a01c-4ad8-8003-5adc3fe2a828 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:32.755 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"5", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.759 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:32.772 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c29eea3f-a01c-4ad8-8003-5adc3fe2a828 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:32.781 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"6", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.786 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:32.802 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c29eea3f-a01c-4ad8-8003-5adc3fe2a828 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:32.819 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"7", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.824 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:32.835 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c29eea3f-a01c-4ad8-8003-5adc3fe2a828 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:32.847 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"8", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.850 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:32.861 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c29eea3f-a01c-4ad8-8003-5adc3fe2a828 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:32.873 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"9", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.877 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:32.888 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c29eea3f-a01c-4ad8-8003-5adc3fe2a828 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:32.899 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"10", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.903 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:32.914 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c29eea3f-a01c-4ad8-8003-5adc3fe2a828 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:32.929 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"11", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:32.933 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-23 22:28:32.934 | parallel-6 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-23 22:28:32.965 | boundedElastic-1 | n.s.reactive.async.VoteQueue:44 | [skillrater] INFO | queued vote processed for c29eea3f-a01c-4ad8-8003-5adc3fe2a828
+[skillrater] INFO | 2025-10-23 22:28:33.055 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"12", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.059 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.069 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=57c2a6aa-9ca1-457a-aa57-7bf4416b4a93 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:33.080 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"13", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.085 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.095 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=57c2a6aa-9ca1-457a-aa57-7bf4416b4a93 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:33.106 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"14", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.110 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.120 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=57c2a6aa-9ca1-457a-aa57-7bf4416b4a93 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:33.132 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"15", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.136 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.146 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=57c2a6aa-9ca1-457a-aa57-7bf4416b4a93 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:33.162 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"16", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.174 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.195 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=57c2a6aa-9ca1-457a-aa57-7bf4416b4a93 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:33.209 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"17", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.214 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.232 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=57c2a6aa-9ca1-457a-aa57-7bf4416b4a93 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:33.253 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"18", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.258 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.268 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=57c2a6aa-9ca1-457a-aa57-7bf4416b4a93 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:33.279 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"19", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.283 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.292 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=57c2a6aa-9ca1-457a-aa57-7bf4416b4a93 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:33.302 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"20", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.306 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.316 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=57c2a6aa-9ca1-457a-aa57-7bf4416b4a93 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:33.328 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"21", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.332 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.341 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=57c2a6aa-9ca1-457a-aa57-7bf4416b4a93 | type=UPVOTE
+[skillrater] INFO | 2025-10-23 22:28:33.352 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"22", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-23 22:28:33.355 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-23 22:28:33.357 | parallel-4 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-23 22:28:33.397 | main | o.s.t.c.s.AnnotationConfigContextLoaderUtils:83 | Could not detect default configuration classes for test class [nk.springprojects.reactive.unittest.DatabaseTest]: DatabaseTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[skillrater] ERROR | 2025-10-23 22:28:33.781 | main | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] ERROR | 2025-10-23 22:28:33.795 | main | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] ERROR | 2025-10-23 22:28:33.803 | main | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] ERROR | 2025-10-23 22:28:33.811 | main | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-23 22:28:33.822 | main | o.s.t.c.s.AnnotationConfigContextLoaderUtils:83 | Could not detect default configuration classes for test class [nk.springprojects.reactive.SpringReactiveApplicationTests]: SpringReactiveApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[skillrater] INFO | 2025-10-23 22:28:33.847 | main | o.s.b.t.c.SpringBootTestContextBootstrapper:234 | Found @SpringBootConfiguration nk.springprojects.reactive.SpringReactiveApplication for test class nk.springprojects.reactive.SpringReactiveApplicationTests
+[skillrater] INFO | 2025-10-23 22:28:33.932 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 175540 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-23 22:28:33.933 | main | n.s.r.SpringReactiveApplicationTests:654 | No active profile set, falling back to 1 default profile: "dev"
+[skillrater] INFO | 2025-10-23 22:28:34.705 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-23 22:28:34.720 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 13 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-23 22:28:34.879 | main | c.g.j.r.m.MysqlConnectionFactoryProvider:52 | set jasync.mysql.CLIENT_FOUND_ROWS=true
+[skillrater] INFO | 2025-10-23 22:28:34.886 | main | c.g.jasync.sql.db.util.NettyUtils:38 | jasync available transport - native (epoll)
+[skillrater] INFO | 2025-10-23 22:28:35.296 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-23 22:28:36.014 | main | o.f.c.i.r.ResourceNameValidator:37 | 1 SQL migrations were detected but not run because they did not follow the filename convention.
+[skillrater] INFO | 2025-10-23 22:28:36.014 | main | o.f.c.i.r.ResourceNameValidator:37 | Set 'validateMigrationNaming' to true to fail fast and see a list of the invalid file names.
+[skillrater] INFO | 2025-10-23 22:28:36.059 | main | org.flywaydb.core.FlywayExecutor:37 | Database: jdbc:mysql://localhost:3306/javatutos (MySQL 8.0)
+[skillrater] INFO | 2025-10-23 22:28:36.144 | main | o.f.core.internal.command.DbValidate:37 | Successfully validated 10 migrations (execution time 00:00.053s)
+[skillrater] INFO | 2025-10-23 22:28:36.169 | main | o.f.core.internal.command.DbMigrate:37 | Current version of schema `javatutos`: 11
+[skillrater] INFO | 2025-10-23 22:28:36.172 | main | o.f.core.internal.command.DbMigrate:37 | Schema `javatutos` is up to date. No migration necessary.
+[skillrater] INFO | 2025-10-23 22:28:36.304 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 2.438 seconds (process running for 17.52)
+[skillrater] INFO | 2025-10-23 22:28:36.590 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-23 22:28:36.591 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-23 22:28:36.604 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-23 22:28:36.626 | db-sql-netty-thread-2 | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-23 22:28:36.642 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-23 22:28:38.695 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-23 22:28:39.357 | db-sql-netty-thread-2 | n.s.reactive.async.ThreadComponent:58 | [skillrater] INFO | new vote simulation added
+[skillrater] INFO | 2025-10-23 22:28:40.717 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 11:19:12.765 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 179907 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 11:19:12.768 | main | n.s.r.SpringReactiveApplicationTests:654 | No active profile set, falling back to 1 default profile: "dev"
+[skillrater] INFO | 2025-10-24 11:19:15.960 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 11:19:16.041 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 71 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 11:19:17.101 | main | c.g.j.r.m.MysqlConnectionFactoryProvider:52 | set jasync.mysql.CLIENT_FOUND_ROWS=true
+[skillrater] INFO | 2025-10-24 11:19:17.319 | main | c.g.jasync.sql.db.util.NettyUtils:38 | jasync available transport - native (epoll)
+[skillrater] INFO | 2025-10-24 11:19:19.212 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 11:19:20.432 | main | o.f.c.i.r.ResourceNameValidator:37 | 1 SQL migrations were detected but not run because they did not follow the filename convention.
+[skillrater] INFO | 2025-10-24 11:19:20.433 | main | o.f.c.i.r.ResourceNameValidator:37 | Set 'validateMigrationNaming' to true to fail fast and see a list of the invalid file names.
+[skillrater] INFO | 2025-10-24 11:19:20.487 | main | org.flywaydb.core.FlywayExecutor:37 | Database: jdbc:mysql://localhost:3306/javatutos (MySQL 8.0)
+[skillrater] INFO | 2025-10-24 11:19:20.583 | main | o.f.core.internal.command.DbValidate:37 | Successfully validated 10 migrations (execution time 00:00.056s)
+[skillrater] INFO | 2025-10-24 11:19:20.608 | main | o.f.core.internal.command.DbMigrate:37 | Current version of schema `javatutos`: 11
+[skillrater] INFO | 2025-10-24 11:19:20.613 | main | o.f.core.internal.command.DbMigrate:37 | Schema `javatutos` is up to date. No migration necessary.
+[skillrater] INFO | 2025-10-24 11:19:20.941 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 9.106 seconds (process running for 14.293)
+[skillrater] INFO | 2025-10-24 11:19:21.372 | db-sql-netty-thread-2 | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-24 11:19:21.527 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 11:19:21.528 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 11:19:21.531 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 11:19:21.578 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 11:24:06.369 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 180393 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 11:24:06.372 | main | n.s.r.SpringReactiveApplicationTests:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 11:24:08.717 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 11:24:08.779 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 55 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 11:24:10.901 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 11:24:12.181 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 6.389 seconds (process running for 11.075)
+[skillrater] INFO | 2025-10-24 11:24:12.401 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 11:24:13.505 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 11:24:13.506 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 11:24:13.506 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 11:24:13.645 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 11:24:13.655 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 11:24:13.695 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:16:46.478 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 185944 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:16:46.481 | main | n.s.r.SpringReactiveApplicationTests:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 12:16:48.990 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:16:49.057 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 59 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:16:51.292 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:16:52.608 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 6.704 seconds (process running for 11.544)
+[skillrater] INFO | 2025-10-24 12:16:52.868 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 12:16:53.074 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 12:16:54.334 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 12:16:54.334 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:16:54.335 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:16:54.336 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:16:54.381 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:17:34.394 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 186127 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:17:34.397 | main | n.s.r.SpringReactiveApplicationTests:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 12:17:37.463 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:17:37.570 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 96 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:17:40.472 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:17:42.178 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 8.417 seconds (process running for 14.152)
+[skillrater] INFO | 2025-10-24 12:17:42.463 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 12:17:42.808 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 12:17:44.236 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 12:17:44.237 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:17:44.238 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:17:44.239 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:17:44.279 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:19:45.072 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 186627 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:19:45.076 | main | n.s.r.SpringReactiveApplicationTests:654 | No active profile set, falling back to 1 default profile: "dev"
+[skillrater] INFO | 2025-10-24 12:19:48.239 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:19:48.342 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 91 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:19:49.537 | main | c.g.j.r.m.MysqlConnectionFactoryProvider:52 | set jasync.mysql.CLIENT_FOUND_ROWS=true
+[skillrater] INFO | 2025-10-24 12:19:49.784 | main | c.g.jasync.sql.db.util.NettyUtils:38 | jasync available transport - native (epoll)
+[skillrater] INFO | 2025-10-24 12:19:51.831 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:19:53.082 | main | o.f.c.i.r.ResourceNameValidator:37 | 1 SQL migrations were detected but not run because they did not follow the filename convention.
+[skillrater] INFO | 2025-10-24 12:19:53.083 | main | o.f.c.i.r.ResourceNameValidator:37 | Set 'validateMigrationNaming' to true to fail fast and see a list of the invalid file names.
+[skillrater] INFO | 2025-10-24 12:19:53.127 | main | org.flywaydb.core.FlywayExecutor:37 | Database: jdbc:mysql://localhost:3306/javatutos (MySQL 8.0)
+[skillrater] INFO | 2025-10-24 12:19:53.216 | main | o.f.core.internal.command.DbValidate:37 | Successfully validated 10 migrations (execution time 00:00.050s)
+[skillrater] INFO | 2025-10-24 12:19:53.242 | main | o.f.core.internal.command.DbMigrate:37 | Current version of schema `javatutos`: 11
+[skillrater] INFO | 2025-10-24 12:19:53.248 | main | o.f.core.internal.command.DbMigrate:37 | Schema `javatutos` is up to date. No migration necessary.
+[skillrater] INFO | 2025-10-24 12:19:53.564 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 9.301 seconds (process running for 14.884)
+[skillrater] INFO | 2025-10-24 12:19:54.014 | db-sql-netty-thread-2 | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-24 12:19:54.170 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:19:54.171 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:19:54.175 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:19:54.233 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:19:59.925 | main | n.s.r.integration.PublicVoteTestIT:50 | Starting PublicVoteTestIT using Java 17.0.16 with PID 186794 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:19:59.929 | main | n.s.r.integration.PublicVoteTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 12:20:02.834 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:20:03.080 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 237 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:20:05.907 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:20:07.639 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 34435 (http)
+[skillrater] INFO | 2025-10-24 12:20:07.676 | main | n.s.r.integration.PublicVoteTestIT:56 | Started PublicVoteTestIT in 8.738 seconds (process running for 11.162)
+[skillrater] INFO | 2025-10-24 12:20:07.926 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 12:20:08.079 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 12:20:09.201 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 12:20:09.202 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:20:09.203 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:20:09.205 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:20:10.148 | parallel-3 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"45"] 
+[skillrater] ERROR | 2025-10-24 12:20:10.201 | parallel-3 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:10.241 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=DOWNVOTE
+[skillrater] INFO | 2025-10-24 12:20:10.386 | parallel-5 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"49"] 
+[skillrater] ERROR | 2025-10-24 12:20:10.389 | parallel-5 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:10.425 | parallel-7 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"43"] 
+[skillrater] ERROR | 2025-10-24 12:20:10.427 | parallel-7 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:10.432 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:10.470 | main | o.s.t.c.s.AnnotationConfigContextLoaderUtils:83 | Could not detect default configuration classes for test class [nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT]: RestVoteRateLimitingTestIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[skillrater] INFO | 2025-10-24 12:20:10.477 | main | o.s.b.t.c.SpringBootTestContextBootstrapper:234 | Found @SpringBootConfiguration nk.springprojects.reactive.SpringReactiveApplication for test class nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT
+[skillrater] INFO | 2025-10-24 12:20:10.538 | main | n.s.r.i.RestVoteRateLimitingTestIT:50 | Starting RestVoteRateLimitingTestIT using Java 17.0.16 with PID 186794 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:20:10.539 | main | n.s.r.i.RestVoteRateLimitingTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 12:20:11.041 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:20:11.053 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 11 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:20:12.412 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:20:12.904 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 36261 (http)
+[skillrater] INFO | 2025-10-24 12:20:12.929 | main | n.s.r.i.RestVoteRateLimitingTestIT:56 | Started RestVoteRateLimitingTestIT in 2.431 seconds (process running for 16.415)
+[skillrater] INFO | 2025-10-24 12:20:12.938 | main | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-24 12:20:12.961 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:20:12.962 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:20:12.964 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:20:13.115 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.146 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:13.167 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=725e2bf6-57cf-4c5f-9cba-bd9beabdd5d1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:13.201 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.208 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:13.231 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=725e2bf6-57cf-4c5f-9cba-bd9beabdd5d1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:13.248 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.253 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:13.270 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=725e2bf6-57cf-4c5f-9cba-bd9beabdd5d1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:13.287 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"4", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.293 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:13.308 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=725e2bf6-57cf-4c5f-9cba-bd9beabdd5d1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:13.323 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"5", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.328 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:13.343 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=725e2bf6-57cf-4c5f-9cba-bd9beabdd5d1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:13.359 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"6", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.365 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:13.379 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=725e2bf6-57cf-4c5f-9cba-bd9beabdd5d1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:13.395 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"7", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.399 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:13.412 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=725e2bf6-57cf-4c5f-9cba-bd9beabdd5d1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:13.427 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"8", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.431 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:13.445 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=725e2bf6-57cf-4c5f-9cba-bd9beabdd5d1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:13.460 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"9", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.465 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:13.485 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=725e2bf6-57cf-4c5f-9cba-bd9beabdd5d1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:13.509 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"10", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.516 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:20:13.534 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=725e2bf6-57cf-4c5f-9cba-bd9beabdd5d1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:20:13.566 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"11", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:20:13.572 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 12:20:13.574 | parallel-6 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 12:20:13.648 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:20:15.910 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:23:20.918 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 188222 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:23:20.921 | main | n.s.r.SpringReactiveApplicationTests:654 | No active profile set, falling back to 1 default profile: "dev"
+[skillrater] INFO | 2025-10-24 12:23:24.178 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:23:24.258 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 71 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:23:25.142 | main | c.g.j.r.m.MysqlConnectionFactoryProvider:52 | set jasync.mysql.CLIENT_FOUND_ROWS=true
+[skillrater] INFO | 2025-10-24 12:23:25.372 | main | c.g.jasync.sql.db.util.NettyUtils:38 | jasync available transport - native (epoll)
+[skillrater] INFO | 2025-10-24 12:23:27.374 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:23:28.719 | main | o.f.c.i.r.ResourceNameValidator:37 | 1 SQL migrations were detected but not run because they did not follow the filename convention.
+[skillrater] INFO | 2025-10-24 12:23:28.720 | main | o.f.c.i.r.ResourceNameValidator:37 | Set 'validateMigrationNaming' to true to fail fast and see a list of the invalid file names.
+[skillrater] INFO | 2025-10-24 12:23:28.778 | main | org.flywaydb.core.FlywayExecutor:37 | Database: jdbc:mysql://localhost:3306/javatutos (MySQL 8.0)
+[skillrater] INFO | 2025-10-24 12:23:28.884 | main | o.f.core.internal.command.DbValidate:37 | Successfully validated 10 migrations (execution time 00:00.064s)
+[skillrater] INFO | 2025-10-24 12:23:28.908 | main | o.f.core.internal.command.DbMigrate:37 | Current version of schema `javatutos`: 11
+[skillrater] INFO | 2025-10-24 12:23:28.912 | main | o.f.core.internal.command.DbMigrate:37 | Schema `javatutos` is up to date. No migration necessary.
+[skillrater] INFO | 2025-10-24 12:23:29.218 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 8.914 seconds (process running for 14.383)
+[skillrater] INFO | 2025-10-24 12:23:29.950 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:23:29.952 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:23:30.017 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:23:30.061 | db-sql-netty-thread-4 | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-24 12:23:30.089 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:23:35.940 | main | n.s.r.integration.PublicVoteTestIT:50 | Starting PublicVoteTestIT using Java 17.0.16 with PID 188391 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:23:35.943 | main | n.s.r.integration.PublicVoteTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 12:23:38.888 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:23:39.133 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 234 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:23:41.997 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:23:43.756 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 44575 (http)
+[skillrater] INFO | 2025-10-24 12:23:43.812 | main | n.s.r.integration.PublicVoteTestIT:56 | Started PublicVoteTestIT in 8.782 seconds (process running for 11.888)
+[skillrater] INFO | 2025-10-24 12:23:44.074 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 12:23:44.259 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 12:23:45.415 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 12:23:45.415 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:23:45.416 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:23:45.417 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:23:46.605 | parallel-3 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"45"] 
+[skillrater] ERROR | 2025-10-24 12:23:46.660 | parallel-3 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:46.717 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=DOWNVOTE
+[skillrater] INFO | 2025-10-24 12:23:46.872 | parallel-5 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"49"] 
+[skillrater] ERROR | 2025-10-24 12:23:46.875 | parallel-5 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:46.916 | parallel-7 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"43"] 
+[skillrater] ERROR | 2025-10-24 12:23:46.920 | parallel-7 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:46.928 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:46.970 | main | o.s.t.c.s.AnnotationConfigContextLoaderUtils:83 | Could not detect default configuration classes for test class [nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT]: RestVoteRateLimitingTestIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[skillrater] INFO | 2025-10-24 12:23:46.977 | main | o.s.b.t.c.SpringBootTestContextBootstrapper:234 | Found @SpringBootConfiguration nk.springprojects.reactive.SpringReactiveApplication for test class nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT
+[skillrater] INFO | 2025-10-24 12:23:47.030 | main | n.s.r.i.RestVoteRateLimitingTestIT:50 | Starting RestVoteRateLimitingTestIT using Java 17.0.16 with PID 188391 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:23:47.031 | main | n.s.r.i.RestVoteRateLimitingTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 12:23:47.801 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:23:47.849 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 46 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:23:49.732 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:23:50.150 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 39797 (http)
+[skillrater] INFO | 2025-10-24 12:23:50.174 | main | n.s.r.i.RestVoteRateLimitingTestIT:56 | Started RestVoteRateLimitingTestIT in 3.175 seconds (process running for 18.249)
+[skillrater] INFO | 2025-10-24 12:23:50.199 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:23:50.200 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:23:50.208 | main | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-24 12:23:50.209 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:23:50.358 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.382 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.402 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1c1fa286-c11f-4e1c-a7c0-3a3845916528 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.444 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.450 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.467 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1c1fa286-c11f-4e1c-a7c0-3a3845916528 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.487 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.492 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.506 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1c1fa286-c11f-4e1c-a7c0-3a3845916528 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.519 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"4", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.524 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.535 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1c1fa286-c11f-4e1c-a7c0-3a3845916528 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.549 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"5", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.554 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.565 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1c1fa286-c11f-4e1c-a7c0-3a3845916528 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.579 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"6", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.584 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.598 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1c1fa286-c11f-4e1c-a7c0-3a3845916528 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.614 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"7", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.619 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.633 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1c1fa286-c11f-4e1c-a7c0-3a3845916528 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.648 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"8", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.653 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.666 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1c1fa286-c11f-4e1c-a7c0-3a3845916528 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.680 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"9", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.685 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.699 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1c1fa286-c11f-4e1c-a7c0-3a3845916528 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.718 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"10", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.727 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.747 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1c1fa286-c11f-4e1c-a7c0-3a3845916528 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.763 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"11", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.769 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 12:23:50.771 | parallel-6 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 12:23:50.809 | boundedElastic-1 | n.s.reactive.async.VoteQueue:44 | [skillrater] INFO | queued vote processed for 1c1fa286-c11f-4e1c-a7c0-3a3845916528
+[skillrater] INFO | 2025-10-24 12:23:50.882 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"12", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.886 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.894 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=a10fe034-2c7d-4264-b28c-75ec5eb9d0b6 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.906 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"13", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.910 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.918 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=a10fe034-2c7d-4264-b28c-75ec5eb9d0b6 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.930 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"14", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.934 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.942 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=a10fe034-2c7d-4264-b28c-75ec5eb9d0b6 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.954 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"15", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.958 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.969 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=a10fe034-2c7d-4264-b28c-75ec5eb9d0b6 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:50.984 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"16", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:50.988 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:50.996 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=a10fe034-2c7d-4264-b28c-75ec5eb9d0b6 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:51.009 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"17", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:51.014 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:51.026 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=a10fe034-2c7d-4264-b28c-75ec5eb9d0b6 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:51.045 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"18", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:51.049 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:51.062 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=a10fe034-2c7d-4264-b28c-75ec5eb9d0b6 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:51.076 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"19", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:51.080 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:51.093 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=a10fe034-2c7d-4264-b28c-75ec5eb9d0b6 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:51.113 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"20", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:51.118 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:51.128 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=a10fe034-2c7d-4264-b28c-75ec5eb9d0b6 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:51.142 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"21", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:51.146 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:23:51.156 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=a10fe034-2c7d-4264-b28c-75ec5eb9d0b6 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:23:51.168 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"22", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:23:51.172 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 12:23:51.173 | parallel-4 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 12:23:51.212 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:23:53.533 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:27:18.842 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 189575 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:27:18.845 | main | n.s.r.SpringReactiveApplicationTests:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 12:27:21.560 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:27:21.654 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 85 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:27:24.121 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:27:25.507 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 7.283 seconds (process running for 12.228)
+[skillrater] INFO | 2025-10-24 12:27:25.768 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 12:27:25.967 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 12:27:26.990 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 12:27:26.991 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:27:26.992 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:27:26.994 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:27:27.034 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:27:32.351 | main | n.s.r.integration.PublicVoteTestIT:50 | Starting PublicVoteTestIT using Java 17.0.16 with PID 189671 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:27:32.354 | main | n.s.r.integration.PublicVoteTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 12:27:35.313 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:27:35.574 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 251 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:27:38.381 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:27:40.064 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 42501 (http)
+[skillrater] INFO | 2025-10-24 12:27:40.100 | main | n.s.r.integration.PublicVoteTestIT:56 | Started PublicVoteTestIT in 8.858 seconds (process running for 11.309)
+[skillrater] INFO | 2025-10-24 12:27:40.341 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 12:27:41.575 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 12:27:41.576 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:27:41.576 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:27:41.730 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 12:27:41.741 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:27:42.780 | parallel-3 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"45"] 
+[skillrater] ERROR | 2025-10-24 12:27:42.822 | parallel-3 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:42.870 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=DOWNVOTE
+[skillrater] INFO | 2025-10-24 12:27:43.047 | parallel-5 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"49"] 
+[skillrater] ERROR | 2025-10-24 12:27:43.051 | parallel-5 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:43.094 | parallel-7 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"43"] 
+[skillrater] ERROR | 2025-10-24 12:27:43.098 | parallel-7 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:43.105 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:43.146 | main | o.s.t.c.s.AnnotationConfigContextLoaderUtils:83 | Could not detect default configuration classes for test class [nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT]: RestVoteRateLimitingTestIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[skillrater] INFO | 2025-10-24 12:27:43.156 | main | o.s.b.t.c.SpringBootTestContextBootstrapper:234 | Found @SpringBootConfiguration nk.springprojects.reactive.SpringReactiveApplication for test class nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT
+[skillrater] INFO | 2025-10-24 12:27:43.233 | main | n.s.r.i.RestVoteRateLimitingTestIT:50 | Starting RestVoteRateLimitingTestIT using Java 17.0.16 with PID 189671 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 12:27:43.234 | main | n.s.r.i.RestVoteRateLimitingTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 12:27:43.702 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 12:27:43.713 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 10 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 12:27:45.183 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 12:27:45.694 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 38689 (http)
+[skillrater] INFO | 2025-10-24 12:27:45.719 | main | n.s.r.i.RestVoteRateLimitingTestIT:56 | Started RestVoteRateLimitingTestIT in 2.534 seconds (process running for 16.929)
+[skillrater] INFO | 2025-10-24 12:27:45.745 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 12:27:45.746 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 12:27:45.752 | main | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-24 12:27:45.753 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 12:27:45.894 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:45.928 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:45.948 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=e4f4e622-2738-47d6-82fd-60677dc51ced | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:45.981 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:45.987 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.002 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=e4f4e622-2738-47d6-82fd-60677dc51ced | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.019 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.023 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.036 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=e4f4e622-2738-47d6-82fd-60677dc51ced | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.056 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"4", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.062 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.079 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=e4f4e622-2738-47d6-82fd-60677dc51ced | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.097 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"5", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.103 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.117 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=e4f4e622-2738-47d6-82fd-60677dc51ced | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.135 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"6", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.140 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.156 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=e4f4e622-2738-47d6-82fd-60677dc51ced | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.174 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"7", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.179 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.193 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=e4f4e622-2738-47d6-82fd-60677dc51ced | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.210 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"8", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.215 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.228 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=e4f4e622-2738-47d6-82fd-60677dc51ced | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.244 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"9", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.249 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.265 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=e4f4e622-2738-47d6-82fd-60677dc51ced | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.280 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"10", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.285 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.298 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=e4f4e622-2738-47d6-82fd-60677dc51ced | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.313 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"11", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.318 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 12:27:46.320 | parallel-6 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 12:27:46.368 | boundedElastic-1 | n.s.reactive.async.VoteQueue:44 | [skillrater] INFO | queued vote processed for e4f4e622-2738-47d6-82fd-60677dc51ced
+[skillrater] INFO | 2025-10-24 12:27:46.478 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"12", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.482 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.495 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c215c723-b7ab-412c-9e9e-09012e739366 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.510 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"13", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.515 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.527 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c215c723-b7ab-412c-9e9e-09012e739366 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.541 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"14", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.546 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.558 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c215c723-b7ab-412c-9e9e-09012e739366 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.575 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"15", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.580 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.589 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c215c723-b7ab-412c-9e9e-09012e739366 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.603 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"16", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.608 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.616 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c215c723-b7ab-412c-9e9e-09012e739366 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.628 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"17", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.633 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.642 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c215c723-b7ab-412c-9e9e-09012e739366 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.659 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"18", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.664 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.675 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c215c723-b7ab-412c-9e9e-09012e739366 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.688 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"19", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.692 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.700 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c215c723-b7ab-412c-9e9e-09012e739366 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.710 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"20", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.713 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.723 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c215c723-b7ab-412c-9e9e-09012e739366 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.737 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"21", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.741 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 12:27:46.752 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c215c723-b7ab-412c-9e9e-09012e739366 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 12:27:46.765 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"22", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 12:27:46.768 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 12:27:46.770 | parallel-4 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 12:27:46.812 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 12:27:49.049 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 13:34:16.755 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 191469 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 13:34:16.757 | main | n.s.r.SpringReactiveApplicationTests:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 13:34:18.258 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 13:34:18.314 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 50 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 13:34:19.896 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 13:34:20.678 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 4.281 seconds (process running for 6.793)
+[skillrater] INFO | 2025-10-24 13:34:20.880 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 13:34:20.978 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 13:34:21.879 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 13:34:21.880 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 13:34:21.880 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 13:34:21.881 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 13:34:21.911 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 13:34:24.760 | main | n.s.r.integration.PublicVoteTestIT:50 | Starting PublicVoteTestIT using Java 17.0.16 with PID 191561 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 13:34:24.763 | main | n.s.r.integration.PublicVoteTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 13:34:26.726 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 13:34:26.910 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 176 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 13:34:29.006 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 13:34:30.107 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 37801 (http)
+[skillrater] INFO | 2025-10-24 13:34:30.142 | main | n.s.r.integration.PublicVoteTestIT:56 | Started PublicVoteTestIT in 5.922 seconds (process running for 7.057)
+[skillrater] INFO | 2025-10-24 13:34:30.281 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 13:34:31.416 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 13:34:31.416 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 13:34:31.417 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 13:34:31.571 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 13:34:31.581 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 13:34:32.528 | parallel-3 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"45"] 
+[skillrater] ERROR | 2025-10-24 13:34:32.566 | parallel-3 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:32.600 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=DOWNVOTE
+[skillrater] INFO | 2025-10-24 13:34:32.718 | parallel-5 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"49"] 
+[skillrater] ERROR | 2025-10-24 13:34:32.720 | parallel-5 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:32.748 | parallel-7 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"43"] 
+[skillrater] ERROR | 2025-10-24 13:34:32.752 | parallel-7 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:32.759 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:32.796 | main | o.s.t.c.s.AnnotationConfigContextLoaderUtils:83 | Could not detect default configuration classes for test class [nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT]: RestVoteRateLimitingTestIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[skillrater] INFO | 2025-10-24 13:34:32.804 | main | o.s.b.t.c.SpringBootTestContextBootstrapper:234 | Found @SpringBootConfiguration nk.springprojects.reactive.SpringReactiveApplication for test class nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT
+[skillrater] INFO | 2025-10-24 13:34:32.869 | main | n.s.r.i.RestVoteRateLimitingTestIT:50 | Starting RestVoteRateLimitingTestIT using Java 17.0.16 with PID 191561 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 13:34:32.870 | main | n.s.r.i.RestVoteRateLimitingTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 13:34:33.304 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 13:34:33.316 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 11 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 13:34:34.587 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 13:34:35.013 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 43939 (http)
+[skillrater] INFO | 2025-10-24 13:34:35.036 | main | n.s.r.i.RestVoteRateLimitingTestIT:56 | Started RestVoteRateLimitingTestIT in 2.214 seconds (process running for 11.951)
+[skillrater] INFO | 2025-10-24 13:34:35.060 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 13:34:35.061 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 13:34:35.067 | main | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-24 13:34:35.069 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 13:34:35.182 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.204 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.220 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=5bd9f596-5960-4508-a1f2-2fb275cdbd3d | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.244 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.248 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.259 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=5bd9f596-5960-4508-a1f2-2fb275cdbd3d | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.270 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.274 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.285 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=5bd9f596-5960-4508-a1f2-2fb275cdbd3d | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.297 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"4", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.301 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.312 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=5bd9f596-5960-4508-a1f2-2fb275cdbd3d | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.328 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"5", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.331 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.343 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=5bd9f596-5960-4508-a1f2-2fb275cdbd3d | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.355 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"6", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.357 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.368 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=5bd9f596-5960-4508-a1f2-2fb275cdbd3d | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.379 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"7", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.382 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.393 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=5bd9f596-5960-4508-a1f2-2fb275cdbd3d | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.403 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"8", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.406 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.416 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=5bd9f596-5960-4508-a1f2-2fb275cdbd3d | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.428 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"9", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.432 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.441 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=5bd9f596-5960-4508-a1f2-2fb275cdbd3d | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.452 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"10", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.454 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.463 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=5bd9f596-5960-4508-a1f2-2fb275cdbd3d | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.474 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"11", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.477 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 13:34:35.478 | parallel-6 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 13:34:35.492 | boundedElastic-1 | n.s.reactive.async.VoteQueue:44 | [skillrater] INFO | queued vote processed for 5bd9f596-5960-4508-a1f2-2fb275cdbd3d
+[skillrater] INFO | 2025-10-24 13:34:35.544 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"12", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.548 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.556 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1fe5f564-8aa0-4fa4-b968-8ab691ded859 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.565 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"13", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.568 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.575 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1fe5f564-8aa0-4fa4-b968-8ab691ded859 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.584 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"14", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.588 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.595 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1fe5f564-8aa0-4fa4-b968-8ab691ded859 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.604 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"15", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.608 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.617 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1fe5f564-8aa0-4fa4-b968-8ab691ded859 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.630 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"16", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.635 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.644 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1fe5f564-8aa0-4fa4-b968-8ab691ded859 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.655 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"17", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.659 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.668 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1fe5f564-8aa0-4fa4-b968-8ab691ded859 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.682 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"18", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.686 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.695 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1fe5f564-8aa0-4fa4-b968-8ab691ded859 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.706 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"19", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.710 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.722 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1fe5f564-8aa0-4fa4-b968-8ab691ded859 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.733 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"20", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.737 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.746 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1fe5f564-8aa0-4fa4-b968-8ab691ded859 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.757 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"21", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.761 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 13:34:35.769 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=1fe5f564-8aa0-4fa4-b968-8ab691ded859 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 13:34:35.780 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"22", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 13:34:35.783 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 13:34:35.784 | parallel-4 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 13:34:35.823 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 13:34:37.870 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 14:27:53.058 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 197222 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 14:27:53.063 | main | n.s.r.SpringReactiveApplicationTests:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 14:27:56.128 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 14:27:56.221 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 81 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 14:27:58.961 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 14:28:00.719 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 8.444 seconds (process running for 14.558)
+[skillrater] INFO | 2025-10-24 14:28:00.997 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 14:28:01.191 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 14:28:02.255 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 14:28:02.256 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 14:28:02.256 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 14:28:02.258 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 14:28:02.292 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 14:28:08.033 | main | n.s.r.integration.PublicVoteTestIT:50 | Starting PublicVoteTestIT using Java 17.0.16 with PID 197327 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 14:28:08.037 | main | n.s.r.integration.PublicVoteTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 14:28:11.162 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 14:28:11.426 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 254 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 14:28:14.355 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 14:28:16.143 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 45821 (http)
+[skillrater] INFO | 2025-10-24 14:28:16.176 | main | n.s.r.integration.PublicVoteTestIT:56 | Started PublicVoteTestIT in 9.108 seconds (process running for 12.413)
+[skillrater] INFO | 2025-10-24 14:28:16.504 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 14:28:16.719 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 14:28:17.956 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 14:28:17.956 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 14:28:17.957 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 14:28:17.958 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 14:28:19.128 | parallel-3 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"45"] 
+[skillrater] ERROR | 2025-10-24 14:28:19.176 | parallel-3 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:19.224 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=DOWNVOTE
+[skillrater] INFO | 2025-10-24 14:28:19.434 | parallel-5 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"49"] 
+[skillrater] ERROR | 2025-10-24 14:28:19.438 | parallel-5 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:19.486 | parallel-7 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"43"] 
+[skillrater] ERROR | 2025-10-24 14:28:19.491 | parallel-7 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:19.499 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:19.552 | main | o.s.t.c.s.AnnotationConfigContextLoaderUtils:83 | Could not detect default configuration classes for test class [nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT]: RestVoteRateLimitingTestIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[skillrater] INFO | 2025-10-24 14:28:19.560 | main | o.s.b.t.c.SpringBootTestContextBootstrapper:234 | Found @SpringBootConfiguration nk.springprojects.reactive.SpringReactiveApplication for test class nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT
+[skillrater] INFO | 2025-10-24 14:28:19.642 | main | n.s.r.i.RestVoteRateLimitingTestIT:50 | Starting RestVoteRateLimitingTestIT using Java 17.0.16 with PID 197327 (started by nklinux in /home/nklinux/Documents/workspace/projects/skillrater)
+[skillrater] INFO | 2025-10-24 14:28:19.643 | main | n.s.r.i.RestVoteRateLimitingTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 14:28:20.207 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 14:28:20.219 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 11 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 14:28:21.618 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 14:28:22.070 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 37161 (http)
+[skillrater] INFO | 2025-10-24 14:28:22.094 | main | n.s.r.i.RestVoteRateLimitingTestIT:56 | Started RestVoteRateLimitingTestIT in 2.506 seconds (process running for 18.33)
+[skillrater] INFO | 2025-10-24 14:28:22.116 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 14:28:22.116 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 14:28:22.122 | main | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-24 14:28:22.124 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 14:28:22.289 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.322 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.344 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=fb2d789f-8d6d-40bf-8d34-93da19e568b1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.390 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.396 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.411 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=fb2d789f-8d6d-40bf-8d34-93da19e568b1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.429 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.435 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.454 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=fb2d789f-8d6d-40bf-8d34-93da19e568b1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.474 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"4", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.479 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.494 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=fb2d789f-8d6d-40bf-8d34-93da19e568b1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.512 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"5", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.517 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.537 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=fb2d789f-8d6d-40bf-8d34-93da19e568b1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.556 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"6", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.562 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.586 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=fb2d789f-8d6d-40bf-8d34-93da19e568b1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.601 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"7", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.604 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.615 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=fb2d789f-8d6d-40bf-8d34-93da19e568b1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.627 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"8", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.632 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.645 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=fb2d789f-8d6d-40bf-8d34-93da19e568b1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.661 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"9", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.666 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.680 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=fb2d789f-8d6d-40bf-8d34-93da19e568b1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.694 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"10", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.698 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.709 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=fb2d789f-8d6d-40bf-8d34-93da19e568b1 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.721 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"11", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.724 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 14:28:22.725 | parallel-6 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 14:28:22.763 | boundedElastic-1 | n.s.reactive.async.VoteQueue:44 | [skillrater] INFO | queued vote processed for fb2d789f-8d6d-40bf-8d34-93da19e568b1
+[skillrater] INFO | 2025-10-24 14:28:22.856 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"12", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.863 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.875 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c9be5c00-f1ef-4183-af12-3e5c454c0cd9 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.890 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"13", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.896 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.908 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c9be5c00-f1ef-4183-af12-3e5c454c0cd9 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.923 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"14", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.928 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.940 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c9be5c00-f1ef-4183-af12-3e5c454c0cd9 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.954 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"15", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.959 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.970 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c9be5c00-f1ef-4183-af12-3e5c454c0cd9 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:22.982 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"16", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:22.987 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:22.996 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c9be5c00-f1ef-4183-af12-3e5c454c0cd9 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:23.006 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"17", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:23.010 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:23.018 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c9be5c00-f1ef-4183-af12-3e5c454c0cd9 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:23.036 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"18", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:23.042 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:23.053 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c9be5c00-f1ef-4183-af12-3e5c454c0cd9 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:23.066 | parallel-6 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"19", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:23.070 | parallel-6 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:23.081 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c9be5c00-f1ef-4183-af12-3e5c454c0cd9 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:23.094 | parallel-8 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"20", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:23.098 | parallel-8 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:23.109 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c9be5c00-f1ef-4183-af12-3e5c454c0cd9 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:23.122 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"21", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:23.126 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 14:28:23.136 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=c9be5c00-f1ef-4183-af12-3e5c454c0cd9 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 14:28:23.151 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"22", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 14:28:23.155 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 14:28:23.158 | parallel-4 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 14:28:23.209 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 14:28:25.446 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 19:26:36.058 | main | n.s.r.SpringReactiveApplicationTests:50 | Starting SpringReactiveApplicationTests using Java 17.0.16 with PID 10602 (started by nk-desktop in /home/nk-desktop/Documents/workspace/projects/toolvoter)
+[skillrater] INFO | 2025-10-24 19:26:36.089 | main | n.s.r.SpringReactiveApplicationTests:654 | No active profile set, falling back to 1 default profile: "dev"
+[skillrater] INFO | 2025-10-24 19:26:43.494 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 19:26:43.941 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 431 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 19:26:45.899 | main | c.g.j.r.m.MysqlConnectionFactoryProvider:52 | set jasync.mysql.CLIENT_FOUND_ROWS=true
+[skillrater] INFO | 2025-10-24 19:26:46.376 | main | c.g.jasync.sql.db.util.NettyUtils:38 | jasync available transport - native (epoll)
+[skillrater] INFO | 2025-10-24 19:26:49.889 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 19:26:53.307 | main | o.f.c.i.r.ResourceNameValidator:37 | 1 SQL migrations were detected but not run because they did not follow the filename convention.
+[skillrater] INFO | 2025-10-24 19:26:53.308 | main | o.f.c.i.r.ResourceNameValidator:37 | Set 'validateMigrationNaming' to true to fail fast and see a list of the invalid file names.
+[skillrater] INFO | 2025-10-24 19:26:53.457 | main | org.flywaydb.core.FlywayExecutor:37 | Database: jdbc:mysql://localhost:3306/javatutos (MySQL 8.0)
+[skillrater] INFO | 2025-10-24 19:26:53.676 | main | o.f.core.internal.command.DbValidate:37 | Successfully validated 10 migrations (execution time 00:00.128s)
+[skillrater] INFO | 2025-10-24 19:26:53.714 | main | o.f.core.internal.command.DbMigrate:37 | Current version of schema `javatutos`: 11
+[skillrater] INFO | 2025-10-24 19:26:53.757 | main | o.f.core.internal.command.DbMigrate:37 | Schema `javatutos` is up to date. No migration necessary.
+[skillrater] INFO | 2025-10-24 19:26:54.370 | main | n.s.r.SpringReactiveApplicationTests:56 | Started SpringReactiveApplicationTests in 20.784 seconds (process running for 26.996)
+[skillrater] INFO | 2025-10-24 19:26:55.300 | db-sql-netty-thread-2 | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-24 19:26:55.921 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 19:26:55.922 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 19:26:55.925 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 19:26:57.614 | db-sql-netty-thread-4 | n.s.reactive.async.ThreadComponent:58 | [skillrater] INFO | new vote simulation added
+[skillrater] ERROR | 2025-10-24 19:27:00.460 | main | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:00.473 | db-sql-netty-thread-4 | n.s.reactive.async.ThreadComponent:58 | [skillrater] INFO | new vote simulation added
+[skillrater] ERROR | 2025-10-24 19:27:00.676 | main | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] ERROR | 2025-10-24 19:27:00.720 | main | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] ERROR | 2025-10-24 19:27:00.744 | main | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:00.841 | main | o.s.t.c.s.AnnotationConfigContextLoaderUtils:83 | Could not detect default configuration classes for test class [nk.springprojects.reactive.unittest.DatabaseTest]: DatabaseTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[skillrater] INFO | 2025-10-24 19:27:01.030 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 19:27:11.637 | main | n.s.r.integration.PublicVoteTestIT:50 | Starting PublicVoteTestIT using Java 17.0.16 with PID 10738 (started by nk-desktop in /home/nk-desktop/Documents/workspace/projects/toolvoter)
+[skillrater] INFO | 2025-10-24 19:27:11.645 | main | n.s.r.integration.PublicVoteTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 19:27:16.465 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 19:27:16.847 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 369 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 19:27:21.391 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 19:27:23.977 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 36017 (http)
+[skillrater] INFO | 2025-10-24 19:27:24.017 | main | n.s.r.integration.PublicVoteTestIT:56 | Started PublicVoteTestIT in 14.0 seconds (process running for 18.096)
+[skillrater] INFO | 2025-10-24 19:27:24.404 | main | n.s.r.c.ApplicationSeeder:95 | ===========> DB Seeding started
+[skillrater] INFO | 2025-10-24 19:27:26.753 | main | n.s.r.c.ApplicationSeeder:104 | ===========> DB Seeding finished
+[skillrater] INFO | 2025-10-24 19:27:26.753 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 19:27:26.754 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 19:27:26.992 | main | n.s.r.c.ApplicationSeeder:72 | ✅ Creating default guest user: guest
+[skillrater] INFO | 2025-10-24 19:27:27.008 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 19:27:28.989 | parallel-3 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"45"] 
+[skillrater] ERROR | 2025-10-24 19:27:29.063 | parallel-3 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:29.140 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=DOWNVOTE
+[skillrater] INFO | 2025-10-24 19:27:29.491 | parallel-1 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"49"] 
+[skillrater] ERROR | 2025-10-24 19:27:29.499 | parallel-1 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:29.587 | parallel-3 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"43"] 
+[skillrater] ERROR | 2025-10-24 19:27:29.591 | parallel-3 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:29.598 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=abc-123 | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:29.707 | main | o.s.t.c.s.AnnotationConfigContextLoaderUtils:83 | Could not detect default configuration classes for test class [nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT]: RestVoteRateLimitingTestIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[skillrater] INFO | 2025-10-24 19:27:29.716 | main | o.s.b.t.c.SpringBootTestContextBootstrapper:234 | Found @SpringBootConfiguration nk.springprojects.reactive.SpringReactiveApplication for test class nk.springprojects.reactive.integration.RestVoteRateLimitingTestIT
+[skillrater] INFO | 2025-10-24 19:27:29.919 | main | n.s.r.i.RestVoteRateLimitingTestIT:50 | Starting RestVoteRateLimitingTestIT using Java 17.0.16 with PID 10738 (started by nk-desktop in /home/nk-desktop/Documents/workspace/projects/toolvoter)
+[skillrater] INFO | 2025-10-24 19:27:29.921 | main | n.s.r.i.RestVoteRateLimitingTestIT:660 | The following 1 profile is active: "test"
+[skillrater] INFO | 2025-10-24 19:27:30.736 | main | o.s.d.r.c.RepositoryConfigurationDelegate:143 | Bootstrapping Spring Data R2DBC repositories in DEFAULT mode.
+[skillrater] INFO | 2025-10-24 19:27:30.752 | main | o.s.d.r.c.RepositoryConfigurationDelegate:211 | Finished Spring Data repository scanning in 15 ms. Found 3 R2DBC repository interfaces.
+[skillrater] INFO | 2025-10-24 19:27:32.684 | main | o.s.b.a.e.web.EndpointLinksResolver:60 | Exposing 1 endpoint beneath base path '/actuator'
+[skillrater] INFO | 2025-10-24 19:27:33.410 | main | o.s.b.w.e.netty.NettyWebServer:141 | Netty started on port 36759 (http)
+[skillrater] INFO | 2025-10-24 19:27:33.433 | main | n.s.r.i.RestVoteRateLimitingTestIT:56 | Started RestVoteRateLimitingTestIT in 3.679 seconds (process running for 27.512)
+[skillrater] INFO | 2025-10-24 19:27:33.461 | main | n.s.r.c.ApplicationSeeder:106 | ===========> Can start vote simulation now
+[skillrater] INFO | 2025-10-24 19:27:33.462 | main | n.s.r.async.DBSeedCompletedEvent:10 | [skillrater] INFO | DB seeding completed event created
+[skillrater] INFO | 2025-10-24 19:27:33.478 | main | n.s.r.c.ApplicationSeeder:75 | ℹ️ Guest user already exists, skipping creation.
+[skillrater] INFO | 2025-10-24 19:27:33.480 | main | n.s.r.SpringReactiveApplication:51 | [skillrater] INFO | Application started and ready
+[skillrater] INFO | 2025-10-24 19:27:33.669 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"1", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:33.724 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:33.758 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:33.814 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"2", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:33.822 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:33.838 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:33.851 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"3", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:33.855 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:33.875 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:33.891 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"4", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:33.897 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:33.913 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:33.928 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"5", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:33.935 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:33.953 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:33.984 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"6", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.002 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.027 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.056 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"7", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.062 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.092 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.118 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"8", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.123 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.157 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.182 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"9", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.186 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.200 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.244 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"10", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.260 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.314 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.355 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"11", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.362 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 19:27:34.364 | parallel-2 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 19:27:34.469 | boundedElastic-1 | n.s.reactive.async.VoteQueue:44 | [skillrater] INFO | queued vote processed for adfe6db4-8b1f-49fb-b8f7-bd23aff9a28f
+[skillrater] INFO | 2025-10-24 19:27:34.630 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"12", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.635 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.651 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=cabe98cd-9d1c-4093-a70a-185111b40eda | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.669 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"13", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.677 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.704 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=cabe98cd-9d1c-4093-a70a-185111b40eda | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.722 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"14", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.726 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.745 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=cabe98cd-9d1c-4093-a70a-185111b40eda | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.757 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"15", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.761 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.771 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=cabe98cd-9d1c-4093-a70a-185111b40eda | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.801 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"16", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.809 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.825 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=cabe98cd-9d1c-4093-a70a-185111b40eda | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.838 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"17", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.842 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.855 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=cabe98cd-9d1c-4093-a70a-185111b40eda | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.874 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"18", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.879 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.890 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=cabe98cd-9d1c-4093-a70a-185111b40eda | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.905 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"19", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.909 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.922 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=cabe98cd-9d1c-4093-a70a-185111b40eda | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.945 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"20", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.949 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:34.965 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=cabe98cd-9d1c-4093-a70a-185111b40eda | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:34.976 | parallel-2 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"21", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:34.979 | parallel-2 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] INFO | 2025-10-24 19:27:35.034 | boundedElastic-1 | n.s.r.c.SkillRatingRestController:91 | [skillrater] INFO | REST vote | IP=unknown | skillUUID=cabe98cd-9d1c-4093-a70a-185111b40eda | type=UPVOTE
+[skillrater] INFO | 2025-10-24 19:27:35.107 | parallel-4 | n.s.r.c.AppConfiguration:47 | [skillrater] INFO | Incoming request | POST | /api/v1/data/skill-vote | headers=[WebTestClient-Request-Id:"22", Content-Type:"application/json", Content-Length:"72"] 
+[skillrater] ERROR | 2025-10-24 19:27:35.113 | parallel-4 | n.s.r.e.SkillNotFoundException:9 | [skillrater] ERROR | SkillNotFoundException
+[skillrater] WARN | 2025-10-24 19:27:35.114 | parallel-4 | n.s.r.c.SkillRatingRestController:104 | [skillrater] WARN | Rate limit exceeded for IP=unknown
+[skillrater] INFO | 2025-10-24 19:27:35.212 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
+[skillrater] INFO | 2025-10-24 19:27:37.612 | SpringApplicationShutdownHook | n.s.r.SpringReactiveApplication:56 | [skillrater] INFO | Application stopping
