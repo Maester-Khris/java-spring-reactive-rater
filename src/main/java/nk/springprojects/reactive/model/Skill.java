@@ -20,7 +20,7 @@ import lombok.ToString;
 @Builder
 @Table(name="skills")
 @ToString
-public class Skill extends SkillDefinition{
+public class Skill implements SkillDefinition{
 	
 	@Id
 	private Integer id;
@@ -52,9 +52,10 @@ public class Skill extends SkillDefinition{
     }
 
     public void applyVote(VoteType voteType) {
-        switch (voteType) {
-            case UPVOTE -> upvote++;
-            case DOWNVOTE -> downvote++;
+        if (voteType == VoteType.UPVOTE) {
+            upvote++;
+        } else if (voteType == VoteType.DOWNVOTE) {
+            downvote++;
         }
         this.updateRating();
     }

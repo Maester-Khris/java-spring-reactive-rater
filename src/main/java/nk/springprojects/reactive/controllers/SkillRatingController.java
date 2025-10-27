@@ -38,7 +38,6 @@ public class SkillRatingController {
      */
     @GetMapping("loggedinfo")
     public ResponseEntity<Principal> getLoggeInfo(Principal p) {
-        System.out.println(p.toString());
         return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
@@ -48,7 +47,7 @@ public class SkillRatingController {
     @GetMapping
     public Mono<Rendering> home(ServerWebExchange exchange, @AuthenticationPrincipal Object principal) {
         boolean isUserAuthenticated = !Objects.isNull(principal);
-        System.out.println("check if user is authenticated: " + isUserAuthenticated);
+        log.info("Home page rendering | check if user is authenticated: {}", isUserAuthenticated);
         return Mono.just(Rendering.view("index")
                 .modelAttribute("skills", service.getRepository().findTop5ByOrderByRatingDesc())
                 .modelAttribute("isUserAuthenticated", isUserAuthenticated)
@@ -58,8 +57,7 @@ public class SkillRatingController {
     @GetMapping("/votes")
     public Mono<Rendering> skills(@AuthenticationPrincipal Object principal) throws IOException {
         boolean isUserAuthenticated = !Objects.isNull(principal);
-        System.out.println("check if user is authenticated: " + isUserAuthenticated);
-        System.out.println("user authenticated: " + principal);
+        log.info("Vote page rendering | check if user is authenticated: {}", isUserAuthenticated);
         return Mono.just(Rendering.view("skills")
                 .modelAttribute("skills", service.getRepository().findAll())
                 .modelAttribute("top5skills", service.getRepository().findTop5ByOrderByRatingDesc())
@@ -69,7 +67,7 @@ public class SkillRatingController {
 
     @GetMapping("/myratings")
     public Mono<Rendering> myratings(@AuthenticationPrincipal UserPrincipal principal) {
-        Flux<UserRatingInfo> userRatedFlux = service.UserSkillRatings(principal.getUserId())
+        Flux<UserRatingInfo> userRatedFlux = service.userSkillRatings(principal.getUserId())
                 .flatMap(userRating ->
                         service.getRepository()
                                 .findById(userRating.getSkillid())
@@ -82,7 +80,7 @@ public class SkillRatingController {
                                 ))
                 );
 
-        Mono<Set<Integer>> ratedSkillIdsMono = service.UserSkillRatings(principal.getUserId())
+        Mono<Set<Integer>> ratedSkillIdsMono = service.userSkillRatings(principal.getUserId())
                 .map(UserSkillRating::getSkillid)
                 .collect(Collectors.toSet());
 

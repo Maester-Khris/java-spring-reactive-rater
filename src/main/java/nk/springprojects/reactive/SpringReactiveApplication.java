@@ -38,7 +38,7 @@ public class SpringReactiveApplication {
 	@Value("classpath:data/alliconsv1.json")
 	private Resource resource;
 	
-	record Language(String name, String[] aliases) {}
+	//record Language(String name, String[] aliases) {}
 	record Icon(String name, String icon) {}
 
     private static final String APP_NAME = "skillrater";

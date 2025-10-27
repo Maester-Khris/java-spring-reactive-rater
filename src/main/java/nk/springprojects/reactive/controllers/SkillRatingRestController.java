@@ -124,12 +124,12 @@ public class SkillRatingRestController {
                         service.getRepository()
                             .findFirstBySkilluuid(skillRating.skilluuid())
                             .flatMap(skill ->
-                                service.getUSRrepository()
+                                service.getUserSkillRatingRepository()
                                     .findFirstByUseridAndSkillid(id, skill.getId())
                                     .flatMap(existing -> {
                                         existing.setRating(skillRating.rating());
                                         existing.setProficiency(skillRating.proficiency());
-                                        return service.getUSRrepository().save(existing).doOnSuccess(usr-> log.info("[skillrater] INFO | USER personal rating update | skillId={}", usr.getSkillid()));
+                                        return service.getUserSkillRatingRepository().save(existing).doOnSuccess(usr-> log.info("[skillrater] INFO | USER personal rating update | skillId={}", usr.getSkillid()));
                                     })
                                     .switchIfEmpty(
                                         Mono.defer(() -> {
@@ -138,7 +138,7 @@ public class SkillRatingRestController {
                                             newRating.setSkillid(skill.getId());
                                             newRating.setRating(skillRating.rating());
                                             newRating.setProficiency(skillRating.proficiency());
-                                            return service.getUSRrepository().save(newRating);
+                                            return service.getUserSkillRatingRepository().save(newRating);
                                         })
                                     )
                             )

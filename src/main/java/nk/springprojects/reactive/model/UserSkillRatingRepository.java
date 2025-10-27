@@ -11,7 +11,6 @@ public interface UserSkillRatingRepository extends ReactiveCrudRepository<UserSk
 
 	Flux<UserSkillRating> findAllByUserid(Integer userid);
 	Mono<UserSkillRating> findFirstByUseridAndSkillid(Integer userid, Integer skillid);
-    //Mono<UserSkillRating> findByUseridAndSkillUuid(Integer userid, String skilluuid);
 
     default void debugLogCall(String operation) {
         Logger log = LoggerFactory.getLogger(UserSkillRatingRepository.class);

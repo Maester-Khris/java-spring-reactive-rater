@@ -31,3 +31,42 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# =========================
+# Java / Spring Boot
+# =========================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!.gradle/wrapper/gradle-wrapper.jar
+
+# Compiled class files
+*.class
+
+# Log files
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# =========================
+# OS / System Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Environment / Config
+# =========================
+.env
+application-local.yml
+application-local.properties

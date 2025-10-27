@@ -44,11 +44,11 @@ public class AuthController {
 	@PostMapping("/register")
 	public Mono<Void> register (@ModelAttribute User newuser, ServerWebExchange exchange) {
 		// user management service code 
-		System.out.println("this is the new user " + newuser.toString());
+		//System.out.println("this is the new user " + newuser.toString());
 	    newuser.setPassword(encoder.encode(newuser.getPassword()));
 	    newuser.setCreated_at(LocalDateTime.now());
 	    newuser.setUseruuid(UUID.randomUUID().toString());
-	    System.out.println("full user" + newuser.toString());
+	    //System.out.println("full user" + newuser.toString());
 	    repository.save(newuser).subscribe();
 	    
 	    // user request redirection 

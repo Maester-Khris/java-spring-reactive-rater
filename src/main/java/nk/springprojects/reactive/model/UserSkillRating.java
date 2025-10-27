@@ -17,7 +17,7 @@ import lombok.ToString;
 @Builder
 @ToString
 @Table("user_skill_ratings")
-public class UserSkillRating extends SkillDefinition{
+public class UserSkillRating implements SkillDefinition{
 
 	@Id
     private Integer id;

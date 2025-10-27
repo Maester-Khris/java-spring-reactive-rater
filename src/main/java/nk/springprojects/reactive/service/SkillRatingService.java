@@ -28,10 +28,11 @@ import reactor.core.scheduler.Schedulers;
 @RequiredArgsConstructor
 @Slf4j
 public class SkillRatingService {
-	private final CopyOnWriteArrayList<Skill> localRating = new CopyOnWriteArrayList<Skill>();
-	private final SkillRepository repository;
-	private final UserSkillRatingRepository USRrepository;
+    private final CopyOnWriteArrayList<Skill> localRating = new CopyOnWriteArrayList<Skill>();
+    private final SkillRepository repository;
+    private final UserSkillRatingRepository userSkillRatingRepository;
     private final SkillEventBus eventBus;
+    private static final String NOT_FOUND_MSG = "Skill not found with UUID: ";
 //    private final Retry dbWriteRetry;
 //    private final VoteCacheService voteCacheService;
 
@@ -39,6 +40,58 @@ public class SkillRatingService {
         return repository.save(s);
     }
 
+    public Mono<Skill> handleVote(VoteRequest voteRequest) {
+        return repository.findFirstBySkilluuid(voteRequest.skilluuid())
+            .flatMap(skill -> {
+                log.debug("[skillrater] DEBUG | Computing new rating for skillId={}", skill.getId());
+                skill.applyVote(voteRequest.voteType());
+                return repository.save(skill)
+                        .doOnSuccess(eventBus::publish);
+            })
+            .subscribeOn(Schedulers.boundedElastic());
+    }
+
+    public Mono<Skill> upVoteSkill(String skilluuid){
+        return repository.findFirstBySkilluuid(skilluuid)
+            .flatMap(skill -> {
+                skill.setUpvote(skill.getUpvote()+1);
+                skill.updateRating();
+                return repository.save(skill);
+            })
+            .switchIfEmpty(Mono.error(new SkillNotFoundException(NOT_FOUND_MSG+": " + skilluuid)));
+    }
+
+    public Mono<Skill> downVoteSkill(String skilluuid){
+        return repository.findFirstBySkilluuid(skilluuid)
+            .flatMap(skill -> {
+                skill.setDownvote(skill.getDownvote()+1);
+                skill.updateRating();
+                return repository.save(skill);
+            })
+            .switchIfEmpty(Mono.error(new SkillNotFoundException(NOT_FOUND_MSG+": " + skilluuid)));
+    }
+	
+	public Mono<Skill> updateSkill(String skilluuid){	
+		return repository.findFirstBySkilluuid(skilluuid)
+	        .flatMap(skill -> {
+                skill.updateRating();
+	            return repository.save(skill);
+	        })
+	        .switchIfEmpty(Mono.error(new SkillNotFoundException(NOT_FOUND_MSG+": " + skilluuid)));
+	}
+	
+    public Flux<UserSkillRating> userSkillRatings(Integer userid){
+        return  userSkillRatingRepository.findAllByUserid(userid);
+    }
+
+
+    // =================== old method: no more usedd ==================
+    public String retrieveRemoteSkill(){
+        WebClient restclient = WebClient.create("https://api.github.com/languages");
+        return restclient.get().retrieve().bodyToMono(String.class).block();
+    }
+
+    // =================== update with caching fallback: no more used ==================
 //    public Mono<Skill> handleVote(VoteRequest voteRequest) {
 //        // 1. Core Persistence Logic: A Supplier for the DB write operation
 //        // This is the function we want to protect and retry.
@@ -78,57 +131,5 @@ public class SkillRatingService {
 //                // fall through to onErrorResume if maxAttempts is reached.
 //                .onErrorResume(cacheFallback);
 //    }
-
-    public Mono<Skill> handleVote(VoteRequest voteRequest) {
-        return repository.findFirstBySkilluuid(voteRequest.skilluuid())
-            .flatMap(skill -> {
-                log.debug("[skillrater] DEBUG | Computing new rating for skillId={}", skill.getId());
-                skill.applyVote(voteRequest.voteType());
-                return repository.save(skill)
-                        .doOnSuccess(eventBus::publish);
-            })
-            .subscribeOn(Schedulers.boundedElastic());
-    }
-
-    public Mono<Skill> upVoteSkill(String skilluuid){
-        return repository.findFirstBySkilluuid(skilluuid)
-            .flatMap(skill -> {
-                skill.setUpvote(skill.getUpvote()+1);
-                skill.updateRating();
-                return repository.save(skill);
-            })
-            .switchIfEmpty(Mono.error(new SkillNotFoundException("Skill not found with UUID: " + skilluuid)));
-    }
-
-    public Mono<Skill> downVoteSkill(String skilluuid){
-        return repository.findFirstBySkilluuid(skilluuid)
-            .flatMap(skill -> {
-                skill.setDownvote(skill.getDownvote()+1);
-                skill.updateRating();
-                return repository.save(skill);
-            })
-            .switchIfEmpty(Mono.error(new SkillNotFoundException("Skill not found with UUID: " + skilluuid)));
-    }
-	
-	public Mono<Skill> updateSkill(String skilluuid, int rating){	
-		return repository.findFirstBySkilluuid(skilluuid)
-	        .flatMap(skill -> {
-                skill.updateRating();
-	            return repository.save(skill);
-	        })
-	        .switchIfEmpty(Mono.error(new SkillNotFoundException("Skill not found with UUID: " + skilluuid)));
-	}
-	
-	public Flux<UserSkillRating> UserSkillRatings(Integer userid){
-        return  USRrepository.findAllByUserid(userid);
-	}
-
-
-    // =================== old method: no more usedd ==================
-    public String retrieveRemoteSkill(){
-        WebClient restclient = WebClient.create("https://api.github.com/languages");
-        String languages = restclient.get().retrieve().bodyToMono(String.class).block();
-        return languages;
-    }
 }
 

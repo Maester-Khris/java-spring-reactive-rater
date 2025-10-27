@@ -28,35 +28,4 @@ public class MyUserDetailsService implements ReactiveUserDetailsService{
 				return new UserPrincipal(user);
 			});
 	}
-
-	/*@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
-		 * return repository.findByUsername(username).subscribe(user ->{ if (user ==
-		 * null) { throw new
-		 * UsernameNotFoundException("404 No user with that name found"); } return new
-		 * UserPrincipal(user); });
-		 
-		
-		System.out.println("looking for a user engaged");
-		return (UserDetails) repository.findByUsername(username).map(user -> {
-			if (user == null) {
-				throw new UsernameNotFoundException("404 No user with that name found");
-			}
-			return new UserPrincipal(user);
-		}).switchIfEmpty(Mono.error(new UsernameNotFoundException("404 No user with that name found")));
-		 
-		
-		
-	}*/
-
-	/*
-	 * @Override public Mono<UserDetails> findByUsername(String username) {
-	 * System.out.println("looking for a user engaged"); return
-	 * repository.findByUsername(username).map(user -> { if (user == null) { throw
-	 * new UsernameNotFoundException("404 No user with that name found"); } return
-	 * new UserPrincipal(user); }).switchIfEmpty(Mono.error(new
-	 * UsernameNotFoundException("404 No user with that name found")));; }
-	 */
-
 }

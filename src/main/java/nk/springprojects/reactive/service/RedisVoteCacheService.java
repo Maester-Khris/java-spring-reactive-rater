@@ -22,8 +22,8 @@ public class RedisVoteCacheService implements VoteCacheService{
         // Use RPUSH (right push) on a Redis List to add the vote to the end of the queue.
         // This is the core "durable queue" action.
         return redisTemplate.opsForList()
-                .rightPush(PENDING_VOTES_KEY, request)
-                .then(); // Return Mono<Void> for chain continuation
+            .rightPush(PENDING_VOTES_KEY, request)
+            .then(); // Return Mono<Void> for chain continuation
     }
 
     // You would add getPendingVotes() and removeVote() methods here for the scheduled recovery job.
